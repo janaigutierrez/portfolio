@@ -1,11 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import About from './components/About'
+import Projects from './components/Projects'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Contact from './components/Contact'
+
 
 function App() {
   return (
-    <div className="bg-red-500 h-screen flex items-center justify-center">
-      <h1 className="text-white text-4xl">TAILWIND TEST</h1>
+    <div className="min-h-screen">
+      <Header />
+
+      <main>
+        <section id="home">
+          <Hero />
+        </section>
+
+        <About />
+        <Projects />
+        <Contact />
+      </main>
+
+      <Footer />
     </div>
   )
 }
