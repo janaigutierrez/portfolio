@@ -1,81 +1,120 @@
 export default function About() {
-    const skills = [
-        'JavaScript', 'React', 'Node.js', 'Python', 'MongoDB', 'PostgreSQL',
-        'Tailwind CSS', 'Express.js', 'Git', 'Docker', 'AWS', 'Figma'
+    const techStack = [
+        { name: 'JavaScript', level: 95, icon: '⚡' },
+        { name: 'React', level: 90, icon: '⚛️' },
+        { name: 'Python', level: 85, icon: '🐍' },
+        { name: 'Node.js', level: 80, icon: '🍃' },
+        { name: 'MongoDB', level: 75, icon: '🍀' },
+        { name: 'Tailwind', level: 88, icon: '🎨' }
+    ]
+
+    const achievements = [
+        { name: 'Full Stack Master', icon: '🎯', unlocked: true },
+        { name: 'SaaS Builder', icon: '🚀', unlocked: true },
+        { name: 'UI/UX Expert', icon: '🎨', unlocked: true },
+        { name: 'App Creator', icon: '📱', unlocked: true },
+        { name: 'Code Wizard', icon: '🧙‍♂️', unlocked: false }
     ]
 
     return (
-        <section id="about" className="py-20 bg-beige-pedra">
-            <div className="container mx-auto px-6">
-                <div className="max-w-4xl mx-auto">
+        <section id="about" className="relative min-h-screen py-20 bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900">
 
-                    {/* Section Title */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-gris-carbo mb-4">
-                            Sobre mi
-                        </h2>
-                        <div className="w-24 h-1 bg-gradient-to-r from-sea-green to-sky-blue mx-auto"></div>
+            {/* Player Info Header */}
+            <div className="container mx-auto px-6 max-w-6xl">
+                <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-sea-green rounded-lg p-6 mb-8 text-white">
+                    <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                        <div className="flex items-center space-x-4">
+                            <div className="w-20 h-20 bg-gradient-to-br from-sea-green to-sky-blue rounded-full flex items-center justify-center text-3xl font-bold text-white">
+                                JG
+                            </div>
+                            <div className="text-center md:text-left">
+                                <h2 className="text-3xl font-bold">Janai Gutierrez</h2>
+                                <p className="text-sea-green text-lg">Level 25 Full Stack Developer</p>
+                                <p className="text-gray-300">Especialista en convertir idees en realitat digital</p>
+                            </div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-sm text-gray-300">Experience Points</div>
+                            <div className="text-2xl font-bold text-yellow-400">15,847 XP</div>
+                            <div className="text-xs text-gray-400">Next Level: 2,153 XP</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-8">
+
+                    {/* Tech Inventory */}
+                    <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-sea-green rounded-lg p-6">
+                        <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                            <span className="mr-3">🎒</span> Tech Inventory
+                        </h3>
+                        <div className="space-y-4">
+                            {techStack.map((tech, index) => (
+                                <div key={tech.name} className="bg-gray-800 rounded-lg p-4 hover:bg-gray-750 transition-all duration-300">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-white flex items-center space-x-3">
+                                            <span className="text-xl">{tech.icon}</span>
+                                            <span className="font-semibold text-lg">{tech.name}</span>
+                                        </span>
+                                        <span className="text-sea-green font-bold text-lg">{tech.level}%</span>
+                                    </div>
+                                    <div className="w-full bg-gray-700 rounded-full h-3">
+                                        <div
+                                            className="bg-gradient-to-r from-sea-green to-sky-blue h-3 rounded-full transition-all duration-1000 progress-glow"
+                                            style={{
+                                                width: `${tech.level}%`,
+                                                animationDelay: `${index * 0.2}s`
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* About Content + Achievements */}
+                    <div className="space-y-6">
 
-                        {/* Text Content */}
-                        <div className="space-y-6">
-                            <p className="text-lg text-gris-carbo leading-relaxed">
-                                Soc un desenvolupador creatiu amb passió per convertir idees innovadores en solucions reals.
-                                Combino coneixements tècnics sòlids amb un enfocament centrat en la UX per crear experiències digitals excepcionals.
-                            </p>
-
-                            <p className="text-lg text-gris-carbo leading-relaxed">
-                                La meva filosofia és simple: la tecnologia ha de ser accessible i útil. Per això, cada projecte que desenvolupo
-                                està pensat des de la perspectiva de l'usuari final, sense deixar de banda la qualitat tècnica i la performance.
-                            </p>
-
-                            <div className="pt-4">
-                                <h3 className="text-xl font-semibold text-gris-carbo mb-4">
-                                    El que em motiva:
-                                </h3>
-                                <ul className="space-y-2 text-gris-carbo">
-                                    <li className="flex items-center">
-                                        <span className="w-2 h-2 bg-sea-green rounded-full mr-3"></span>
-                                        Resoldre problemes reals amb codi elegant
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="w-2 h-2 bg-sky-blue rounded-full mr-3"></span>
-                                        Aprendre constantment noves tecnologies
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="w-2 h-2 bg-terra-siena rounded-full mr-3"></span>
-                                        Col·laborar amb equips multidisciplinaris
-                                    </li>
-                                </ul>
+                        {/* Personal Description */}
+                        <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-sky-blue rounded-lg p-6">
+                            <h3 className="text-2xl font-bold text-white mb-4">About Me</h3>
+                            <div className="text-gray-300 space-y-4">
+                                <p className="leading-relaxed">
+                                    Com explorador del món digital, navego entre les profunditats del backend
+                                    i la superficie brillant del frontend. Cada projecte és una nova aventura
+                                    on combino creativitat mediterrània amb sòlida enginyeria.
+                                </p>
+                                <p className="leading-relaxed">
+                                    M'especialitzo en transformar idees complexes en solucions elegants,
+                                    sempre amb l'usuari al centre de l'experiència.
+                                </p>
                             </div>
                         </div>
 
-                        {/* Skills Grid */}
-                        <div>
-                            <h3 className="text-xl font-semibold text-gris-carbo mb-6">
-                                Tech Stack
+                        {/* Achievements */}
+                        <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-yellow-400 rounded-lg p-6">
+                            <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
+                                <span className="mr-3">🏆</span> Achievements
                             </h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                {skills.map((skill, index) => (
+                            <div className="space-y-3">
+                                {achievements.map((achievement) => (
                                     <div
-                                        key={skill}
-                                        className="bg-white bg-opacity-70 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-3 text-center text-sm font-medium text-gris-carbo hover:shadow-md transition-all duration-300 hover:scale-105"
-                                        style={{ animationDelay: `${index * 100}ms` }}
+                                        key={achievement.name}
+                                        className={`flex items-center space-x-4 p-3 rounded-lg transition-all duration-300 ${achievement.unlocked
+                                                ? 'bg-yellow-900 bg-opacity-50 border border-yellow-400'
+                                                : 'bg-gray-800 opacity-60 border border-gray-600'
+                                            }`}
                                     >
-                                        {skill}
+                                        <span className="text-3xl">{achievement.icon}</span>
+                                        <span className={`font-semibold text-lg ${achievement.unlocked ? 'text-yellow-300' : 'text-gray-500'
+                                            }`}>
+                                            {achievement.name}
+                                        </span>
+                                        {achievement.unlocked && <span className="text-green-400 text-xl">✓</span>}
                                     </div>
                                 ))}
                             </div>
                         </div>
-                    </div>
-
-                    {/* Call to Action */}
-                    <div className="text-center mt-12">
-                        <button className="bg-gradient-to-r from-sea-green to-sky-blue text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-                            Descarregar CV
-                        </button>
                     </div>
                 </div>
             </div>

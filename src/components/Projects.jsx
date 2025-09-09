@@ -1,137 +1,205 @@
 export default function Projects() {
-    const projects = [
+    const quests = [
         {
             id: 1,
-            title: "NEST",
-            subtitle: "App de Productivitat",
-            description: "Aplicació completa per gestionar tasques, projectes i temps. Interfície intuïtiva amb sincronització en temps real.",
-            tech: ["React Native", "Node.js", "MongoDB", "Socket.io"],
-            status: "Completat",
-            link: "#",
-            github: "#",
-            image: "/api/placeholder/400/300"
+            name: 'NEST',
+            subtitle: 'Productivity Quest',
+            description: 'Aplicació completa per gestionar tasques i projectes. Sistema de sincronització en temps real amb interfície intuïtiva.',
+            progress: 100,
+            status: 'complete',
+            tech: ['React Native', 'Node.js', 'MongoDB', 'Socket.io'],
+            difficulty: 'Expert',
+            rewards: ['Full Stack XP', 'Mobile Dev Badge', 'Real-time Systems']
         },
         {
             id: 2,
-            title: "Terracota",
-            subtitle: "SaaS Platform",
-            description: "Plataforma SaaS completa per gestió empresarial. Sistema modular, escalable i customitzable per diferents clients.",
-            tech: ["React", "Express.js", "PostgreSQL", "Docker"],
-            status: "En desenvolupament",
-            link: "#",
-            github: "#",
-            image: "/api/placeholder/400/300"
+            name: 'Terracota',
+            subtitle: 'SaaS Empire Quest',
+            description: 'Plataforma SaaS modular i escalable per gestió empresarial. Arquitectura microserveis amb dashboard customizable.',
+            progress: 65,
+            status: 'active',
+            tech: ['React', 'Express.js', 'PostgreSQL', 'Docker'],
+            difficulty: 'Legendary',
+            rewards: ['SaaS Master', 'Architecture XP', 'Business Logic']
         },
         {
             id: 3,
-            title: "Web Casament",
-            subtitle: "Landing Page Personalitzada",
-            description: "Web personalitzada per casament amb galeria d'imatges, RSVP interactiu i timeline de l'esdeveniment.",
-            tech: ["React", "Tailwind CSS", "Firebase", "Framer Motion"],
-            status: "Completat",
-            link: "#",
-            github: "#",
-            image: "/api/placeholder/400/300"
+            name: 'Web Casament',
+            subtitle: 'Creative Design Quest',
+            description: 'Web personalitzada amb galeria interactiva, sistema RSVP i timeline animat. Focus en experiència visual.',
+            progress: 100,
+            status: 'complete',
+            tech: ['React', 'Tailwind CSS', 'Firebase', 'Framer Motion'],
+            difficulty: 'Advanced',
+            rewards: ['Design XP', 'Animation Skills', 'Client Satisfaction']
         },
         {
             id: 4,
-            title: "FitTracker",
-            subtitle: "App Fitness & Wellness",
-            description: "App per tracking d'entrenaments, progressos i rutines personalitzades. Gamificació per mantenir la motivació.",
-            tech: ["React Native", "FastAPI", "PostgreSQL", "TensorFlow"],
-            status: "Coming Soon",
-            link: null,
-            github: "#",
-            image: "/api/placeholder/400/300"
+            name: 'FitTracker',
+            subtitle: 'Wellness Journey Quest',
+            description: 'App de tracking d\'entrenaments amb gamificació, progressos personalitzats i integració amb wearables.',
+            progress: 30,
+            status: 'planning',
+            tech: ['React Native', 'FastAPI', 'PostgreSQL', 'ML Models'],
+            difficulty: 'Expert',
+            rewards: ['Health Tech XP', 'ML Integration', 'Gamification']
         }
     ]
 
-    return (
-        <section id="projects" className="py-20 bg-white">
-            <div className="container mx-auto px-6">
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'complete': return 'border-green-400 bg-green-900'
+            case 'active': return 'border-yellow-400 bg-yellow-900'
+            case 'planning': return 'border-blue-400 bg-blue-900'
+            default: return 'border-gray-400 bg-gray-900'
+        }
+    }
 
-                {/* Section Title */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gris-carbo mb-4">
-                        Projectes Destacats
+    const getStatusIcon = (status) => {
+        switch (status) {
+            case 'complete': return '✅'
+            case 'active': return '⚡'
+            case 'planning': return '📋'
+            default: return '❓'
+        }
+    }
+
+    const getDifficultyColor = (difficulty) => {
+        switch (difficulty) {
+            case 'Legendary': return 'text-purple-400'
+            case 'Expert': return 'text-red-400'
+            case 'Advanced': return 'text-orange-400'
+            default: return 'text-green-400'
+        }
+    }
+
+    return (
+        <section id="projects" className="relative min-h-screen py-20 bg-gradient-to-b from-blue-800 via-blue-900 to-indigo-900">
+
+            <div className="container mx-auto px-6 max-w-6xl">
+
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
+                        <span className="mr-4">⚔️</span>Quest Progress
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-sea-green to-sky-blue mx-auto mb-6"></div>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Una selecció dels projectes on he aplicat la meva passió per crear solucions digitals innovadores
+                    <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Cada projecte és una aventura única amb els seus propis reptes, recompenses i aprenentatges.
+                        Explora el meu viatge pel desenvolupament digital.
                     </p>
                 </div>
 
-                {/* Projects Grid */}
-                <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    {projects.map((project) => (
+                {/* Quest Grid */}
+                <div className="grid md:grid-cols-2 gap-8">
+                    {quests.map((quest, index) => (
                         <div
-                            key={project.id}
-                            className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                            key={quest.id}
+                            className={`bg-opacity-80 backdrop-blur-md border-2 rounded-xl p-6 text-white hover:scale-105 transition-all duration-300 cursor-pointer ${getStatusColor(quest.status)}`}
+                            style={{ animationDelay: `${index * 0.2}s` }}
                         >
-                            {/* Project Image Placeholder */}
-                            <div className="h-48 bg-gradient-to-br from-sea-green to-sky-blue flex items-center justify-center">
-                                <div className="text-white text-center">
-                                    <h3 className="text-2xl font-bold">{project.title}</h3>
-                                    <p className="text-sm opacity-90">{project.subtitle}</p>
+
+                            {/* Quest Header */}
+                            <div className="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 className="text-2xl font-bold mb-1">{quest.name}</h3>
+                                    <p className="text-sm opacity-90">{quest.subtitle}</p>
+                                </div>
+                                <div className="flex flex-col items-end space-y-1">
+                                    <span className="text-2xl">{getStatusIcon(quest.status)}</span>
+                                    <span className={`text-xs font-bold ${getDifficultyColor(quest.difficulty)}`}>
+                                        {quest.difficulty}
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Project Content */}
-                            <div className="p-6">
-                                <div className="flex justify-between items-start mb-3">
-                                    <h3 className="text-xl font-semibold text-gris-carbo">
-                                        {project.title}
-                                    </h3>
-                                    <span className={`px-3 py-1 text-xs rounded-full font-medium ${project.status === 'Completat'
-                                            ? 'bg-green-100 text-green-800'
-                                            : project.status === 'En desenvolupament'
-                                                ? 'bg-blue-100 text-blue-800'
-                                                : 'bg-gray-100 text-gray-800'
-                                        }`}>
-                                        {project.status}
-                                    </span>
+                            {/* Quest Description */}
+                            <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                                {quest.description}
+                            </p>
+
+                            {/* Progress Bar */}
+                            <div className="mb-4">
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-sm font-medium">Progress</span>
+                                    <span className="text-sm font-bold">{quest.progress}%</span>
                                 </div>
-
-                                <p className="text-gray-600 mb-4 leading-relaxed">
-                                    {project.description}
-                                </p>
-
-                                {/* Tech Stack */}
-                                <div className="mb-4">
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tech.map((tech, index) => (
-                                            <span
-                                                key={index}
-                                                className="bg-beige-pedra text-gris-carbo px-3 py-1 rounded-full text-xs font-medium"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
+                                <div className="w-full bg-gray-700 rounded-full h-3">
+                                    <div
+                                        className={`h-3 rounded-full transition-all duration-1000 ${quest.status === 'complete'
+                                                ? 'bg-gradient-to-r from-green-500 to-green-400'
+                                                : quest.status === 'active'
+                                                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
+                                                    : 'bg-gradient-to-r from-blue-500 to-blue-400'
+                                            }`}
+                                        style={{
+                                            width: `${quest.progress}%`,
+                                            animationDelay: `${index * 0.3}s`
+                                        }}
+                                    />
                                 </div>
+                            </div>
 
-                                {/* Project Links */}
-                                <div className="flex gap-3">
-                                    {project.link && (
-                                        <button className="flex-1 bg-gradient-to-r from-sea-green to-sky-blue text-white py-2 px-4 rounded-lg hover:opacity-90 transition-opacity">
-                                            Veure Demo
-                                        </button>
-                                    )}
-                                    <button className="flex-1 border border-gray-300 text-gris-carbo py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors">
-                                        Veure Codi
+                            {/* Tech Stack */}
+                            <div className="mb-4">
+                                <p className="text-xs text-gray-400 mb-2">Tech Stack:</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {quest.tech.map((tech) => (
+                                        <span
+                                            key={tech}
+                                            className="bg-black bg-opacity-30 px-2 py-1 rounded text-xs font-medium"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Rewards */}
+                            <div>
+                                <p className="text-xs text-gray-400 mb-2">Rewards Earned:</p>
+                                <div className="flex flex-wrap gap-1">
+                                    {quest.rewards.map((reward) => (
+                                        <span
+                                            key={reward}
+                                            className="bg-yellow-600 bg-opacity-20 text-yellow-300 px-2 py-1 rounded text-xs"
+                                        >
+                                            🏆 {reward}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Action Button */}
+                            <div className="mt-6 pt-4 border-t border-white border-opacity-20">
+                                {quest.status === 'complete' ? (
+                                    <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors font-medium">
+                                        View Details
                                     </button>
-                                </div>
+                                ) : quest.status === 'active' ? (
+                                    <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-colors font-medium">
+                                        Check Progress
+                                    </button>
+                                ) : (
+                                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors font-medium">
+                                        Preview Quest
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* More Projects CTA */}
+                {/* Call to Action */}
                 <div className="text-center mt-12">
-                    <p className="text-gray-600 mb-4">Vols veure més projectes?</p>
-                    <button className="bg-white border-2 border-sea-green text-sea-green px-8 py-3 rounded-full hover:bg-sea-green hover:text-white transition-all duration-300">
-                        Veure GitHub Complet
-                    </button>
+                    <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-sea-green rounded-lg p-8 max-w-2xl mx-auto">
+                        <h3 className="text-2xl font-bold text-white mb-4">Ready for a New Quest?</h3>
+                        <p className="text-gray-300 mb-6">
+                            Tints una idea interessant o un projecte desafiador? Let's embark on this adventure together!
+                        </p>
+                        <button className="bg-gradient-to-r from-sea-green to-sky-blue text-white px-8 py-3 rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 font-bold">
+                            <span className="mr-2">🎮</span> Start New Quest
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
