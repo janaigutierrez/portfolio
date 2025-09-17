@@ -17,13 +17,13 @@ export default function Header() {
                         <a href="#home" className="text-white hover:text-sea-green transition-colors duration-300 font-medium drop-shadow">
                             Surface
                         </a>
-                        <a href="#about" className="text-white hover:text-sea-green transition-colors duration-300 font-medium drop-shadow">
+                        <a href="#about" className="text-white hover:text-blue-500 transition-colors duration-300 font-medium drop-shadow">
                             Dive
                         </a>
-                        <a href="#projects" className="text-white hover:text-sea-green transition-colors duration-300 font-medium drop-shadow">
-                            Quests
+                        <a href="#projects" className="text-white hover:text-blue-600 transition-colors duration-300 font-medium drop-shadow">
+                            Projects
                         </a>
-                        <a href="#contact" className="text-white hover:text-sea-green transition-colors duration-300 font-medium drop-shadow">
+                        <a href="#contact" className="text-white hover:text-blue-950 transition-colors duration-300 font-medium drop-shadow">
                             Deep
                         </a>
                     </div>
@@ -54,7 +54,7 @@ export default function Header() {
                                 Dive
                             </a>
                             <a href="#projects" className="text-white hover:text-sea-green transition-colors duration-300 font-medium">
-                                Quests
+                                Projects
                             </a>
                             <a href="#contact" className="text-white hover:text-sea-green transition-colors duration-300 font-medium">
                                 Deep

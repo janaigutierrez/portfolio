@@ -252,3 +252,66 @@ body {
         transform: translateX(20px) translateY(-10px);
     }
 }
+
+
+/* Scrollbar personalitzada - Afegir a src/index.css */
+
+.scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(32, 178, 170, 0.8) transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #20B2AA, #48CAE4);
+    border-radius: 2px;
+    border: none;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #1a9d96, #3eb8d4);
+}
+
+/* Scrollbar a l'esquerra */
+.scrollbar-custom-left {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(32, 178, 170, 0.8) transparent;
+    direction: rtl;
+    /* Right to left per posar scrollbar a l'esquerra */
+}
+
+.scrollbar-custom-left>div {
+    direction: ltr;
+    /* Left to right pel contingut */
+}
+
+.scrollbar-custom-left::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollbar-custom-left::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.scrollbar-custom-left::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #20B2AA, #48CAE4);
+    border-radius: 2px;
+    border: none;
+}
+
+.scrollbar-custom-left::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #1a9d96, #3eb8d4);
+}
+
+button:focus {
+    outline: none;
+}
