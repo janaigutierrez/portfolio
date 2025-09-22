@@ -5,44 +5,46 @@ import {
     ExternalLink, Image, ChevronRight, X,
     Mail, ArrowRight, Waves
 } from 'lucide-react'
+import { useTranslation } from '../hooks/useTranslation'
 import { projectsData } from '../data/projects'
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState(null)
     const [activeCategory, setActiveCategory] = useState('all')
+    const { t } = useTranslation()
 
     const categories = [
         {
             key: 'all',
-            name: 'All Projects',
+            name: t('projects.categories.all'),
             icon: null,
             color: 'sea-green',
             projects: []
         },
         {
             key: 'applications',
-            name: 'Applications',
+            name: t('projects.categories.applications'),
             icon: Smartphone,
             color: 'blue',
             projects: projectsData.applications
         },
         {
             key: 'saasAndSystems',
-            name: 'SaaS & Systems',
+            name: t('projects.categories.saasAndSystems'),
             icon: Settings,
             color: 'green',
             projects: projectsData.saasAndSystems
         },
         {
             key: 'customWebsites',
-            name: 'Custom Websites',
+            name: t('projects.categories.customWebsites'),
             icon: Globe,
             color: 'purple',
             projects: projectsData.customWebsites
         },
         {
             key: 'interactiveProjects',
-            name: 'Interactive Projects',
+            name: t('projects.categories.interactiveProjects'),
             icon: Gamepad2,
             color: 'orange',
             projects: projectsData.interactiveProjects
@@ -106,6 +108,39 @@ export default function Projects() {
         return categories.filter(cat => cat.key === activeCategory)
     }
 
+    // MAPPING DE PROJECTES AMB TRADUCCIONS
+    const projectTranslations = {
+        1: 'nest',      // NEST App
+        2: 'grove',     // Grove Fitness  
+        3: 'terracota', // Terracota
+        4: 'wedding',   // Web Casament
+        5: 'canCarerac', // Can Carerac
+        6: 'iseo',      // Iseo
+        7: 'geocat'     // GeoCat
+    }
+
+    // Funció per obtenir les dades traduïdes del projecte
+    const getProjectData = (project) => {
+        const translationKey = projectTranslations[project.id]
+
+        if (!translationKey) {
+            // Fallback als valors originals si no hi ha traducció
+            return {
+                name: project.name || 'Project Name',
+                subtitle: project.subtitle || 'Project Subtitle',
+                description: project.description || 'Project Description',
+                features: project.features || []
+            }
+        }
+
+        return {
+            name: t(`projects.${translationKey}.name`),
+            subtitle: t(`projects.${translationKey}.subtitle`),
+            description: t(`projects.${translationKey}.description`),
+            features: t(`projects.${translationKey}.features`) || []
+        }
+    }
+
     return (
         <section id="projects" className="relative min-h-screen py-20 bg-gradient-to-b from-blue-800 via-blue-900 to-indigo-900">
             <div className="container mx-auto px-6 max-w-7xl">
@@ -113,10 +148,11 @@ export default function Projects() {
                 {/* Header */}
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
-                        Projects
+                        {t('projects.title')}
                     </h2>
                     <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                        Here you’ll discover projects that tackle real challenges and create unique experiences — built for clients as well as personal initiatives.                    </p>
+                        {t('projects.subtitle')}
+                    </p>
                 </div>
 
                 {/* Category Filter Bar */}
@@ -176,71 +212,74 @@ export default function Projects() {
 
                                     {/* Projects in Category */}
                                     <div className="space-y-6">
-                                        {category.projects.map((project) => (
-                                            <div
-                                                key={project.id}
-                                                onClick={() => handleProjectClick(project)}
-                                                className={`backdrop-blur-md rounded-lg p-6 cursor-pointer transition-all duration-300 mx-2
+                                        {category.projects.map((project) => {
+                                            const projectData = getProjectData(project)
+                                            return (
+                                                <div
+                                                    key={project.id}
+                                                    onClick={() => handleProjectClick(project)}
+                                                    className={`backdrop-blur-md rounded-lg p-6 cursor-pointer transition-all duration-300 mx-2
                           ${isProjectSelected(project.id)
-                                                        ? 'bg-sea-green bg-opacity-20 border-2 border-sea-green shadow-lg shadow-sea-green/20'
-                                                        : `bg-gray-900 bg-opacity-60 border border-gray-600 hover:bg-opacity-80 hover:scale-105 hover:shadow-xl hover:border-gray-500`
-                                                    }`}
-                                            >
+                                                            ? 'bg-sea-green bg-opacity-20 border-2 border-sea-green shadow-lg shadow-sea-green/20'
+                                                            : `bg-gray-900 bg-opacity-60 border border-gray-600 hover:bg-opacity-80 hover:scale-105 hover:shadow-xl hover:border-gray-500`
+                                                        }`}
+                                                >
 
-                                                <div className="flex items-start justify-between mb-3">
-                                                    <div className="flex-1">
-                                                        <div className="flex items-center mb-2">
-                                                            <h4 className="text-xl font-bold text-white mr-3">{project.name}</h4>
-                                                            {getStatusIcon(project.status)}
+                                                    <div className="flex items-start justify-between mb-3">
+                                                        <div className="flex-1">
+                                                            <div className="flex items-center mb-2">
+                                                                <h4 className="text-xl font-bold text-white mr-3">{projectData.name}</h4>
+                                                                {getStatusIcon(project.status)}
+                                                            </div>
+                                                            <p className="text-sm text-gray-400 mb-2">{projectData.subtitle}</p>
+                                                            <p className="text-gray-300 text-sm leading-relaxed">
+                                                                {projectData.description.substring(0, 120)}...
+                                                            </p>
                                                         </div>
-                                                        <p className="text-sm text-gray-400 mb-2">{project.subtitle}</p>
-                                                        <p className="text-gray-300 text-sm leading-relaxed">
-                                                            {project.description.substring(0, 120)}...
-                                                        </p>
-                                                    </div>
 
-                                                    <ChevronRight
-                                                        className={`ml-4 transition-all duration-300 flex-shrink-0
+                                                        <ChevronRight
+                                                            className={`ml-4 transition-all duration-300 flex-shrink-0
                               ${isProjectSelected(project.id) ? 'rotate-90 text-sea-green' : 'text-gray-400'}`}
-                                                        size={20}
-                                                    />
-                                                </div>
-
-                                                {/* Progress Bar */}
-                                                <div className="mb-4">
-                                                    <div className="flex justify-between items-center mb-2">
-                                                        <span className="text-xs font-medium text-gray-300">Progress</span>
-                                                        <span className="text-xs font-bold text-white">{project.progress}%</span>
-                                                    </div>
-                                                    <div className="w-full bg-gray-700 rounded-full h-2">
-                                                        <div
-                                                            className={`h-2 rounded-full transition-all duration-1000 ${project.status === 'complete'
-                                                                ? 'bg-gradient-to-r from-green-500 to-green-400'
-                                                                : project.status === 'development'
-                                                                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
-                                                                    : 'bg-gradient-to-r from-blue-500 to-blue-400'
-                                                                }`}
-                                                            style={{ width: `${project.progress}%` }}
+                                                            size={20}
                                                         />
                                                     </div>
-                                                </div>
 
-                                                {/* Tech Stack Preview */}
-                                                <div className="flex flex-wrap gap-1">
-                                                    {project.tech.slice(0, 4).map((tech) => (
-                                                        <span
-                                                            key={tech}
-                                                            className="bg-black bg-opacity-40 px-2 py-1 rounded text-xs text-gray-300"
-                                                        >
-                                                            {tech}
-                                                        </span>
-                                                    ))}
-                                                    {project.tech.length > 4 && (
-                                                        <span className="text-xs text-gray-400">+{project.tech.length - 4} more</span>
-                                                    )}
+                                                    {/* Progress Bar */}
+                                                    <div className="mb-4">
+                                                        <div className="flex justify-between items-center mb-2">
+                                                            <span className="text-xs font-medium text-gray-300">{t('projects.ui.progress')}</span>
+                                                            <span className="text-xs font-bold text-white">{project.progress}%</span>
+                                                        </div>
+                                                        <div className="w-full bg-gray-700 rounded-full h-2">
+                                                            <div
+                                                                className={`h-2 rounded-full transition-all duration-1000 ${project.status === 'complete'
+                                                                    ? 'bg-gradient-to-r from-green-500 to-green-400'
+                                                                    : project.status === 'development'
+                                                                        ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
+                                                                        : 'bg-gradient-to-r from-blue-500 to-blue-400'
+                                                                    }`}
+                                                                style={{ width: `${project.progress}%` }}
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Tech Stack Preview */}
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {project.tech.slice(0, 4).map((tech) => (
+                                                            <span
+                                                                key={tech}
+                                                                className="bg-black bg-opacity-40 px-2 py-1 rounded text-xs text-gray-300"
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                        {project.tech.length > 4 && (
+                                                            <span className="text-xs text-gray-400">+{project.tech.length - 4} more</span>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             ))}
@@ -256,20 +295,19 @@ export default function Projects() {
                                 <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sea-green rounded-lg p-8 text-center h-full flex flex-col justify-center">
                                     <div className="mb-6">
                                         <Mail size={48} className="mx-auto text-sea-green mb-4" />
-                                        <h3 className="text-2xl font-bold text-white mb-3">Interested in working together?</h3>
+                                        <h3 className="text-2xl font-bold text-white mb-3">{t('projects.cta.title')}</h3>
                                         <p className="text-gray-300 leading-relaxed mb-6">
-                                            Tens una idea interessant o un projecte desafiador? Let's bring your vision to life together!
+                                            {t('projects.cta.text')}
                                         </p>
                                     </div>
 
                                     <div>
                                         <button className="bg-gradient-to-r from-sea-green to-sky-blue text-white px-8 py-3 rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 font-bold w-full mb-4">
-                                            Start New Project
+                                            {t('projects.cta.button')}
                                         </button>
 
                                         <div className="text-sm text-gray-400">
-
-                                            <p>🕐 Usually responds within 24h</p>
+                                            <p>🕐 {t('projects.cta.responseTime')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -281,7 +319,7 @@ export default function Projects() {
 
                                     {/* Header */}
                                     <div className="flex justify-between items-start mb-4">
-                                        <h3 className="text-2xl font-bold text-white">{selectedProject.name}</h3>
+                                        <h3 className="text-2xl font-bold text-white">{getProjectData(selectedProject).name}</h3>
                                         <button
                                             onClick={() => setSelectedProject(null)}
                                             className="text-gray-400 hover:text-white transition-colors"
@@ -298,26 +336,25 @@ export default function Projects() {
 
                                     {/* Full Description */}
                                     <p className="text-gray-300 leading-relaxed mb-6 text-sm">
-                                        {selectedProject.description}
+                                        {getProjectData(selectedProject).description}
                                     </p>
 
                                     {/* Features */}
                                     <div className="mb-6 flex-1">
-                                        <h4 className="text-lg font-semibold text-white mb-3">Key Features</h4>
+                                        <h4 className="text-lg font-semibold text-white mb-3">{t('projects.ui.keyFeatures')}</h4>
                                         <ul className="space-y-2">
-                                            {selectedProject.features.slice(0, 6).map((feature, index) => (
+                                            {getProjectData(selectedProject).features.slice(0, 6).map((feature, index) => (
                                                 <li key={index} className="text-sm text-gray-300 flex items-start">
                                                     <ArrowRight size={14} className="mr-2 mt-0.5 text-sea-green flex-shrink-0" />
                                                     {feature}
                                                 </li>
                                             ))}
-
                                         </ul>
                                     </div>
 
                                     {/* Full Tech Stack */}
                                     <div className="mb-6">
-                                        <h4 className="text-lg font-semibold text-white mb-3">Technology Stack</h4>
+                                        <h4 className="text-lg font-semibold text-white mb-3">{t('projects.ui.technologyStack')}</h4>
                                         <div className="flex flex-wrap gap-2">
                                             {selectedProject.tech.map((tech) => (
                                                 <span
@@ -335,25 +372,25 @@ export default function Projects() {
                                         <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                             <div className="flex items-center">
                                                 <Github size={18} className="mr-3 text-gray-400" />
-                                                <span className="text-sm text-gray-300">Repository</span>
+                                                <span className="text-sm text-gray-300">{t('projects.ui.repository')}</span>
                                             </div>
-                                            <span className="text-xs text-yellow-400">Coming Soon</span>
+                                            <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
                                         </div>
 
                                         <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                             <div className="flex items-center">
                                                 <ExternalLink size={18} className="mr-3 text-gray-400" />
-                                                <span className="text-sm text-gray-300">Live Demo</span>
+                                                <span className="text-sm text-gray-300">{t('projects.ui.liveDemo')}</span>
                                             </div>
-                                            <span className="text-xs text-yellow-400">Coming Soon</span>
+                                            <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
                                         </div>
 
                                         <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                             <div className="flex items-center">
                                                 <Image size={18} className="mr-3 text-gray-400" />
-                                                <span className="text-sm text-gray-300">Screenshots</span>
+                                                <span className="text-sm text-gray-300">{t('projects.ui.screenshots')}</span>
                                             </div>
-                                            <span className="text-xs text-yellow-400">Coming Soon</span>
+                                            <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
                                         </div>
                                     </div>
                                 </div>

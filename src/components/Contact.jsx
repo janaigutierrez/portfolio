@@ -15,6 +15,7 @@ import {
     Anchor,
     Share2
 } from 'lucide-react'
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ export default function Contact() {
         message: '',
         projectType: ''
     })
+    const { t } = useTranslation()
 
     const handleChange = (e) => {
         setFormData({
@@ -50,12 +52,11 @@ export default function Contact() {
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 flex items-center justify-center">
                         <Anchor className="mr-4 w-10 h-10" />
-                        Deep Connection
+                        {t('contact.title')}
                     </h2>
                     <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                        The dive ends here. The next project starts now.
+                        {t('contact.subtitle')}
                     </p>
-
                 </div>
 
                 <div className="grid lg:grid-cols-5 gap-8 mb-12">
@@ -63,7 +64,7 @@ export default function Contact() {
                     <div className="lg:col-span-3 bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sea-green rounded-xl p-8">
                         <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
                             <Mail className="mr-3 w-6 h-6" />
-                            Send Message
+                            {t('contact.form.sendMessage')}
                         </h3>
 
                         <form onSubmit={handleSubmit} className="space-y-6">
@@ -71,7 +72,7 @@ export default function Contact() {
                                 <div>
                                     <label htmlFor="name" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
                                         <User className="mr-2 w-4 h-4" />
-                                        Name
+                                        {t('contact.form.name')}
                                     </label>
                                     <input
                                         type="text"
@@ -81,14 +82,14 @@ export default function Contact() {
                                         onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors"
-                                        placeholder="Your name"
+                                        placeholder={t('contact.form.namePlaceholder')}
                                     />
                                 </div>
 
                                 <div>
                                     <label htmlFor="email" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
                                         <Mail className="mr-2 w-4 h-4" />
-                                        Email
+                                        {t('contact.form.email')}
                                     </label>
                                     <input
                                         type="email"
@@ -98,7 +99,7 @@ export default function Contact() {
                                         onChange={handleChange}
                                         required
                                         className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors"
-                                        placeholder="your@email.com"
+                                        placeholder={t('contact.form.emailPlaceholder')}
                                     />
                                 </div>
                             </div>
@@ -106,7 +107,7 @@ export default function Contact() {
                             <div>
                                 <label htmlFor="message" className="flex items-center text-sm font-medium text-gray-300 mb-2">
                                     <MessageSquare className="mr-2 w-4 h-4" />
-                                    Message
+                                    {t('contact.form.message')}
                                 </label>
                                 <textarea
                                     id="message"
@@ -116,7 +117,7 @@ export default function Contact() {
                                     required
                                     rows={4}
                                     className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent resize-none transition-colors"
-                                    placeholder="Tell me about your project or idea..."
+                                    placeholder={t('contact.form.messagePlaceholder')}
                                 />
                             </div>
 
@@ -125,24 +126,24 @@ export default function Contact() {
                                 <div className="bg-gray-800 rounded-lg p-4">
                                     <h4 className="text-sm font-medium text-white mb-2 flex items-center">
                                         <Calendar className="mr-2 w-4 h-4" />
-                                        Typical Timeline
+                                        {t('contact.timeline.title')}
                                     </h4>
                                     <ul className="text-xs text-gray-300 space-y-1">
-                                        <li>• Landing/Personal: 1-2 weeks</li>
-                                        <li>• Full Website: 3-4 weeks</li>
-                                        <li>• E-commerce/SaaS: 6-8 weeks</li>
+                                        <li>• {t('contact.timeline.landing')}</li>
+                                        <li>• {t('contact.timeline.fullWebsite')}</li>
+                                        <li>• {t('contact.timeline.ecommerce')}</li>
                                     </ul>
                                 </div>
                                 <div className="bg-gray-800 rounded-lg p-4">
                                     <h4 className="text-sm font-medium text-white mb-2 flex items-center">
                                         <Shield className="mr-2 w-4 h-4" />
-                                        Always Included
+                                        {t('contact.includes.title')}
                                     </h4>
                                     <ul className="text-xs text-gray-300 space-y-1">
-                                        <li>• Free hosting</li>
-                                        <li>• SSL certificate</li>
-                                        <li>• Responsive design</li>
-                                        <li>• Post-launch support</li>
+                                        <li>• {t('contact.includes.hosting')}</li>
+                                        <li>• {t('contact.includes.ssl')}</li>
+                                        <li>• {t('contact.includes.responsive')}</li>
+                                        <li>• {t('contact.includes.support')}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -152,7 +153,7 @@ export default function Contact() {
                                 className="w-full bg-gradient-to-r from-sea-green to-sky-blue text-white py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-300 font-medium hover:scale-105 flex items-center justify-center"
                             >
                                 <Send className="mr-2 w-5 h-5" />
-                                Send Message
+                                {t('contact.form.sendButton')}
                             </button>
                         </form>
                     </div>
@@ -163,7 +164,7 @@ export default function Contact() {
                         <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sky-blue rounded-xl p-6">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center">
                                 <MapPin className="mr-3 w-5 h-5" />
-                                Contact Info
+                                {t('contact.info.title')}
                             </h3>
 
                             <div className="space-y-4">
@@ -207,7 +208,7 @@ export default function Contact() {
                                         <MapPin className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-white text-sm">Location</h4>
+                                        <h4 className="font-semibold text-white text-sm">{t('contact.info.location')}</h4>
                                         <p className="text-gray-300 text-sm">Barcelona, Catalunya</p>
                                     </div>
                                 </div>
@@ -218,8 +219,8 @@ export default function Contact() {
                                         <CheckCircle className="w-4 h-4" />
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-white text-sm">Status</h4>
-                                        <p className="text-green-400 font-medium text-sm">Available for Projects</p>
+                                        <h4 className="font-semibold text-white text-sm">{t('contact.info.status')}</h4>
+                                        <p className="text-green-400 font-medium text-sm">{t('contact.info.available')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -229,19 +230,19 @@ export default function Contact() {
                         <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-purple-400 rounded-xl p-6">
                             <h4 className="font-semibold text-white text-sm mb-3 flex items-center">
                                 <Zap className="mr-2 w-4 h-4" />
-                                Response Time
+                                {t('contact.info.responseTitle')}
                             </h4>
                             <p className="text-gray-300 text-xs leading-relaxed mb-4">
-                                I'm very responsive to notifications — you can expect a reply within a few hours or by the next day, even if it's just to start discussing your project or needs.
+                                {t('contact.info.responseText')}
                             </p>
 
                             <div className="border-t border-gray-700 pt-4">
-                                <h4 className="font-semibold text-white text-sm mb-2">Work Process</h4>
+                                <h4 className="font-semibold text-white text-sm mb-2">{t('contact.workProcess.title')}</h4>
                                 <ul className="text-xs text-gray-300 space-y-1">
-                                    <li>• Discovery & Requirements</li>
-                                    <li>• Design & Prototyping</li>
-                                    <li>• Development & Testing</li>
-                                    <li>• Launch & Support</li>
+                                    <li>• {t('contact.workProcess.discovery')}</li>
+                                    <li>• {t('contact.workProcess.design')}</li>
+                                    <li>• {t('contact.workProcess.development')}</li>
+                                    <li>• {t('contact.workProcess.launch')}</li>
                                 </ul>
                             </div>
                         </div>
@@ -250,7 +251,7 @@ export default function Contact() {
                         <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-gray-600 rounded-xl p-6">
                             <h4 className="font-semibold text-white text-sm mb-3 flex items-center">
                                 <Share2 className="mr-2 w-4 h-4" />
-                                Find me online
+                                {t('contact.social.title')}
                             </h4>
                             <a
                                 href="https://github.com/janaigutierrez"
@@ -259,7 +260,7 @@ export default function Contact() {
                                 className="inline-flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 border border-gray-600 hover:border-sea-green rounded-full px-4 py-2 text-gray-300 hover:text-white transition-all duration-300 w-full justify-center"
                             >
                                 <Github className="w-4 h-4" />
-                                <span className="text-sm">GitHub Profile</span>
+                                <span className="text-sm">{t('contact.social.github')}</span>
                             </a>
                         </div>
                     </div>

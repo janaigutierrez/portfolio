@@ -1,7 +1,9 @@
 import { ArrowUp } from 'lucide-react'
+import { useTranslation } from '../hooks/useTranslation.jsx'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
+    const { t } = useTranslation()
 
     return (
         <footer className="relative bg-gradient-to-b from-gray-900 to-black py-12 border-t border-gray-800">
@@ -26,10 +28,10 @@ export default function Footer() {
                         </div>
                         <div className="flex space-x-4">
                             <a href="/privacy" className="text-gray-400 hover:text-sea-green transition-colors text-sm">
-                                Privacy Policy
+                                {t('footer.privacy')}
                             </a>
                             <a href="/terms" className="text-gray-400 hover:text-sea-green transition-colors text-sm">
-                                Terms of Use
+                                {t('footer.terms')}
                             </a>
                         </div>
                     </div>
@@ -40,7 +42,7 @@ export default function Footer() {
                         className="bg-gradient-to-r from-sea-green to-sky-blue text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 text-sm font-medium flex items-center space-x-2"
                     >
                         <ArrowUp className="w-4 h-4" />
-                        <span>Surface</span>
+                        <span>{t('footer.surface')}</span>
                     </button>
                 </div>
             </div>

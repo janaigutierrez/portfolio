@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
+import { useTranslation } from '../hooks/useTranslation'
+import { personalInfo } from '../data/static'
 
 export default function HeroDive() {
     const [scrollY, setScrollY] = useState(0)
+    const { t } = useTranslation()
 
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY)
@@ -50,7 +53,7 @@ export default function HeroDive() {
                             transform: `translateY(${scrollY * -0.1}px)`
                         }}
                     >
-                        Janai Gutiérrez
+                        {personalInfo.name}
                     </h1>
 
                     <p
@@ -60,7 +63,7 @@ export default function HeroDive() {
                             transform: `translateY(${scrollY * -0.05}px)`
                         }}
                     >
-                        Full Stack Developer & Digital Explorer
+                        {t('hero.subtitle')}
                     </p>
 
                     <div
@@ -71,10 +74,9 @@ export default function HeroDive() {
                         }}
                     >
                         <div className="flex flex-col items-center space-y-3 animate-bounce">
-                            <span className="text-lg font-medium"> Dive in</span>
+                            <span className="text-lg font-medium">{t('hero.cta')}</span>
                             <ChevronDown className="w-6 h-6" />
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -4,21 +4,24 @@ import About from './components/About'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import { TranslationProvider } from './hooks/useTranslation'
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
+    <TranslationProvider>
+      <div className="min-h-screen">
+        <Header />
 
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </TranslationProvider>
   )
 }
 
