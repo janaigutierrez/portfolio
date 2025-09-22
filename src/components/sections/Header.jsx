@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Globe } from 'lucide-react'
-import { useTranslation } from '../hooks/useTranslation.jsx'
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false)

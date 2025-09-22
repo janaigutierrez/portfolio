@@ -1,5 +1,5 @@
 import { ArrowUp } from 'lucide-react'
-import { useTranslation } from '../hooks/useTranslation.jsx'
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()

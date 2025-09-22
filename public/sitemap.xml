@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://janai.dev/</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <!-- Alternate languages -->
+    <xhtml:link rel="alternate" hreflang="ca" href="https://janai.dev/?lang=ca" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://janai.dev/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://janai.dev/?lang=en" />
+  </url>
+  
+  <!-- Sections (if you want individual URLs) -->
+  <url>
+    <loc>https://janai.dev/#about</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://janai.dev/#projects</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://janai.dev/#contact</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Individual project pages (if you create them later) -->
+  <!--
+  <url>
+    <loc>https://janai.dev/projects/nest-app</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  -->
+  
+</urlset>

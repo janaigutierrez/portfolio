@@ -1,6 +1,6 @@
 import { Code, Server, Globe, User, Award, Clock } from 'lucide-react'
-import { useTranslation } from '../hooks/useTranslation'
-import { personalInfo, stats, skillCategories } from '../data/static'
+import { useTranslation } from '../../hooks/useTranslation'
+import { personalInfo, stats, skillCategories } from '../../data/static'
 
 export default function About() {
     const { t } = useTranslation()

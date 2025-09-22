@@ -15,7 +15,7 @@ import {
     Anchor,
     Share2
 } from 'lucide-react'
-import { useTranslation } from '../hooks/useTranslation'
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function Contact() {
     const [formData, setFormData] = useState({

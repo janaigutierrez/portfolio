@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { useTranslation } from '../hooks/useTranslation'
-import { personalInfo } from '../data/static'
+import { useTranslation } from '../../hooks/useTranslation'
+import { personalInfo } from '../../data/static'
 
 export default function HeroDive() {
     const [scrollY, setScrollY] = useState(0)
