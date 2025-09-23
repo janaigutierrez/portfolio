@@ -2,8 +2,8 @@ import { useState } from 'react'
 import {
     Mail,
     MapPin,
-    Clock,
     CheckCircle,
+    AlertCircle,
     Zap,
     Github,
     Linkedin,
@@ -13,9 +13,14 @@ import {
     Calendar,
     Shield,
     Anchor,
-    Share2
+    Share2,
+    Quote
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
+import ReviewCard from '../ui/reviewCard.jsx'
+import { reviewsData } from '../../data/static'
+import emailjs from '@emailjs/browser'
+
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -25,6 +30,8 @@ export default function Contact() {
         projectType: ''
     })
     const { t } = useTranslation()
+    const [status, setStatus] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (e) => {
         setFormData({
@@ -33,11 +40,33 @@ export default function Contact() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('Message sent:', formData)
-        alert('Message sent from the depths of the sea!')
-        setFormData({ name: '', email: '', message: '', projectType: '' })
+        setIsLoading(true)
+        setStatus(null)
+
+        try {
+            await emailjs.send(
+                'service_yc8urmn',
+                'template_lp9qlyn',
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message,
+                    to_email: 'janaigs97@gmail.com'
+                },
+                'q4Av1ZDegSMZqfhSp'
+            )
+
+            setStatus('success')
+            setFormData({ name: '', email: '', message: '', projectType: '' })
+
+        } catch (error) {
+            console.error('EmailJS Error:', error)
+            setStatus('error')
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -58,7 +87,18 @@ export default function Contact() {
                         {t('contact.subtitle')}
                     </p>
                 </div>
-
+                {/* Reviews Section */}
+                <div className="mb-12">
+                    <h3 className="text-3xl font-bold text-white text-center mb-8 flex items-center justify-center">
+                        <Quote className="mr-3 w-8 h-8" />
+                        {t('reviews.title')}
+                    </h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {reviewsData.map((review) => (
+                            <ReviewCard key={review.id} review={review} />
+                        ))}
+                    </div>
+                </div>
                 <div className="grid lg:grid-cols-5 gap-8 mb-12">
                     {/* Contact Form */}
                     <div className="lg:col-span-3 bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sea-green rounded-xl p-8">
@@ -66,7 +106,19 @@ export default function Contact() {
                             <Mail className="mr-3 w-6 h-6" />
                             {t('contact.form.sendMessage')}
                         </h3>
+                        {status === 'success' && (
+                            <div className="bg-green-900 bg-opacity-50 border border-green-400 rounded-lg p-4 flex items-center mb-6">
+                                <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                                <span className="text-green-300">Missatge enviat correctament</span>
+                            </div>
+                        )}
 
+                        {status === 'error' && (
+                            <div className="bg-red-900 bg-opacity-50 border border-red-400 rounded-lg p-4 flex items-center mb-6">
+                                <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
+                                <span className="text-red-300">Error enviant el missatge. Prova de nou.</span>
+                            </div>
+                        )}
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
@@ -150,10 +202,24 @@ export default function Contact() {
 
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-sea-green to-sky-blue text-white py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-300 font-medium hover:scale-105 flex items-center justify-center"
+                                disabled={isLoading}
+                                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2
+        ${isLoading
+                                        ? 'bg-gray-600 cursor-not-allowed'
+                                        : 'bg-gradient-to-r from-sea-green to-sky-blue hover:opacity-90 hover:scale-105'
+                                    } text-white`}
                             >
-                                <Send className="mr-2 w-5 h-5" />
-                                {t('contact.form.sendButton')}
+                                {isLoading ? (
+                                    <>
+                                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                                        <span>Enviant...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className="mr-2 w-5 h-5" />
+                                        <span>{t('contact.form.sendButton')}</span>
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

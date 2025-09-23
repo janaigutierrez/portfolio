@@ -186,42 +186,30 @@ export const projectCategories = [
     }
 ]
 
-export const testimonialsData = [
+export const reviewsData = [
     {
         id: 1,
-        key: 'sandra',
-        name: "Sandra & Marc",
-        role: "Núvia i Nuvi",
-        project: "Web de Casament",
+        key: 'boda',
         rating: 5,
-        date: "Juny 2024",
-        projectType: "Custom Website",
-        highlights: ["Disseny personalitzat", "Sistema RSVP", "Timeline interactiu"],
-        placeholder: false
+        date: "August 2025",
+        projectType: "Wedding Website",
+        hasClient: true
     },
     {
         id: 2,
         key: 'iseo',
-        name: "Cafeteria Iseo",
-        role: "Propietari",
-        project: "Carta Digital",
         rating: 5,
-        date: "Març 2024",
-        projectType: "Business Website",
-        highlights: ["UX millorada", "Increment vendes", "Modernització"],
-        placeholder: false
+        date: "September 2025",
+        projectType: "Digital Menu Website",
+        hasClient: true
     },
     {
         id: 3,
-        key: 'future',
-        name: "Futura Clienta",
-        role: "Running Team Leader",
-        project: "Web Team Running",
+        key: 'canCarerac',
         rating: 5,
-        date: "En desenvolupament",
-        projectType: "Community Website",
-        highlights: ["Organització events", "Gestió membres", "Galeria activitats"],
-        placeholder: true
+        date: "October 2025",
+        projectType: "Web Gastronòmica",
+        hasClient: true
     }
 ]
 

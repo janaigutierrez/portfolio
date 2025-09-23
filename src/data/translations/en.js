@@ -156,41 +156,28 @@ export default {
         }
     },
 
-    // TESTIMONIALS
-    testimonials: {
-        title: "Client Reviews",
-        subtitle: "Real feedback from real clients — discover what it's like to work with me",
+    reviews: {
+        title: "Happy Clients",
 
-        stats: {
-            satisfaction: "Client Satisfaction",
-            rating: "Average Rating",
-            projects: "Completed Projects"
-        },
-
-        ui: {
-            project: "Project",
-            completed: "Completed",
-            type: "Type",
-            highlights: "Key Highlights:"
-        },
-
-        cta: {
-            title: "Want to be the next success story?",
-            text: "Join these happy clients and let's create something amazing together",
-            button: "Start Your Project"
-        },
-
-        // Specific testimonials
-        sandra: {
-            text: "Janai created a beautiful website for our wedding. He perfectly captured the essence we wanted to convey and all the guests were impressed. The RSVP system worked perfectly and saved us a lot of organization time."
+        boda: {
+            name: "Raquel & Daniel",
+            role: "Bride and Groom",
+            project: "Wedding Website",
+            text: "Janai created an incredible and very beautiful webpage for our wedding. He even connected it to a sheet where we could have access."
         },
 
         iseo: {
-            text: "The new digital menu has completely transformed our customers' experience. It's modern, easy to use, and perfectly reflects the spirit of our cafeteria. Sales have improved notably since we have it."
+            name: "Cafeteria - Gelateria Iseo",
+            role: "Owner",
+            project: "Digital Website",
+            text: "Thanks to the customized website with product images, we've seen an increase in sales."
         },
 
-        future: {
-            text: "Coming soon... 🏃‍♀️"
+        canCarerac: {
+            name: "Can Carerac",
+            role: "Responsable",
+            project: "Experiences Website",
+            text: "We’re delighted with the development of our website. Janai truly captured the essence of the masia and the needs of our visitors."
         }
     },
 

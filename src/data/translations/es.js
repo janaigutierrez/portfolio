@@ -156,41 +156,28 @@ export default {
         }
     },
 
-    // TESTIMONIALS
-    testimonials: {
-        title: "Opiniones de Clientes",
-        subtitle: "Feedback real de clientes reales — descubre cómo es trabajar conmigo",
+    reviews: {
+        title: "Qué dicen los clientes...",
 
-        stats: {
-            satisfaction: "Satisfacción del Cliente",
-            rating: "Puntuación Media",
-            projects: "Proyectos Completados"
-        },
-
-        ui: {
-            project: "Proyecto",
-            completed: "Completado",
-            type: "Tipo",
-            highlights: "Puntos Destacados:"
-        },
-
-        cta: {
-            title: "¿Quieres ser la siguiente historia de éxito?",
-            text: "Únete a estos clientes satisfechos y creemos algo increíble juntos",
-            button: "Comenzar Tu Proyecto"
-        },
-
-        // Testimonios específicos
         sandra: {
-            text: "Janai creó una web preciosa para nuestra boda. Captó perfectamente la esencia que queríamos transmitir y todos los invitados quedaron impresionados. El sistema RSVP funcionó perfectamente y nos ahorró muchísimo tiempo de organización."
+            name: "Raquel & Daniel",
+            role: "Mujer y marido",
+            project: "Web de bodas",
+            text: "Janai nos creó una web preciosa y práctica, conectada a una hoja de cálculo para organizar invitados y menús."
         },
 
         iseo: {
-            text: "La nueva carta digital ha transformado completamente la experiencia de nuestros clientes. Es moderna, fácil de usar y refleja perfectamente el espíritu de nuestra cafetería. Las ventas han mejorado notablemente desde que la tenemos."
+            name: "Cafeteria - Gelateria Iseo",
+            role: "Propietario",
+            project: "Carta Digital",
+            text: "Gracias a la web personalizada con imágenes de los productos, hemos notado un aumento en las ventas."
         },
 
-        future: {
-            text: "Próximamente... 🏃‍♀️"
+        canCarerac: {
+            name: "Can Carerac",
+            role: "Responsable",
+            project: "Web de Experiencias",
+            text: "Estamos encantados con nuestra web. Janai entendió la esencia de la masía y lo que necesitaban nuestros visitantes."
         }
     },
 

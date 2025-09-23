@@ -156,41 +156,28 @@ export default {
         }
     },
 
-    // TESTIMONIALS
-    testimonials: {
-        title: "Opinions de Clients",
-        subtitle: "Feedback real de clients reals — descobreix com és treballar amb mi",
+    reviews: {
+        title: "El que diuen els clients",
 
-        stats: {
-            satisfaction: "Satisfacció del Client",
-            rating: "Puntuació Mitjana",
-            projects: "Projectes Completats"
-        },
-
-        ui: {
-            project: "Projecte",
-            completed: "Completat",
-            type: "Tipus",
-            highlights: "Punts Destacats:"
-        },
-
-        cta: {
-            title: "Vols ser la següent història d'èxit?",
-            text: "Uneix-te a aquests clients satisfets i creem quelcom increïble junts",
-            button: "Començar el Teu Projecte"
-        },
-
-        // Testimonials específics
         sandra: {
-            text: "El Janai va crear una web preciosa per al nostre casament. Va captar perfectament l'essència que volíem transmetre i tots els convidats van quedar impressionats. El sistema RSVP va funcionar perfectament i ens va estalviar moltíssim temps d'organització."
+            name: "Raquel & Daniel",
+            role: "Núvia i Nuvi",
+            project: "Web de Casament",
+            text: "En Janai ens va fer una web preciosa i pràctica, connectada amb una fulla de càlcul per organitzar convidats i menús."
         },
 
         iseo: {
-            text: "La nova carta digital ha transformat completament l'experiència dels nostres clients. És moderna, fàcil d'usar i reflecteix perfectament l'esperit de la nostra cafeteria. Les vendes han millorat notablement des que la tenim."
+            name: "Cafeteria - Gelateria Iseo",
+            role: "Propietari",
+            project: "Carta Digital",
+            text: "Gràcies a la web personalitzada amb imatges dels productes les vendes han millorat notablement."
         },
 
-        future: {
-            text: "Proximament... 🏃‍♀️"
+        canCarerac: {
+            name: "Can Carerac",
+            role: "Responsable",
+            project: "Web d'Experiències",
+            text: "Estem encantats amb el desenvolupament de la nostra web. El Janai entén perfectament el nostre negoci i les necessitats dels clients."
         }
     },
 
