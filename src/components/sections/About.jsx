@@ -5,7 +5,6 @@ import { personalInfo, stats, skillCategories } from '../../data/static'
 export default function About() {
     const { t } = useTranslation()
 
-    // Mapa d'icones
     const iconMap = {
         'Award': Award,
         'User': User,
@@ -51,7 +50,7 @@ export default function About() {
                     </div>
                 </div>
 
-                {/* About Me Text */}
+                {/* About Me */}
                 <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md border-2 border-sky-blue rounded-lg p-8 mb-8">
                     <h3 className="text-3xl font-bold text-white mb-6">{t('about.title')}</h3>
                     <div className="text-gray-300 space-y-4 text-lg leading-relaxed">

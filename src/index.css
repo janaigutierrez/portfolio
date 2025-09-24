@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===========================================
-   GLOBAL SETTINGS
-   =========================================== */
-
 html {
     scroll-behavior: smooth;
 }
@@ -17,12 +13,7 @@ html {
 
 body {
     overscroll-behavior: none;
-    /* Disable scroll bounce on mobile */
 }
-
-/* ===========================================
-   CUSTOM ANIMATIONS
-   =========================================== */
 
 @keyframes fadeIn {
     from {
@@ -64,7 +55,6 @@ body {
     }
 }
 
-/* Animation classes */
 .animate-fade-in {
     animation: fadeIn 1s ease-out;
 }
@@ -77,10 +67,6 @@ body {
     animation: float 3s ease-in-out infinite;
 }
 
-/* ===========================================
-   UTILITY CLASSES
-   =========================================== */
-
 @layer utilities {
     .hover-lift {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -92,10 +78,6 @@ body {
     }
 }
 
-/* ===========================================
-   GLASSMORPHISM EFFECTS
-   =========================================== */
-
 .glass {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
@@ -103,11 +85,6 @@ body {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-/* ===========================================
-   SCROLLBAR CUSTOMIZATION
-   =========================================== */
-
-/* Default scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -125,7 +102,6 @@ body {
     background: linear-gradient(45deg, #1a9d96, #3eb8d4);
 }
 
-/* Custom scrollbar for Projects section */
 .scrollbar-custom {
     scrollbar-width: thin;
     scrollbar-color: rgba(32, 178, 170, 0.8) transparent;
@@ -150,17 +126,14 @@ body {
     background: linear-gradient(to bottom, #1a9d96, #3eb8d4);
 }
 
-/* Left-side scrollbar for Projects */
 .scrollbar-custom-left {
     scrollbar-width: thin;
     scrollbar-color: rgba(32, 178, 170, 0.8) transparent;
     direction: rtl;
-    /* Right to left to put scrollbar on left */
 }
 
 .scrollbar-custom-left>div {
     direction: ltr;
-    /* Left to right for content */
 }
 
 .scrollbar-custom-left::-webkit-scrollbar {
@@ -182,10 +155,6 @@ body {
     background: linear-gradient(to bottom, #1a9d96, #3eb8d4);
 }
 
-/* ===========================================
-   FOCUS & ACCESSIBILITY
-   =========================================== */
-
 button:focus,
 input:focus,
 textarea:focus {
@@ -195,12 +164,7 @@ textarea:focus {
 
 button:focus {
     outline: none;
-    /* Override for specific button styling */
 }
-
-/* ===========================================
-   PERFORMANCE OPTIMIZATIONS
-   =========================================== */
 
 .parallax-layer {
     will-change: transform;

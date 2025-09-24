@@ -4,7 +4,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
 
-export default function ProjectModal({ project, isOpen, onClose }) {
+export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }) {
     const { t } = useTranslation()
 
     // Mapping de traduccions

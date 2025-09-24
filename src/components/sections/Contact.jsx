@@ -71,7 +71,6 @@ export default function Contact() {
 
     return (
         <section id="contact" className="relative py-20 bg-gradient-to-b from-indigo-900 via-blue-950 to-gray-900">
-            {/* Sea Bottom */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-800 to-transparent opacity-40"></div>
             </div>
@@ -226,7 +225,6 @@ export default function Contact() {
 
                     {/* Contact Info */}
                     <div className="lg:col-span-2 space-y-6">
-                        {/* Contact Info Principal */}
                         <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sky-blue rounded-xl p-6">
                             <h3 className="text-lg font-bold text-white mb-4 flex items-center">
                                 <MapPin className="mr-3 w-5 h-5" />

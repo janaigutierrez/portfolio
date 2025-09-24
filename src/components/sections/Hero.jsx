@@ -24,7 +24,7 @@ export default function HeroDive() {
 
     return (
         <section id="home" className="relative h-screen overflow-hidden">
-            {/* Background Image amb parallax */}
+            {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500"
                 style={{
@@ -34,7 +34,7 @@ export default function HeroDive() {
                 }}
             />
 
-            {/* Water overlay al scrollejar */}
+            {/* Water overlay */}
             <div
                 className="absolute inset-0 transition-all duration-700"
                 style={{
@@ -43,7 +43,7 @@ export default function HeroDive() {
                 }}
             />
 
-            {/* Contingut principal */}
+            {/* Main Content */}
             <div className="relative z-20 h-full flex items-center justify-center">
                 <div className="text-center text-white px-6 max-w-4xl">
                     <h1
@@ -82,9 +82,7 @@ export default function HeroDive() {
             </div>
 
             {/* Gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-blue-900 via-blue-800 to-transparent opacity-90 pointer-events-none"></div>
-
-            {/* Gradient EXTRA */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-blue-900 via-blue-600 to-transparent opacity-90 pointer-events-none"></div>
             <div
                 className="absolute left-0 right-0 h-32 bg-gradient-to-t from-blue-900 to-transparent pointer-events-none"
                 style={{
