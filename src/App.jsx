@@ -1,26 +1,26 @@
-import Header from './components/sections/Header'
-import Hero from './components/sections/Hero'
-import About from './components/sections/About'
-import Projects from './components/sections/Projects'
-import Contact from './components/sections/Contact'
-import Footer from './components/sections/Footer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { TranslationProvider } from './hooks/useTranslation.jsx'
+import Portfolio from './pages/Portfolio'
+import Blog from './pages/Blog.jsx'
+import BlogPost from './components/blog/BlogPost.jsx'
 
 function App() {
   return (
     <TranslationProvider>
-      <div className="min-h-screen">
-        <Header />
+      <Router>
+        <div className="min-h-screen">
+          <Routes>
+            {/* Ruta principal - Portfolio */}
+            <Route path="/" element={<Portfolio />} />
 
-        <main>
-          <Hero />
-          <About />
-          <Projects />
-          <Contact />
-        </main>
+            {/* Ruta blog - Llista de posts */}
+            <Route path="/blog" element={<Blog />} />
 
-        <Footer />
-      </div>
+            {/* Ruta post individual */}
+            <Route path="/blog/:slug" element={<BlogPost />} />
+          </Routes>
+        </div>
+      </Router>
     </TranslationProvider>
   )
 }
