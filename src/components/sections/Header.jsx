@@ -107,7 +107,7 @@ export default function Header() {
                             <div className="pt-4 border-t border-white border-opacity-20">
                                 <div className="flex items-center space-x-2 mb-2">
                                     <Globe size={16} className="text-white" />
-                                    <span className="text-white text-sm font-medium">Idioma:</span>
+                                    <span className="text-white text-sm font-medium">{t('nav.language')}:</span>
                                 </div>
                                 <div className="flex space-x-2">
                                     {availableLanguages.map((lang) => (

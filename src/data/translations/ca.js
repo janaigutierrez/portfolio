@@ -1,21 +1,17 @@
-// src/data/translations/ca.js
-
 export default {
-    // NAVIGATION
     nav: {
         surface: "Superficie",
         dive: "Immersió",
         projects: "Projectes",
-        deep: "Profunditat"
+        deep: "Profunditat",
+        language: "Idioma"
     },
 
-    // HERO
     hero: {
         subtitle: "Full Stack Developer & Explorador Digital",
         cta: "Submergeix-te"
     },
 
-    // ABOUT
     about: {
         title: "Sobre Mi",
         intro: "Soc un desenvolupador apassionat per resoldre problemes del món real a través de la tecnologia. El que més m'emociona és crear eines que simplifiquin la vida de les persones, eliminant barreres tecnològiques perquè puguin invertir el temps estalviat en el que realment importa.",
@@ -34,7 +30,6 @@ export default {
         }
     },
 
-    // PROJECTS
     projects: {
         title: "Projectes",
         subtitle: "Aquí descobriràs projectes que aborden reptes reals i creen experiències úniques, construïts tant per clients com per iniciatives personals.",
@@ -64,7 +59,6 @@ export default {
             responseTime: "Normalment respon en 24h"
         },
 
-        // Contingut específic dels projectes
         nest: {
             name: "NEST App",
             subtitle: "Productivitat Gamificada",
@@ -181,7 +175,6 @@ export default {
         }
     },
 
-    // CONTACT
     contact: {
         title: "Connexió Profunda",
         subtitle: "La immersió acaba aquí. El següent projecte comença ara.",
@@ -235,14 +228,12 @@ export default {
         }
     },
 
-    // FOOTER
     footer: {
         privacy: "Política de Privacitat",
         terms: "Termes d'Ús",
         surface: "Superficie"
     },
 
-    // GENERAL
     general: {
         loading: "Carregant...",
         error: "Error",

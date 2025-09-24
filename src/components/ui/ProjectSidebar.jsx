@@ -4,7 +4,7 @@ import {
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
 
-export default function ProjectSidebar({ selectedProject, onClose }) {
+export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery }) {
     const { t } = useTranslation()
 
     // Mapping de traduccions
@@ -129,28 +129,65 @@ export default function ProjectSidebar({ selectedProject, onClose }) {
 
                 {/* Links & Media */}
                 <div className="space-y-2 mt-auto">
+                    {/* GitHub Repository */}
                     <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                         <div className="flex items-center">
                             <Github size={18} className="mr-3 text-gray-400" />
                             <span className="text-sm text-gray-300">{t('projects.ui.repository')}</span>
                         </div>
-                        <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                        {project.githubUrl ? (
+                            <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                            >
+                                <span>View Code</span>
+                                <ExternalLink size={14} className="ml-1" />
+                            </a>
+                        ) : (
+                            <span className="text-xs text-yellow-400">Private</span>
+                        )}
                     </div>
 
+                    {/* Live Demo */}
                     <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                         <div className="flex items-center">
                             <ExternalLink size={18} className="mr-3 text-gray-400" />
                             <span className="text-sm text-gray-300">{t('projects.ui.liveDemo')}</span>
                         </div>
-                        <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                        {project.liveUrl ? (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                            >
+                                <span>Visit Site</span>
+                                <ExternalLink size={14} className="ml-1" />
+                            </a>
+                        ) : (
+                            <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                        )}
                     </div>
 
+                    {/* Screenshots Gallery */}
                     <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                         <div className="flex items-center">
                             <Image size={18} className="mr-3 text-gray-400" />
                             <span className="text-sm text-gray-300">{t('projects.ui.screenshots')}</span>
                         </div>
-                        <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                        {project.images && project.images.length > 0 ? (
+                            <button
+                                onClick={() => onOpenGallery(project)}
+                                className="text-sm text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                            >
+                                <span>View Gallery ({project.images.length})</span>
+                                <ExternalLink size={14} className="ml-1" />
+                            </button>
+                        ) : (
+                            <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                        )}
                     </div>
                 </div>
             </div>

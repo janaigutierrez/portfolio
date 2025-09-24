@@ -1,21 +1,17 @@
-// src/data/translations/es.js
-
 export default {
-    // NAVIGATION
     nav: {
         surface: "Superficie",
         dive: "Inmersión",
         projects: "Proyectos",
-        deep: "Profundidad"
+        deep: "Profundidad",
+        language: "Language"
     },
 
-    // HERO
     hero: {
         subtitle: "Full Stack Developer y Explorador Digital",
         cta: "Sumérgete"
     },
 
-    // ABOUT
     about: {
         title: "Sobre Mí",
         intro: "Soy un desarrollador apasionado por resolver problemas del mundo real a través de la tecnología. Lo que más me emociona es crear herramientas que simplifiquen la vida de las personas, eliminando barreras tecnológicas para que puedan invertir el tiempo ahorrado en lo que realmente importa.",
@@ -34,7 +30,6 @@ export default {
         }
     },
 
-    // PROJECTS
     projects: {
         title: "Proyectos",
         subtitle: "Aquí descubrirás proyectos que abordan desafíos reales y crean experiencias únicas, construidos tanto para clientes como para iniciativas personales.",
@@ -64,7 +59,6 @@ export default {
             responseTime: "Normalmente responde en 24h"
         },
 
-        // Contenido específico de los proyectos
         nest: {
             name: "NEST App",
             subtitle: "Productividad Gamificada",
@@ -181,7 +175,6 @@ export default {
         }
     },
 
-    // CONTACT
     contact: {
         title: "Conexión Profunda",
         subtitle: "La inmersión termina aquí. El siguiente proyecto comienza ahora.",
@@ -235,14 +228,12 @@ export default {
         }
     },
 
-    // FOOTER
     footer: {
         privacy: "Política de Privacidad",
         terms: "Términos de Uso",
         surface: "Superficie"
     },
 
-    // GENERAL
     general: {
         loading: "Cargando...",
         error: "Error",

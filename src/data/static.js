@@ -1,5 +1,3 @@
-// src/data/static.js - Dades que NO canvien per idioma
-
 export const personalInfo = {
     name: "Janai Gutiérrez",
     shortName: "Janai",
@@ -76,9 +74,9 @@ export const projectsData = {
             status: 'complete',
             tech: ['Vite', 'React', 'Tailwind CSS', 'Express', 'Node.js', 'JWT', 'Bcrypt', 'Mocha/Chai'],
             category: 'Web App',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: 'https://github.com/janaigutierrez/nest-app',
+            liveUrl: null,
+            images: ['/projects/nestapp1.jpg', '/projects/nestapp2.jpg']
         },
         {
             id: 2,
@@ -101,9 +99,9 @@ export const projectsData = {
             status: 'development',
             tech: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Mongoose', 'Tailwind CSS'],
             category: 'SaaS Platform',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: 'https://github.com/janaigutierrez/terracota',
+            liveUrl: null,
+            images: ['/projects/terracota-1.jpg']
         }
     ],
 
@@ -115,9 +113,9 @@ export const projectsData = {
             status: 'complete',
             tech: ['React', 'Tailwind CSS', 'Customized Google Form', 'Framer Motion'],
             category: 'Custom Website',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: 'https://github.com/janaigutierrez/boda-modo-cata',
+            liveUrl: 'http://bodaenmodocata.es',
+            images: ['/projects/boda1.jpg']
         },
         {
             id: 5,
@@ -137,7 +135,7 @@ export const projectsData = {
             status: 'complete',
             tech: ['React', 'Tailwind CSS'],
             category: 'Restaurant Website',
-            github: '',
+            github: 'https://github.com/janaigutierrez/cafeiseo',
             demo: '',
             image: ''
         }
@@ -229,7 +227,6 @@ export const includes = ['hosting', 'ssl', 'responsive', 'support']
 
 export const workProcess = ['discovery', 'design', 'development', 'launch']
 
-// Helper functions
 export const getProjectsByCategory = (category) => {
     return projectsData[category] || []
 }

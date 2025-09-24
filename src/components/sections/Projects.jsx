@@ -5,16 +5,16 @@ import CategoryFilter from '../ui/CategoryFilter'
 import ProjectCard from '../ui/ProjectCard'
 import ProjectSidebar from '../ui/ProjectSidebar'
 import ProjectModal from '../ui/ProjectModal'
+import ImageGalleryModal from '../ui/ImageGalleryModal'
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState(null)
     const [activeCategory, setActiveCategory] = useState('all')
     const { t } = useTranslation()
 
-    // 🔹 Estat per modal (només mobile)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 
-    // Helpers
     const getDisplayCategories = () => {
         const categories = [
             { key: 'applications', name: t('projects.categories.applications'), color: 'blue', projects: projectsData.applications },
@@ -37,11 +37,9 @@ export default function Projects() {
         return colors[color] || colors.blue
     }
 
-    // 🔹 Obrir projecte (diferenciar modal o sidebar)
     const handleProjectClick = (project) => {
         setSelectedProject(project)
 
-        // Si estem en pantalla petita -> obre modal
         if (window.innerWidth < 1024) {  // < lg
             setIsModalOpen(true)
         }
@@ -51,6 +49,11 @@ export default function Projects() {
         setActiveCategory(categoryKey)
         setSelectedProject(null)
         setIsModalOpen(false)
+    }
+
+    const handleOpenGallery = (project) => {
+        setSelectedProject(project)
+        setIsGalleryOpen(true)
     }
 
     return (
@@ -98,6 +101,7 @@ export default function Projects() {
                                                 project={project}
                                                 isSelected={selectedProject?.id === project.id}
                                                 onClick={() => handleProjectClick(project)}
+                                                onOpenGallery={handleOpenGallery}
                                             />
                                         ))}
                                     </div>
@@ -106,21 +110,29 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN - només desktop */}
+                    {/* RIGHT COLUMN */}
                     <div className="hidden lg:block lg:col-span-2 lg:h-[800px]">
                         <ProjectSidebar
                             selectedProject={selectedProject}
                             onClose={() => setSelectedProject(null)}
+                            onOpenGallery={handleOpenGallery}
                         />
                     </div>
                 </div>
             </div>
 
-            {/* 🔹 Modal - només mobile */}
+            {/* Modal - només mobile */}
             <ProjectModal
                 project={selectedProject}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
+                onOpenGallery={handleOpenGallery}
+            />
+            {/* MODAL DE GALERIA - universal */}
+            <ImageGalleryModal
+                project={selectedProject}
+                isOpen={isGalleryOpen}
+                onClose={() => setIsGalleryOpen(false)}
             />
         </section>
     )

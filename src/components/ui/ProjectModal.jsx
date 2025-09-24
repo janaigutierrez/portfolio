@@ -97,10 +97,10 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                                 <div className="w-full bg-gray-700 rounded-full h-2">
                                     <div
                                         className={`h-2 rounded-full transition-all duration-1000 ${project.status === 'complete'
-                                                ? 'bg-gradient-to-r from-green-500 to-green-400'
-                                                : project.status === 'development'
-                                                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
-                                                    : 'bg-gradient-to-r from-blue-500 to-blue-400'
+                                            ? 'bg-gradient-to-r from-green-500 to-green-400'
+                                            : project.status === 'development'
+                                                ? 'bg-gradient-to-r from-yellow-500 to-yellow-400'
+                                                : 'bg-gradient-to-r from-blue-500 to-blue-400'
                                             }`}
                                         style={{ width: `${project.progress}%` }}
                                     />
@@ -161,14 +161,26 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                                 <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
                             </div>
 
+                            {/* Screenshots Gallery */}
                             <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                 <div className="flex items-center">
                                     <Image size={16} className="mr-3 text-gray-400" />
                                     <span className="text-sm text-gray-300">{t('projects.ui.screenshots')}</span>
                                 </div>
-                                <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                {project.images && project.images.length > 0 ? (
+                                    <button
+                                        onClick={() => onOpenGallery && onOpenGallery(project)}
+                                        className="text-xs text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                                    >
+                                        <span>Gallery ({project.images.length})</span>
+                                        <Image size={12} className="ml-1" />
+                                    </button>
+                                ) : (
+                                    <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                )}
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

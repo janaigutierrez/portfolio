@@ -1,21 +1,17 @@
-// src/data/translations/en.js
-
 export default {
-    // NAVIGATION
     nav: {
         surface: "Surface",
         dive: "Dive",
         projects: "Projects",
-        deep: "Deep"
+        deep: "Deep",
+        language: "Idioma"
     },
 
-    // HERO
     hero: {
         subtitle: "Full Stack Developer & Digital Explorer",
         cta: "Dive in"
     },
 
-    // ABOUT
     about: {
         title: "About Me",
         intro: "I'm a developer passionate about solving real-world problems through technology. What excites me the most is creating tools that simplify people's lives, breaking down technological barriers so they can invest their saved time in what truly matters.",
@@ -34,7 +30,6 @@ export default {
         }
     },
 
-    // PROJECTS
     projects: {
         title: "Projects",
         subtitle: "Here you'll discover projects that tackle real challenges and create unique experiences — built for clients as well as personal initiatives.",
@@ -64,7 +59,6 @@ export default {
             responseTime: "Usually responds within 24h"
         },
 
-        // Project specific content
         nest: {
             name: "NEST App",
             subtitle: "Gamified Productivity",
@@ -181,7 +175,6 @@ export default {
         }
     },
 
-    // CONTACT
     contact: {
         title: "Deep Connection",
         subtitle: "The dive ends here. The next project starts now.",
@@ -235,14 +228,12 @@ export default {
         }
     },
 
-    // FOOTER
     footer: {
         privacy: "Privacy Policy",
         terms: "Terms of Use",
         surface: "Surface"
     },
 
-    // GENERAL
     general: {
         loading: "Loading...",
         error: "Error",
