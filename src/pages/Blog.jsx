@@ -1,13 +1,17 @@
-import { blogPosts } from "../data/blogPosts"
+import Header from '../components/sections/Header'
+import Footer from '../components/sections/Footer'
+import BlogHero from '../components/blog/BlogHero'
+import BlogGrid from '../components/blog/BlogGrid.jsx'
 
-const Blog = () => {
-    const data = blogPosts.id1
-
+export default function Blog() {
     return (
-        <div>
-            Hello {data}
-        </div>
+        <>
+            <Header />
+            <main className="bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
+                <BlogHero />
+                <BlogGrid />
+            </main>
+            <Footer />
+        </>
     )
 }
-
-export default Blog

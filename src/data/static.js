@@ -99,9 +99,9 @@ export const projectsData = {
             status: 'development',
             tech: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Mongoose', 'Tailwind CSS'],
             category: 'SaaS Platform',
-            githubUrl: 'https://github.com/janaigutierrez/terracota',
-            liveUrl: null,
-            images: ['/projects/terracota-1.jpg']
+            githubUrl: '',
+            liveUrl: 'http://terracotaceramiqueria.netlify.app',
+            images: ['/projects/terracota1.jpg']
         }
     ],
 
@@ -136,8 +136,8 @@ export const projectsData = {
             tech: ['React', 'Tailwind CSS'],
             category: 'Restaurant Website',
             github: 'https://github.com/janaigutierrez/cafeiseo',
-            demo: '',
-            image: ''
+            liveUrl: 'http://cafeiseo.netlify.app',
+            image: ['/projects/iseo1.jpg']
         }
     ],
 
