@@ -70,24 +70,24 @@ export const projectsData = {
         {
             id: 1,
             key: 'nest',
-            progress: 100,
+            progress: 80,
             status: 'complete',
             tech: ['Vite', 'React', 'Tailwind CSS', 'Express', 'Node.js', 'JWT', 'Bcrypt', 'Mocha/Chai'],
             category: 'Web App',
             githubUrl: 'https://github.com/janaigutierrez/nest-app',
-            liveUrl: null,
+            liveUrl: 'https://nest-app.surge.sh',
             images: ['/projects/nestapp1.jpg', '/projects/nestapp2.jpg']
         },
         {
             id: 2,
             key: 'grove',
-            progress: 25,
+            progress: 15,
             status: 'development',
             tech: ['React Native', 'NativeWind', 'Node.js', 'Express', 'REST API', 'OpenAI'],
             category: 'Mobile App',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: null,
+            liveUrl: null,
+            images: []
         }
     ],
 
@@ -99,7 +99,7 @@ export const projectsData = {
             status: 'development',
             tech: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Mongoose', 'Tailwind CSS'],
             category: 'SaaS Platform',
-            githubUrl: '',
+            githubUrl: null,
             liveUrl: 'http://terracotaceramiqueria.netlify.app',
             images: ['/projects/terracota1.jpg']
         }
@@ -124,20 +124,20 @@ export const projectsData = {
             status: 'development',
             tech: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB'],
             category: 'Business Website',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: null,
+            liveUrl: null,
+            images: []
         },
         {
             id: 6,
             key: 'iseo',
-            progress: 100,
+            progress: 90,
             status: 'complete',
             tech: ['React', 'Tailwind CSS'],
             category: 'Restaurant Website',
-            github: 'https://github.com/janaigutierrez/cafeiseo',
-            liveUrl: 'http://cafeiseo.netlify.app',
-            image: ['/projects/iseo1.jpg']
+            githubUrl: 'https://github.com/janaigutierrez/cafeiseo',
+            liveUrl: 'http://caffeiseo.netlify.app',
+            images: ['/projects/iseo1.jpg']
         }
     ],
 
@@ -149,9 +149,9 @@ export const projectsData = {
             status: 'development',
             tech: ['React', 'Tailwind CSS', 'Local Storage', 'CSS Animations'],
             category: 'Web Game',
-            github: '',
-            demo: '',
-            image: ''
+            githubUrl: null,
+            liveUrl: null,
+            images: []
         }
     ]
 }

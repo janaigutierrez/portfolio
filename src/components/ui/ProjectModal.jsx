@@ -145,23 +145,49 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
 
                         {/* Links */}
                         <div className="space-y-2">
+                            {/* GITHUB REPOSITORY */}
                             <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                 <div className="flex items-center">
                                     <Github size={16} className="mr-3 text-gray-400" />
                                     <span className="text-sm text-gray-300">{t('projects.ui.repository')}</span>
                                 </div>
-                                <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                {project.githubUrl ? (
+                                    <a
+                                        href={project.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                                    >
+                                        <span>View Code</span>
+                                        <Github size={12} className="ml-1" />
+                                    </a>
+                                ) : (
+                                    <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                )}
                             </div>
 
+                            {/* LIVE DEMO */}
                             <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                 <div className="flex items-center">
                                     <ExternalLink size={16} className="mr-3 text-gray-400" />
                                     <span className="text-sm text-gray-300">{t('projects.ui.liveDemo')}</span>
                                 </div>
-                                <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                {project.liveUrl ? (
+                                    <a
+                                        href={project.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
+                                    >
+                                        <span>Visit Site</span>
+                                        <ExternalLink size={12} className="ml-1" />
+                                    </a>
+                                ) : (
+                                    <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
+                                )}
                             </div>
 
-                            {/* Screenshots Gallery */}
+                            {/* SCREENSHOTS GALLERY */}
                             <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                 <div className="flex items-center">
                                     <Image size={16} className="mr-3 text-gray-400" />
