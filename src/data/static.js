@@ -145,13 +145,13 @@ export const projectsData = {
         {
             id: 7,
             key: 'geocat',
-            progress: 75,
+            progress: 15,
             status: 'development',
             tech: ['React', 'Tailwind CSS', 'Local Storage', 'CSS Animations'],
             category: 'Web Game',
-            githubUrl: null,
-            liveUrl: null,
-            images: []
+            githubUrl: 'https://github.com/janaigutierrez/geocat',
+            liveUrl: 'http://geocat.netlify.app',
+            images: ['/projects/geocat1.jpg']
         }
     ]
 }
