@@ -5,7 +5,7 @@ export const personalInfo = {
     location: {
         city: "Barcelona",
         region: "Catalunya",
-        country: "España"
+        country: "Espanya"
     },
     contact: {
         email: "janaigs97@gmail.com",
