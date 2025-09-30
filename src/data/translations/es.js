@@ -153,7 +153,7 @@ export default {
     reviews: {
         title: "Qué dicen los clientes...",
 
-        sandra: {
+        boda: {
             name: "Raquel & Daniel",
             role: "Mujer y marido",
             project: "Web de bodas",

@@ -153,7 +153,7 @@ export default {
     reviews: {
         title: "El que diuen els clients",
 
-        sandra: {
+        boda: {
             name: "Raquel & Daniel",
             role: "Núvia i Nuvi",
             project: "Web de Casament",
