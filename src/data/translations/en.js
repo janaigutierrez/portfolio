@@ -4,7 +4,7 @@ export default {
         dive: "Dive",
         projects: "Projects",
         deep: "Deep",
-        language: "Idioma"
+        language: "Language"
     },
 
     hero: {
@@ -75,11 +75,11 @@ export default {
         grove: {
             name: "Grove Fitness",
             subtitle: "AI-Powered Training",
-            description: "Grove Fitness is an app that will make you truly focus on your goals. Thanks to OpenAI integration, you can organize and create workouts dedicated to yourself, with an interactive menu for training time that doesn't distract and shows the times and sets that are due.",
+            description: "Grove Fitness is an app that will make you truly focus on your goals. Thanks to AI integration, you can organize and create workouts dedicated to yourself, with an interactive menu for training time that doesn't distract and shows the times and sets that are due.",
             features: [
-                "OpenAI integration for personalized workouts",
+                "AI integration for personalized workouts",
                 "Clean and non-invasive interface during training",
-                "Automatic time and repetition tracking",
+                "Automatic training tracking",
                 "Dynamic exercise creation"
             ]
         },
@@ -127,7 +127,7 @@ export default {
         iseo: {
             name: "Cafeteria - Gelateria Iseo",
             subtitle: "Digital Menu",
-            description: "Website for cafeteria and ice cream shop with interactive digital menu. Modern experience for a traditional local business.",
+            description: "Website for a caffé and ice cream shop with interactive digital menu. Modern experience for a traditional local business.",
             features: [
                 "Interactive digital menu",
                 "Enhanced user experience",
@@ -139,10 +139,10 @@ export default {
         geocat: {
             name: "GeoCat",
             subtitle: "Catalan Geography Game",
-            description: "Interactive Wordle-style game focused on Catalan municipalities. A fun way to learn local geography while enjoying a familiar and addictive game format.",
+            description: "Interactive Wordle-style game focused on Catalan towns and cities. A fun way to learn local geography while enjoying a familiar and addictive game format.",
             features: [
                 "Wordle-type game mechanics",
-                "Catalan municipalities database",
+                "Catalan towns database",
                 "Different mini-games",
                 "Intuitive and responsive interface",
                 "Local game persistence"
@@ -157,7 +157,7 @@ export default {
             name: "Raquel & Daniel",
             role: "Bride and Groom",
             project: "Wedding Website",
-            text: "Janai created an incredible and very beautiful webpage for our wedding. He even connected it to a sheet where we could have access."
+            text: "Janai created an incredible and very beautiful webpage for our wedding. He even connected it to a sheet where we could have access and check guests' answers."
         },
 
         iseo: {
@@ -186,7 +186,7 @@ export default {
             message: "Message",
             namePlaceholder: "Your name",
             emailPlaceholder: "your@email.com",
-            messagePlaceholder: "Tell me about your project or idea...",
+            messagePlaceholder: "Tell me about your idea...",
             sendButton: "Send Message"
         },
 

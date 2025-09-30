@@ -1,9 +1,9 @@
 export default {
     nav: {
-        surface: "Superficie",
+        surface: "Superfície",
         dive: "Immersió",
         projects: "Projectes",
-        deep: "Profunditat",
+        deep: "Fons Marí",
         language: "Idioma"
     },
 
@@ -49,14 +49,14 @@ export default {
             repository: "Repositori",
             liveDemo: "Demo en Viu",
             screenshots: "Captures",
-            comingSoon: "Proximament"
+            comingSoon: "Pròximament"
         },
 
         cta: {
-            title: "T'interessa treballar junts?",
-            text: "Tens una idea interessant o un projecte desafiador? Fem realitat la teva visió junts!",
+            title: "T'interessaria treballar junts?",
+            text: "Tens una idea interessant o un projecte transformador? Fem realitat la teva visió junts!",
             button: "Començar Nou Projecte",
-            responseTime: "Normalment respon en 24h"
+            responseTime: "Normalment responc en 24h"
         },
 
         nest: {
@@ -67,7 +67,7 @@ export default {
                 "Sistema de gamificació amb XP i estadístiques",
                 "IA personalitzada per crear missions",
                 "Desbloqueig progressiu de funcionalitats",
-                "Interfície intuïtiva i responsive",
+                "Interfície intuïtiva i adaptativa",
                 "Backend segur amb autenticació JWT"
             ]
         },
@@ -75,11 +75,11 @@ export default {
         grove: {
             name: "Grove Fitness",
             subtitle: "Entrenament amb IA",
-            description: "Grove Fitness és una app que et farà concentrar-te realment en els teus objectius. Gràcies a la connexió amb OpenAI podràs organitzar i crear entrenaments dedicats a tu mateix, amb un menú interactiu pel moment d'entrenar que no distregui i mostri els temps i sèries que toquen.",
+            description: "Grove Fitness és una app que et farà concentrar-te realment en els teus objectius. Gràcies a la connexió amb IA podràs organitzar i crear entrenaments dedicats a tu mateix, amb un menú interactiu pel moment d'entrenar que no distregui i mostri els temps i sèries que toquen.",
             features: [
-                "Integració amb OpenAI per entrenaments personalitzats",
-                "Interfície clean i no invasiva durant l'entrenament",
-                "Tracking automàtic de temps i repeticions",
+                "Integració amb IA per a entrenaments personalitzats",
+                "Interfície neta i no invasiva durant l'entrenament",
+                "Tracking d'entrenaments",
                 "Creació dinàmica d'exercicis"
             ]
         },
@@ -101,13 +101,13 @@ export default {
         wedding: {
             name: "Web Casament",
             subtitle: "Experiència de Casament",
-            description: "Web personalitzada per a casament amb galeria interactiva, sistema RSVP i timeline animat. Focus en crear una experiència visual única per a la celebració més especial.",
+            description: "Web personalitzada per a casament amb galeria interactiva, sistema de reserves i timeline animat. Enfocada en crear una experiència visual única per a la celebració més especial.",
             features: [
                 "Galeria d'imatges interactiva",
-                "Sistema RSVP amb confirmacions",
+                "Sistema de reserves amb confirmacions",
                 "Timeline animat dels esdeveniments",
                 "Disseny completament personalitzat",
-                "Responsive i optimitzat"
+                "Adaptatiu i optimitzat"
             ]
         },
 
@@ -141,17 +141,16 @@ export default {
             subtitle: "Joc de Geografia Catalana",
             description: "Joc interactiu estil Wordle centrat en municipis catalans. Una manera divertida d'aprendre geografia local mentre et diverteixes amb un format de joc conegut i addictiu.",
             features: [
-                "Mecànica de joc tipus Wordle",
                 "Base de dades de municipis catalans",
                 "Diferents minijocs",
-                "Interfície intuïtiva i responsive",
+                "Interfície intuïtiva i adaptativa",
                 "Persistència local de partides"
             ]
         }
     },
 
     reviews: {
-        title: "El que diuen els clients",
+        title: "Què diuen els clients...",
 
         boda: {
             name: "Raquel & Daniel",
@@ -186,12 +185,12 @@ export default {
             message: "Missatge",
             namePlaceholder: "El teu nom",
             emailPlaceholder: "el.teu@email.com",
-            messagePlaceholder: "Explica'm el teu projecte o idea...",
+            messagePlaceholder: "Explica'm la teva idea...",
             sendButton: "Enviar Missatge"
         },
 
         timeline: {
-            title: "Temps Típic",
+            title: "Temps de resposta",
             landing: "Landing/Personal: 1-2 setmanes",
             fullWebsite: "Web Completa: 3-4 setmanes",
             ecommerce: "E-commerce/SaaS: 6-8 setmanes"
@@ -201,7 +200,7 @@ export default {
             title: "Sempre Inclòs",
             hosting: "Hosting gratuït",
             ssl: "Certificat SSL",
-            responsive: "Disseny responsive",
+            responsive: "Disseny adaptatiu",
             support: "Suport post-llançament"
         },
 
@@ -209,17 +208,17 @@ export default {
             title: "Informació de Contacte",
             location: "Ubicació",
             status: "Estat",
-            available: "Disponible per Projectes",
+            available: "Disponible per a Projectes",
             responseTitle: "Temps de Resposta",
-            responseText: "Soc molt responsiu amb les notificacions: pots esperar una resposta en unes hores o màxim l'endemà, encara que sigui només per començar a parlar del teu projecte o necessitats."
+            responseText: "Sóc molt atent a les notificacions: pots esperar una resposta en unes hores o com a molt l'endemà, encara que sigui només per començar a parlar del teu projecte o necessitats."
         },
 
         workProcess: {
             title: "Procés de Treball",
-            discovery: "Descobriment i Requisits",
-            design: "Disseny i Prototipat",
-            development: "Desenvolupament i Proves",
-            launch: "Llançament i Suport"
+            discovery: "Anàlisi inicial i definició d'objectius",
+            design: "Concepció i maquetació",
+            development: "Implementació i validació",
+            launch: "Publicació i acompanyament"
         },
 
         social: {
@@ -231,7 +230,7 @@ export default {
     footer: {
         privacy: "Política de Privacitat",
         terms: "Termes d'Ús",
-        surface: "Superficie"
+        surface: "Superfície"
     },
 
     general: {
