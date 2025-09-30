@@ -38,20 +38,13 @@ export default function Projects() {
     }
 
     const handleProjectClick = (project) => {
-        console.log('🔥 CLICK DETECTAT:', project.key)
-        console.log('🔥 window.innerWidth:', window.innerWidth)
-        console.log('🔥 isModalOpen abans:', isModalOpen)
 
         setSelectedProject(project)
 
         if (window.innerWidth < 1024) {
-            console.log('🔥 OBRINT MODAL (mòbil)')
             setIsModalOpen(true)
-        } else {
-            console.log('🔥 DESKTOP MODE - sidebar')
         }
 
-        console.log('🔥 isModalOpen després:', isModalOpen)
     }
 
     const handleCategoryClick = (categoryKey) => {

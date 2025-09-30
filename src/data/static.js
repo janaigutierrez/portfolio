@@ -101,7 +101,7 @@ export const projectsData = {
             category: 'SaaS Platform',
             githubUrl: null,
             liveUrl: 'http://terracotaceramiqueria.netlify.app',
-            images: ['/projects/terracota1.jpg']
+            images: ['projects/terracota1.jpg']
         }
     ],
 

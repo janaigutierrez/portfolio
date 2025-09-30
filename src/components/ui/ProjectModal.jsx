@@ -52,12 +52,18 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
 
     const projectData = getProjectData(project)
 
+    const handleBackdropClick = (e) => {
+        if (e.target === e.currentTarget) {
+            onClose()
+        }
+    }
+
     return (
         <>
             {/* Backdrop */}
             <div
                 className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
-                onClick={onClose}
+                onClick={handleBackdropClick}
             >
                 {/* Modal Content */}
                 <div
