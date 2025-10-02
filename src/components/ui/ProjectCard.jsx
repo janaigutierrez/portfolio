@@ -4,7 +4,6 @@ import { useTranslation } from '../../hooks/useTranslation'
 export default function ProjectCard({ project, isSelected, onClick, onOpenGallery }) {
     const { t } = useTranslation()
 
-    // Mapping de traduccions
     const projectTranslations = {
         1: 'nest',
         2: 'grove',
@@ -24,7 +23,6 @@ export default function ProjectCard({ project, isSelected, onClick, onOpenGaller
         }
     }
 
-    // Obtenir dades traduïdes
     const getProjectData = (project) => {
         const translationKey = projectTranslations[project.id]
 
@@ -106,7 +104,7 @@ export default function ProjectCard({ project, isSelected, onClick, onOpenGaller
                 )}
             </div>
 
-            {/* NOVA SECCIÓ: Quick Actions - només mòbil */}
+            {/* Quick mobile actions */}
             <div className="lg:hidden border-t border-gray-700 pt-4 space-y-2">
                 <div className="flex justify-between space-x-2">
                     {/* GitHub Link */}

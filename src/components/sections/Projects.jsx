@@ -123,14 +123,14 @@ export default function Projects() {
                 </div>
             </div>
 
-            {/* Modal - només mobile */}
+            {/* Modal mobile */}
             <ProjectModal
                 project={selectedProject}
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onOpenGallery={handleOpenGallery}
             />
-            {/* MODAL DE GALERIA - universal */}
+            {/* MODAL DE GALERIA */}
             <ImageGalleryModal
                 project={selectedProject}
                 isOpen={isGalleryOpen}

@@ -1,14 +1,10 @@
-// src/hooks/useTranslation.js
-import { createContext, useContext, useState, useEffect } from 'react'
-
-// Imports de traduccions
+import { createContext, useContext, useState } from 'react'
 import caTranslations from '../data/translations/ca'
 import esTranslations from '../data/translations/es'
 import enTranslations from '../data/translations/en'
 
 const TranslationContext = createContext()
 
-// Mapa de traduccions
 const translations = {
     ca: caTranslations,
     es: esTranslations,
@@ -16,7 +12,7 @@ const translations = {
 }
 
 export function TranslationProvider({ children }) {
-    // Default: català, però carrega des de localStorage si existeix
+    // Default: català
     const [currentLanguage, setCurrentLanguage] = useState(() => {
         return localStorage.getItem('preferred-language') || 'ca'
     })

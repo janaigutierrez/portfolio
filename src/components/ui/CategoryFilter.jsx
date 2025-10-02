@@ -64,7 +64,7 @@ export default function CategoryFilter({ activeCategory, onCategoryChange }) {
     return (
         <div className="mb-8">
 
-            {/* DESKTOP VERSION - Horizontal Categories */}
+            {/* DESKTOP VERSION */}
             <div className="hidden lg:flex justify-center space-x-8">
                 {categories.map((category) => (
                     <button
@@ -79,8 +79,6 @@ export default function CategoryFilter({ activeCategory, onCategoryChange }) {
                         {category.icon && <category.icon size={18} />}
                         <span>{category.name}</span>
                         <span className="text-xs opacity-75">({category.count})</span>
-
-                        {/* Individual underline for each category */}
                         <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-sea-green to-sky-blue transition-all duration-300
                             ${activeCategory === category.key ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}
                         />
@@ -88,7 +86,7 @@ export default function CategoryFilter({ activeCategory, onCategoryChange }) {
                 ))}
             </div>
 
-            {/* MOBILE & TABLET VERSION - Dropdown Only */}
+            {/* MOBILE & TABLET VERSION */}
             <div className="lg:hidden relative">
                 <div className="max-w-sm mx-auto px-4">
                     <button

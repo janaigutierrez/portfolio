@@ -7,7 +7,6 @@ import { useTranslation } from '../../hooks/useTranslation'
 export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }) {
     const { t } = useTranslation()
 
-    // Mapping de traduccions
     const projectTranslations = {
         1: 'nest',
         2: 'grove',
@@ -27,7 +26,6 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
         }
     }
 
-    // Obtenir dades traduïdes
     const getProjectData = (project) => {
         const translationKey = projectTranslations[project.id]
 

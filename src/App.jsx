@@ -10,10 +10,10 @@ function App() {
       <Router>
         <div className="min-h-screen">
           <Routes>
-            {/* Ruta principal - Portfolio */}
+            {/* Ruta Portfolio */}
             <Route path="/" element={<Portfolio />} />
 
-            {/* Ruta blog - Llista de posts */}
+            {/* Ruta blog */}
             <Route path="/blog" element={<Blog />} />
 
             {/* Ruta post individual */}

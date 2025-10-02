@@ -7,7 +7,6 @@ import { useTranslation } from '../../hooks/useTranslation'
 export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery }) {
     const { t } = useTranslation()
 
-    // Mapping de traduccions
     const projectTranslations = {
         1: 'nest',
         2: 'grove',
@@ -27,7 +26,6 @@ export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery
         }
     }
 
-    // Obtenir dades traduïdes
     const getProjectData = (project) => {
         const translationKey = projectTranslations[project.id]
 
@@ -65,13 +63,12 @@ export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery
                 </button>
 
                 <div className="text-sm text-gray-400">
-                    <p>🕐 {t('projects.cta.responseTime')}</p>
+                    <p>{t('projects.cta.responseTime')}</p>
                 </div>
             </div>
         </div>
     )
 
-    // Component ProjectDetails per quan hi ha projecte seleccionat
     const ProjectDetails = ({ project }) => {
         const projectData = getProjectData(project)
 
@@ -194,7 +191,6 @@ export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery
         )
     }
 
-    // Render principal
     return (
         <div className="h-full">
             {selectedProject ? (

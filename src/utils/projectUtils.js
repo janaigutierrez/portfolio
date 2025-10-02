@@ -1,6 +1,5 @@
 import { CheckCircle, Clock, PlayCircle } from 'lucide-react'
 
-// Constants consolidades
 export const PROJECT_TRANSLATIONS = {
     1: 'nest',
     2: 'grove',
@@ -20,7 +19,6 @@ export const ICON_MAP = {
     'Globe': 'Globe'
 }
 
-// Utility functions
 export const getStatusIcon = (status) => {
     switch (status) {
         case 'complete': return <CheckCircle className="text-green-400" size={20} />
