@@ -1,126 +1,111 @@
-# Portfolio Personal - Janai Gutierrez
+# Personal Portfolio - Janai Gutierrez
 
-## Descripció del Projecte
+## Project Description
 
-Portfolio personal interactiu amb temàtica marina , desenvolupat amb React i Vite. Aquest projecte està dissenyat com a **carta de presentació ràpida i funcional** per mostrar projectes i habilitats, prioritzant la **utilitat i velocitat de desenvolupament** sobre la puresa del codi.
+Interactive personal portfolio with a marine theme, built with React and Vite. This project is designed as a quick and functional presentation card to showcase projects and skills, prioritizing utility and development speed over code purity.
 
-> **Nota Important**: Aquest portfolio NO pretén ser un exemple de codi perfecte o arquitectura ideal. Moltes coses estan hardcodejades o amb estils inline per prioritzar el desplegament ràpid. La intenció és tenir una base funcional que es pot refinar amb el temps.
-
----
-
-##  Característiques Principals
-
-### Disseny i UX
-- **Temàtica Marina Cohesiva**: Narrativa visual que simula una immersió des de la superfície fins al fons marí
-- **Parallax Scrolling**: Efectes de profunditat i transicions suaus entre seccions
-- **Responsive Design**: Adaptat a tots els dispositius (mobile, tablet, desktop)
-- **Animacions Personalitzades**: Efectes de bombolles, onades i transicions aquàtiques
-
-### Seccions
-1. **Hero**: Presentació amb efecte de submersió progressiva
-2. **About**: Informació personal, tech stack i achievements amb estil gamificat
-3. **Projects**: Galeria de projectes amb sistema de "quests" i progress tracking
-4. **Blog**: Sistema de publicacions amb grid responsive i markdown rendering
-5. **Contact**: Formulari de contacte amb informació professional
-6. **Footer**: Navegació simplificada i links legals
-
-### Funcionalitats Tècniques
-- Sistema de blog amb routing dinàmic (`/blog/:slug`)
-- Multi-idioma (Català/Anglès/Castellà) amb hook personalitzat
-- Gestió d'estats amb React Hooks
-- Formulari amb connexió
-- Components reutilitzables i modulars
-- CSS personalitzat amb Tailwind + animacions custom
+> **Important Note**: This portfolio is NOT intended to be an example of perfect code or ideal architecture. Many things are hardcoded or use inline styles to prioritize rapid deployment. The intention is to have a functional base that can be refined over time.
 
 ---
 
-## Stack Tecnològic
+## Main Features
+
+### Design and UX
+- **Cohesive Marine Theme**: Visual narrative simulating an immersion from the surface to the seabed
+- **Parallax Scrolling**: Depth effects and smooth transitions between sections
+- **Responsive Design**: Adapted to all devices (mobile, tablet, desktop)
+
+### Sections
+1. **Hero**: Presentation with progressive submersion effect
+2. **About**: Personal information, tech stack, and achievements
+3. **Projects**: Gallery with all my projects' data and progress tracking
+4. **Blog**: Publication system with responsive grid and markdown rendering
+5. **Contact**: Contact form with professional information
+6. **Footer**: Simplified navigation
+
+### Technical Features
+- Blog system with dynamic routing (`/blog/:slug`)
+- Multi-language (Catalan/English/Spanish) with custom hook
+- State management with React Hooks
+- Form with connection
+- Reusable and modular components
+- Custom CSS with Tailwind + custom animations
+
+---
+
+## Technology Stack
 
 ### Core
 - **React** 19.1.1
 - **Vite** 7.1.2
-- **React Router DOM** (per navegació)
+- **React Router DOM** (for navigation)
 
 ### Styling
 - **Tailwind CSS** 3.4.0
 - **PostCSS** + **Autoprefixer**
-- Animacions CSS personalitzades
+- Custom CSS animations
 
 ### Tools & Dev
-- **ESLint** amb plugins React
-- **Lucide React** (icones)
+- **ESLint** with React plugins
+- **Lucide React** (icons)
 - Hot Module Replacement (HMR)
 
 ---
 
-## Paleta de Colors Personalitzada
+## Custom Color Palette
 
-Definida a `tailwind.config.js`:
-
+Defined in `tailwind.config.js`:
 ```javascript
 colors: {
-    'sea-green': '#20B2AA',    // Turquesa mediterrani
-    'sky-blue': '#48CAE4',     // Blau cel
-    'terra-siena': '#A0522D',  // Terra cuita
-    'beige-pedra': '#F5F5DC',  // Beige pedra
-    'gris-carbo': '#2F2F2F',   // Gris carbó
+    'sea-green': '#20B2AA',    // Mediterranean turquoise
+    'sky-blue': '#48CAE4',     // Sky blue
+    'terra-siena': '#A0522D',  // Terracotta
+    'beige-pedra': '#F5F5DC',  // Stone beige
+    'gris-carbo': '#2F2F2F',   // Charcoal grey
 }
 ```
+---
+
+## Featured Projects
+
+Currently includes 7 main projects:
+
+- **NEST** - Productivity app 
+- **Terracota** - Modular SaaS + web portal in development
+- **Web Casament** - Custom website with gallery and RSVP
+- **Grove Fitness** - Fitness tracking app in development
+- **GeoCat** - Wordle-style game platform
+- **Can Carerac** - Booking management website and portal for Can Carerac
+- **Cafeteria i Gelateria Iseo** - Virtual menu website, location and contact
 
 ---
 
-## Projectes Destacats
+## Blog System
 
-Actualment inclou 7 projectes principals:
-
-- **NEST** - App de productivitat 
-- **Terracota** - SaaS modular + portal web en desenvolupament
-- **Web Casament** - Web personalitzada amb galeria i RSVP
-- **Grove Fitness** - App de tracking fitness en desenvolupament
-- **GeoCat** - Plataforma de joc estil wordle
-- **Can Carerac** - Web de gestió de reserves i portal de la masia Can Carerac
-- **Cafeteria i Gelateria Iseo** - Web de carta virtual, ubicació i contacte
-
----
-
-## Sistema de Blog
-
-Pàgina on aniré publicant diferents blogs relacionats amb el món de la programació, actualment en desenvolupament.
+Page where I will be publishing different blogs related to the programming world, currently in development.
 
 ### Característiques
-- Posts amb markdown basic rendering
-- Routing dinàmic per slug (`/blog/nom-post`)
-- 404 handling per posts inexistents
-- Categories i tags (preparats per futur)
+- Posts with basic markdown rendering
+- Dynamic routing by slug (`/blog/post-name`)
+- 404 handling for non-existent posts
+- Categories and tags (prepared for future)
 
-### Estructura Post
+### Post Structure
 
 ```javascript
 {
   id: 1,
-  title: "Títol del post",
-  slug: "nom-url-amigable",
-  excerpt: "Resum breu",
-  content: "Contingut markdown",
+  title: "Post Title",
+  slug: "url-friendly-name",
+  excerpt: "Brief Summary",
+  content: "Markdown content",
   category: "Tutorial",
   tags: ["react", "javascript"],
   date: "2024-01-15",
   readTime: "5 min"
 }
 ```
-
-
-## 🚨 Limitacions Conegudes
-
-- Dades estàtiques: Projectes i posts hardcodejats
-- Formulari no funcional: Només `console.log` (sense backend)
-- Inline styles: Alguns components amb estils directes
-- No optimitzat: Manca lazy loading, code splitting, etc.
-- SEO bàsic: Meta tags mínims
-- Accessibilitat: No completament auditada
-
-
-## 👤 Autor
+##  Author
 
 **Janai Gutierrez**
 
@@ -130,6 +115,5 @@ Pàgina on aniré publicant diferents blogs relacionats amb el món de la progra
 - 🔗 LinkedIn: [Janai Gutierrez](https://www.linkedin.com/in/janai-gutiérrez-sañudo-8aa2622a0)  
 
 
-## Última actualització
-
-**Octubre 2025**
+## Last Update
+**October 2025**
