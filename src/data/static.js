@@ -71,7 +71,7 @@ export const projectsData = {
             id: 1,
             key: 'nest',
             progress: 80,
-            status: 'complete',
+            status: 'development',
             tech: ['Vite', 'React', 'Tailwind CSS', 'Express', 'Node.js', 'JWT', 'Bcrypt', 'Mocha/Chai'],
             category: 'Web App',
             githubUrl: 'https://github.com/janaigutierrez/nest-app',
@@ -81,7 +81,7 @@ export const projectsData = {
         {
             id: 2,
             key: 'grove',
-            progress: 15,
+            progress: 25,
             status: 'development',
             tech: ['React Native', 'NativeWind', 'Node.js', 'Express', 'REST API', 'OpenAI'],
             category: 'Mobile App',
@@ -131,7 +131,7 @@ export const projectsData = {
         {
             id: 6,
             key: 'iseo',
-            progress: 90,
+            progress: 100,
             status: 'complete',
             tech: ['React', 'Tailwind CSS'],
             category: 'Restaurant Website',
@@ -145,7 +145,7 @@ export const projectsData = {
         {
             id: 7,
             key: 'geocat',
-            progress: 15,
+            progress: 20,
             status: 'development',
             tech: ['React', 'Tailwind CSS', 'Local Storage', 'CSS Animations'],
             category: 'Web Game',
