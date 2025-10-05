@@ -25,5 +25,4 @@ export const blogCategories = {
             en: 'MongoDB, queries, models'
         }
     },
-    // ... resta de categories
 }

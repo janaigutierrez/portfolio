@@ -10,7 +10,6 @@ export default function BlogPost() {
     const { currentLanguage } = useTranslation()
     const post = getPostBySlug(slug, currentLanguage)
 
-    // Si no trobem el post
     if (!post) {
         return (
             <>
@@ -102,10 +101,9 @@ export default function BlogPost() {
 
                         {/* Content - Renderització directa */}
                         <div className="prose prose-invert prose-lg max-w-none">
-                            {/* Renderitzar HTML directament sense processar */}
                             <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
-                            {/* Tips si n'hi ha */}
+                            {/* Tips */}
                             {post.tips && post.tips.length > 0 && (
                                 <div className="mt-8 bg-sea-green bg-opacity-10 border-l-4 border-sea-green p-6 rounded-r-lg">
                                     <h3 className="text-sea-green font-bold text-xl mb-3 flex items-center">
@@ -122,7 +120,7 @@ export default function BlogPost() {
                                 </div>
                             )}
 
-                            {/* Warnings si n'hi ha */}
+                            {/* Warnings */}
                             {post.warnings && post.warnings.length > 0 && (
                                 <div className="mt-6 bg-yellow-500 bg-opacity-10 border-l-4 border-yellow-500 p-6 rounded-r-lg">
                                     <h3 className="text-yellow-400 font-bold text-xl mb-3 flex items-center">

@@ -11,7 +11,7 @@ export default function BlogHero() {
                     </h1>
                 </div>
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-                    Reflexions, tutorials i experiències d'un desenvolupador en constant aprenentatge
+                    Reflexions, tutorials i experiències d'ús
                 </p>
             </div>
         </section>

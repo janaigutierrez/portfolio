@@ -4,13 +4,11 @@ const getBlogContent = (blog, lang = 'ca') => {
   const langContent = blog.content[lang]
   const sections = langContent.sections || []
 
-  // ✅ Convertir sections a HTML correctament
   const contentHTML = sections
     .map(section => {
       let html = `<h2 class="text-3xl font-bold text-sea-green mt-8 mb-4">${section.title}</h2>\n`
       html += `<p class="text-gray-100 text-lg leading-relaxed mb-4">${section.content}</p>`
 
-      // Si hi ha codi, afegir-lo amb estils
       if (section.code) {
         html += `\n<pre class="bg-gray-800 border border-gray-600 p-4 rounded-lg overflow-x-auto my-6"><code class="language-${section.code.language} text-gray-100">${section.code.snippet}</code></pre>`
       }
