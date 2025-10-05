@@ -2,13 +2,13 @@ import { useParams, Link } from 'react-router-dom'
 import { Calendar, Clock, ArrowLeft, User } from 'lucide-react'
 import Header from '../sections/Header'
 import Footer from '../sections/Footer'
-import { getPostBySlug } from '../../data/blogPosts'
+import { getPostBySlug } from '../../data/blogs/blogPosts'
+import { useTranslation } from '../../hooks/useTranslation'
 
 export default function BlogPost() {
     const { slug } = useParams()
-
-    // Usar la funció del fitxer de dades
-    const post = getPostBySlug(slug)
+    const { currentLanguage } = useTranslation()
+    const post = getPostBySlug(slug, currentLanguage)
 
     // Si no trobem el post
     if (!post) {
@@ -57,8 +57,8 @@ export default function BlogPost() {
                         <header className="mb-8">
                             <div className="flex items-center justify-between mb-6">
                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${post.category === 'Tutorial'
-                                        ? 'bg-blue-900 text-blue-300 border border-blue-600'
-                                        : 'bg-purple-900 text-purple-300 border border-purple-600'
+                                    ? 'bg-blue-900 text-blue-300 border border-blue-600'
+                                    : 'bg-purple-900 text-purple-300 border border-purple-600'
                                     }`}>
                                     {post.category}
                                 </span>
@@ -100,31 +100,44 @@ export default function BlogPost() {
                             </div>
                         </header>
 
-                        {/* Content - Convertir Markdown a HTML */}
-                        <div className="prose prose-invert prose-lg max-w-none
-                            prose-headings:text-white prose-headings:font-bold
-                            prose-h1:text-3xl prose-h1:mt-8 prose-h1:mb-4
-                            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-                            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
-                            prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-4
-                            prose-ul:text-gray-300 prose-li:mb-1
-                            prose-ol:text-gray-300 prose-ol:mb-4
-                            prose-strong:text-white prose-strong:font-semibold
-                            prose-code:text-sea-green prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                            prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-600
-                            prose-blockquote:border-l-sea-green prose-blockquote:text-gray-300">
+                        {/* Content - Renderització directa */}
+                        <div className="prose prose-invert prose-lg max-w-none">
+                            {/* Renderitzar HTML directament sense processar */}
+                            <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
-                            {/* Renderitzar contingut markdown com HTML */}
-                            <div dangerouslySetInnerHTML={{
-                                __html: post.content
-                                    .replace(/^# /gm, '## ')  // Convertir H1 a H2 (ja tenim H1 al header)
-                                    .replace(/\n/g, '<br />') // Line breaks bàsics
-                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-                                    .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic
-                                    .replace(/`(.*?)`/g, '<code>$1</code>') // Inline code
-                                    .replace(/```javascript\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>') // Code blocks
-                                    .replace(/```\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>') // Code blocks
-                            }} />
+                            {/* Tips si n'hi ha */}
+                            {post.tips && post.tips.length > 0 && (
+                                <div className="mt-8 bg-sea-green bg-opacity-10 border-l-4 border-sea-green p-6 rounded-r-lg">
+                                    <h3 className="text-sea-green font-bold text-xl mb-3 flex items-center">
+                                        💡 Tips
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {post.tips.map((tip, index) => (
+                                            <li key={index} className="text-gray-100 flex items-start">
+                                                <span className="text-sea-green mr-2">✓</span>
+                                                {tip}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* Warnings si n'hi ha */}
+                            {post.warnings && post.warnings.length > 0 && (
+                                <div className="mt-6 bg-yellow-500 bg-opacity-10 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                                    <h3 className="text-yellow-400 font-bold text-xl mb-3 flex items-center">
+                                        ⚠️ Warnings
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {post.warnings.map((warning, index) => (
+                                            <li key={index} className="text-gray-100 flex items-start">
+                                                <span className="text-yellow-400 mr-2">!</span>
+                                                {warning}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </article>
 

@@ -1,7 +1,12 @@
 import { Calendar, Clock } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from '../../hooks/useTranslation'
+import { getAllPosts } from '../../data/blogs/blogPosts'
 
-export default function BlogGrid({ posts = [] }) {
+export default function BlogGrid() {
+    const { currentLanguage } = useTranslation()
+    const posts = getAllPosts(currentLanguage)
+
     return (
         <div className="container mx-auto max-w-6xl px-6 pb-20">
             <section>

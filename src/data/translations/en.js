@@ -241,5 +241,12 @@ export default {
         close: "Close",
         next: "Next",
         previous: "Previous"
+    },
+    blog: {
+        categories: {
+            frontend: 'Frontend',
+            backend: 'Backend',
+            database: 'Database',
+        }
     }
 }

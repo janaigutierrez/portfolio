@@ -240,5 +240,13 @@ export default {
         close: "Tancar",
         next: "Següent",
         previous: "Anterior"
+    },
+
+    blog: {
+        categories: {
+            frontend: 'Frontend',
+            backend: 'Backend',
+            database: 'Base de dades',
+        }
     }
 }
