@@ -114,8 +114,8 @@ export const projectsData = {
             tech: ['React', 'Tailwind CSS', 'Customized Google Form', 'Framer Motion'],
             category: 'Custom Website',
             githubUrl: 'https://github.com/janaigutierrez/boda-modo-cata',
-            liveUrl: 'http://bodaenmodocata.es',
-            images: ['/projects/boda1.jpg']
+            liveUrl: null,
+            images: []
         },
         {
             id: 5,
