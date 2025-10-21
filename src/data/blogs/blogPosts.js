@@ -74,9 +74,7 @@ export const getPostBySlug = (slug, lang = 'ca') => {
 
 export const getAllPosts = (lang = 'ca') => {
   const allBlogs = [metodologiesAgils]
-  const posts = allBlogs.map(blog => getBlogContent(blog, lang))
-  console.log('🔍 Posts generats:', posts)  // <-- AFEGEIX AIXÒ
-  return posts
+  return allBlogs.map(blog => getBlogContent(blog, lang))
 }
 
 export const categories = [

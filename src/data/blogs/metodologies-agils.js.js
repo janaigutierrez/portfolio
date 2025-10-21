@@ -1,25 +1,16 @@
 export const metodologiesAgils = {
     id: 'metodologies-agils',
-    category: 'backend',
-    code: 'PM01',
-
-    metadata: {
-        difficulty: 'intermediate',
-        priority: 'high',
-        estimatedTime: '15 min',
-        status: 'published',
-        tags: ['agile', 'scrum', 'kanban', 'management', 'projects'],
-        relatedBlogs: [],
-        version: '1.0',
-        lastUpdate: '2025-01-26'
-    },
+    category: 'methodology',
+    tags: ['agile', 'scrum', 'kanban', 'management', 'projects'],
+    publishedAt: '2025-10-22',
+    featured: true,
 
     content: {
         ca: {
             title: 'Guia Completa de Metodologies Àgils: Scrum i Kanban',
             slug: 'metodologies-agils',
             excerpt: 'Descobreix com aplicar metodologies àgils als teus projectes. Aprèn Scrum, Kanban, sprints, backlogs i totes les eines per treballar de forma eficient.',
-            readTime: '15 min',
+            readTime: '10 min',
             content: `
 # 1. Què és Agile?
 
@@ -283,7 +274,7 @@ Analitzar constantment mètriques i optimitzar el flux
             title: 'Guía Completa de Metodologías Ágiles: Scrum y Kanban',
             slug: 'metodologies-agils',
             excerpt: 'Descubre cómo aplicar metodologías ágiles a tus proyectos. Aprende Scrum, Kanban, sprints, backlogs y todas las herramientas para trabajar de forma eficiente.',
-            readTime: '15 min',
+            readTime: '10 min',
             content: `
 # 1. ¿Qué es Agile?
 
@@ -547,7 +538,7 @@ Analizar constantemente métricas y optimizar el flujo
             title: 'Complete Guide to Agile Methodologies: Scrum and Kanban',
             slug: 'metodologies-agils',
             excerpt: 'Discover how to apply agile methodologies to your projects. Learn Scrum, Kanban, sprints, backlogs and all the tools to work efficiently.',
-            readTime: '15 min',
+            readTime: '10 min',
             content: `
 # 1. What is Agile?
 
