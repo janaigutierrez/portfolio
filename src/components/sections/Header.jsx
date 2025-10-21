@@ -50,16 +50,12 @@ export default function Header() {
                                 </a>
 
                                 {/* Blog - Disabled */}
-                                <div className="relative group">
-                                    <span className="text-gray-400 cursor-not-allowed font-medium drop-shadow opacity-50">
-                                        Blog
-                                    </span>
-                                    {/* Tooltip */}
-                                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-50">
-                                        Coming Soon! 🚧
-                                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-800"></div>
-                                    </div>
-                                </div>
+                                <Link
+                                    to="/blog"
+                                    className="text-white hover:text-yellow-400 transition-colors duration-300 font-medium drop-shadow"
+                                >
+                                    Blog
+                                </Link>
                             </>
                         ) : (
                             <>
@@ -135,9 +131,12 @@ export default function Header() {
                                         {t('nav.deep')}
                                     </a>
                                     {/* Blog mobile disabled */}
-                                    <span className="text-gray-400 cursor-not-allowed font-medium opacity-50">
-                                        Blog (Coming Soon! 🚧)
-                                    </span>
+                                    <Link
+                                        to="/blog"
+                                        className="text-white hover:text-yellow-400 transition-colors duration-300 font-medium"
+                                    >
+                                        Blog
+                                    </Link>
                                 </>
                             ) : (
                                 <>

@@ -1,14 +1,15 @@
-import { f01TailwindVite } from './frontend/f01-tailwind-vite.js'
+import { metodologiesAgils } from './metodologies-agils.js'
 
 export const allBlogs = [
-    f01TailwindVite,
+    metodologiesAgils,
 ]
 
 export const blogsByCategory = {
-    frontend: [f01TailwindVite],
+    frontend: [],
     backend: [],
     database: [],
     errors: [],
     validadors: [],
-    estat: []
+    estat: [],
+    others: [metodologiesAgils]
 }

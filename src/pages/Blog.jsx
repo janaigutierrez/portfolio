@@ -7,7 +7,7 @@ export default function Blog() {
     return (
         <>
             <Header />
-            <main className="bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900">
+            <main className="bg-gradient-to-b from-blue-900 via-blue-800 to-indigo-900 min-h-screen pt-20">
                 <BlogHero />
                 <BlogGrid />
             </main>
