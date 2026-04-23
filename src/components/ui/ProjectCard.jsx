@@ -1,47 +1,11 @@
-import { CheckCircle, Clock, PlayCircle, ChevronRight, Github, ExternalLink, Image } from 'lucide-react'
+import { ChevronRight, ExternalLink, Image } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
+import { getStatusIcon, getProjectData } from '../../utils/projectUtils.jsx'
 
 export default function ProjectCard({ project, isSelected, onClick, onOpenGallery }) {
     const { t } = useTranslation()
 
-    const projectTranslations = {
-        1: 'nest',
-        2: 'grove',
-        3: 'terracota',
-        4: 'wedding',
-        5: 'canCarerac',
-        6: 'iseo',
-        7: 'geocat'
-    }
-
-    const getStatusIcon = (status) => {
-        switch (status) {
-            case 'complete': return <CheckCircle className="text-green-400" size={20} />
-            case 'development': return <Clock className="text-yellow-400" size={20} />
-            case 'planning': return <PlayCircle className="text-blue-400" size={20} />
-            default: return <Clock className="text-gray-400" size={20} />
-        }
-    }
-
-    const getProjectData = (project) => {
-        const translationKey = projectTranslations[project.id]
-
-        if (!translationKey) {
-            return {
-                name: project.name || 'Project Name',
-                subtitle: project.subtitle || 'Project Subtitle',
-                description: project.description || 'Project Description'
-            }
-        }
-
-        return {
-            name: t(`projects.${translationKey}.name`),
-            subtitle: t(`projects.${translationKey}.subtitle`),
-            description: t(`projects.${translationKey}.description`)
-        }
-    }
-
-    const projectData = getProjectData(project)
+    const projectData = getProjectData(project, t)
 
     return (
         <div className={`backdrop-blur-md rounded-lg p-6 cursor-pointer transition-all duration-300 mx-2
@@ -107,27 +71,6 @@ export default function ProjectCard({ project, isSelected, onClick, onOpenGaller
             {/* Quick mobile actions */}
             <div className="lg:hidden border-t border-gray-700 pt-4 space-y-2">
                 <div className="flex justify-between space-x-2">
-                    {/* GitHub Link */}
-                    <div className="flex-1">
-                        {project.githubUrl ? (
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center space-x-1 bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded text-xs text-gray-300 hover:text-white transition-all"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <Github size={14} />
-                                <span>Code</span>
-                            </a>
-                        ) : (
-                            <div className="flex items-center justify-center space-x-1 bg-gray-800 px-3 py-2 rounded text-xs text-gray-500">
-                                <Github size={14} />
-                                <span>Private</span>
-                            </div>
-                        )}
-                    </div>
-
                     {/* Live Demo */}
                     <div className="flex-1">
                         {project.liveUrl ? (

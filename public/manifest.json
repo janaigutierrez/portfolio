@@ -27,20 +27,6 @@
             "type": "image/png"
         }
     ],
-    "screenshots": [
-        {
-            "src": "/screenshot-wide.jpg",
-            "sizes": "1280x720",
-            "type": "image/jpeg",
-            "form_factor": "wide"
-        },
-        {
-            "src": "/screenshot-mobile.jpg",
-            "sizes": "375x812",
-            "type": "image/jpeg",
-            "form_factor": "narrow"
-        }
-    ],
     "shortcuts": [
         {
             "name": "Projects",

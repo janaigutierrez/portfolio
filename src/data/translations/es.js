@@ -146,6 +146,20 @@ export default {
                 "Interfaz intuitiva y adaptativa",
                 "Persistencia local de partidas"
             ]
+        },
+
+        mosset: {
+            name: "Mosset",
+            subtitle: "Red Social de Recetas",
+            description: "Mosset es una red social centrada en recetas de cocina. Los usuarios pueden crear, compartir y descubrir recetas con fotos, seguir a otros cocineros, guardar sus platos favoritos e interactuar con la comunidad. Incluye búsqueda avanzada por ingredientes y un feed personalizado.",
+            features: [
+                "Autenticación segura con JWT y verificación por email",
+                "CRUD de recetas con subida multi-foto vía Cloudinary",
+                "Sistema social completo: seguir, likes, guardar y comentarios",
+                "Notificaciones en tiempo real de interacciones",
+                "Feed personalizado y exploración con búsqueda por ingredientes",
+                "Validación robusta con Zod y tests con Jest"
+            ]
         }
     },
 
@@ -239,9 +253,21 @@ export default {
         tryAgain: "Intentar de Nuevo",
         close: "Cerrar",
         next: "Siguiente",
-        previous: "Anterior"
+        previous: "Anterior",
+        notFound: "Esta página se ha perdido en el fondo del océano.",
+        backHome: "Volver a la superficie"
     },
     blog: {
+        hero: "Reflexiones, tutoriales y experiencias de uso",
+        latestPosts: "Últimos Posts",
+        emptyTitle: "Aún no hay posts publicados",
+        emptyText: "Estoy preparando contenido interesante. ¡Vuelve pronto!",
+        readMore: "Leer más",
+        by: "Por",
+        backToBlog: "Volver al Blog",
+        morePostsButton: "Ver más posts",
+        postNotFoundTitle: "Post no encontrado",
+        postNotFoundText: "Este post no existe o ha sido eliminado.",
         categories: {
             frontend: 'Frontend',
             backend: 'Backend',

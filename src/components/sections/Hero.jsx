@@ -8,9 +8,19 @@ export default function HeroDive() {
     const { t } = useTranslation()
 
     useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY)
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        let rafId = null
+        const handleScroll = () => {
+            if (rafId) return
+            rafId = requestAnimationFrame(() => {
+                setScrollY(window.scrollY)
+                rafId = null
+            })
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            if (rafId) cancelAnimationFrame(rafId)
+        }
     }, [])
 
     const diveDepth = Math.min(scrollY / 300, 1)

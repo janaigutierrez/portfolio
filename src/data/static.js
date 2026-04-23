@@ -47,7 +47,7 @@ export const skillCategories = [
 export const stats = [
     {
         id: 'projects',
-        value: '4+',
+        value: '5+',
         icon: 'Award',
         color: 'text-green-400'
     },
@@ -79,6 +79,17 @@ export const projectsData = {
             images: ['/projects/nestapp1.jpg', '/projects/nestapp2.jpg']
         },
         {
+            id: 8,
+            key: 'mosset',
+            progress: 85,
+            status: 'development',
+            tech: ['Next.js', 'React 19', 'TypeScript', 'MongoDB', 'Cloudinary', 'Resend', 'Zod', 'Jest'],
+            category: 'Web App',
+            githubUrl: null,
+            liveUrl: 'https://mosset.vercel.app',
+            images: []
+        },
+        {
             id: 2,
             key: 'grove',
             progress: 25,
@@ -100,7 +111,7 @@ export const projectsData = {
             tech: ['React', 'Express.js', 'Node.js', 'MongoDB', 'Mongoose', 'Tailwind CSS'],
             category: 'SaaS Platform',
             githubUrl: null,
-            liveUrl: 'http://terracotaceramiqueria.netlify.app',
+            liveUrl: 'https://terracotaceramiqueria.netlify.app',
             images: ['projects/terracota1.jpg']
         }
     ],
@@ -136,7 +147,7 @@ export const projectsData = {
             tech: ['React', 'Tailwind CSS'],
             category: 'Restaurant Website',
             githubUrl: 'https://github.com/janaigutierrez/cafeiseo',
-            liveUrl: 'http://caffeiseo.netlify.app',
+            liveUrl: 'https://caffeiseo.netlify.app',
             images: ['/projects/iseo1.jpg']
         }
     ],
@@ -150,7 +161,7 @@ export const projectsData = {
             tech: ['React', 'Tailwind CSS', 'Local Storage', 'CSS Animations'],
             category: 'Web Game',
             githubUrl: 'https://github.com/janaigutierrez/geocat',
-            liveUrl: 'http://geocat.netlify.app',
+            liveUrl: 'https://geocat.netlify.app',
             images: ['/projects/geocat1.jpg']
         }
     ]
@@ -214,7 +225,7 @@ export const reviewsData = [
 export const testimonialStats = {
     satisfaction: "100%",
     averageRating: "5.0",
-    completedProjects: () => testimonialsData.filter(t => !t.placeholder).length
+    completedProjects: () => reviewsData.filter(t => t.hasClient).length
 }
 
 export const timeline = [

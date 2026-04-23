@@ -17,49 +17,87 @@ import {
     Quote
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
-import ReviewCard from '../ui/reviewCard.jsx'
+import ReviewCard from '../ui/ReviewCard.jsx'
 import { reviewsData } from '../../data/static'
 import emailjs from '@emailjs/browser'
 
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: '',
-        projectType: ''
+        website: '' // honeypot
     })
     const { t } = useTranslation()
     const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
+        if (errors[name]) {
+            setErrors({ ...errors, [name]: null })
+        }
+    }
+
+    const validate = () => {
+        const newErrors = {}
+        if (!formData.name.trim() || formData.name.trim().length < 2) {
+            newErrors.name = t('contact.form.errorName') !== 'contact.form.errorName'
+                ? t('contact.form.errorName')
+                : 'Mínim 2 caràcters'
+        }
+        if (!EMAIL_REGEX.test(formData.email)) {
+            newErrors.email = t('contact.form.errorEmail') !== 'contact.form.errorEmail'
+                ? t('contact.form.errorEmail')
+                : 'Email no vàlid'
+        }
+        if (!formData.message.trim() || formData.message.trim().length < 10) {
+            newErrors.message = t('contact.form.errorMessage') !== 'contact.form.errorMessage'
+                ? t('contact.form.errorMessage')
+                : 'Mínim 10 caràcters'
+        }
+        return newErrors
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        // Honeypot: si un bot omple el camp ocult, rebutjar silenciosament
+        if (formData.website) {
+            setStatus('success')
+            return
+        }
+
+        const validationErrors = validate()
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            return
+        }
+
         setIsLoading(true)
         setStatus(null)
 
         try {
             await emailjs.send(
-                'service_yc8urmn',
-                'template_lp9qlyn',
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
                 {
                     from_name: formData.name,
                     from_email: formData.email,
                     message: formData.message,
                     to_email: 'janaigs97@gmail.com'
                 },
-                'q4Av1ZDegSMZqfhSp'
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
             )
 
             setStatus('success')
-            setFormData({ name: '', email: '', message: '', projectType: '' })
+            setFormData({ name: '', email: '', message: '', website: '' })
+            setErrors({})
 
         } catch (error) {
             console.error('EmailJS Error:', error)
@@ -119,6 +157,20 @@ export default function Contact() {
                             </div>
                         )}
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            {/* Honeypot - invisible per usuaris, visible per bots */}
+                            <div className="absolute opacity-0 -z-10" aria-hidden="true">
+                                <label htmlFor="website">Website</label>
+                                <input
+                                    type="text"
+                                    id="website"
+                                    name="website"
+                                    value={formData.website}
+                                    onChange={handleChange}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
+                            </div>
+
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label htmlFor="name" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
@@ -132,9 +184,14 @@ export default function Contact() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors"
+                                        className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors ${errors.name ? 'border-red-500' : 'border-gray-600'}`}
                                         placeholder={t('contact.form.namePlaceholder')}
+                                        aria-invalid={!!errors.name}
+                                        aria-describedby={errors.name ? 'name-error' : undefined}
                                     />
+                                    {errors.name && (
+                                        <p id="name-error" className="text-red-400 text-xs mt-1">{errors.name}</p>
+                                    )}
                                 </div>
 
                                 <div>
@@ -149,9 +206,14 @@ export default function Contact() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors"
+                                        className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent transition-colors ${errors.email ? 'border-red-500' : 'border-gray-600'}`}
                                         placeholder={t('contact.form.emailPlaceholder')}
+                                        aria-invalid={!!errors.email}
+                                        aria-describedby={errors.email ? 'email-error' : undefined}
                                     />
+                                    {errors.email && (
+                                        <p id="email-error" className="text-red-400 text-xs mt-1">{errors.email}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -167,9 +229,14 @@ export default function Contact() {
                                     onChange={handleChange}
                                     required
                                     rows={4}
-                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent resize-none transition-colors"
+                                    className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sea-green focus:border-transparent resize-none transition-colors ${errors.message ? 'border-red-500' : 'border-gray-600'}`}
                                     placeholder={t('contact.form.messagePlaceholder')}
+                                    aria-invalid={!!errors.message}
+                                    aria-describedby={errors.message ? 'message-error' : undefined}
                                 />
+                                {errors.message && (
+                                    <p id="message-error" className="text-red-400 text-xs mt-1">{errors.message}</p>
+                                )}
                             </div>
 
                             {/* Timeline & Includes Info */}

@@ -2,6 +2,24 @@ import { Code, Server, Globe, User, Award, Clock } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
 import { personalInfo, stats, skillCategories } from '../../data/static'
 
+const skillColorMap = {
+    blue: {
+        bg: 'bg-blue-900 bg-opacity-30',
+        border: 'border-blue-400',
+        hover: 'hover:bg-blue-800 hover:bg-opacity-40',
+    },
+    green: {
+        bg: 'bg-green-900 bg-opacity-30',
+        border: 'border-green-400',
+        hover: 'hover:bg-green-800 hover:bg-opacity-40',
+    },
+    purple: {
+        bg: 'bg-purple-900 bg-opacity-30',
+        border: 'border-purple-400',
+        hover: 'hover:bg-purple-800 hover:bg-opacity-40',
+    },
+}
+
 export default function About() {
     const { t } = useTranslation()
 
@@ -70,11 +88,14 @@ export default function About() {
                                     {t(`about.skills.${category.id}`)}
                                 </h4>
                                 <div className="space-y-2">
-                                    {category.skills.map((skill) => (
-                                        <div key={skill} className={`bg-${category.color}-900 bg-opacity-30 border ${category.borderColor} rounded-lg p-2 text-center hover:bg-${category.color}-800 hover:bg-opacity-40 transition-all duration-200`}>
-                                            <div className="text-white text-sm font-medium">{skill}</div>
-                                        </div>
-                                    ))}
+                                    {category.skills.map((skill) => {
+                                        const colors = skillColorMap[category.color]
+                                        return (
+                                            <div key={skill} className={`${colors.bg} border ${colors.border} rounded-lg p-2 text-center ${colors.hover} transition-all duration-200`}>
+                                                <div className="text-white text-sm font-medium">{skill}</div>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         )

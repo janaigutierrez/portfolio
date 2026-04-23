@@ -146,6 +146,20 @@ export default {
                 "Interfície intuïtiva i adaptativa",
                 "Persistència local de partides"
             ]
+        },
+
+        mosset: {
+            name: "Mosset",
+            subtitle: "Xarxa Social de Receptes",
+            description: "Mosset és una xarxa social centrada en receptes de cuina. Els usuaris poden crear, compartir i descobrir receptes amb fotos, seguir altres cuiners, guardar els seus plats favorits i interactuar amb la comunitat. Inclou cerca avançada per ingredients i un feed personalitzat.",
+            features: [
+                "Autenticació segura amb JWT i verificació per email",
+                "CRUD de receptes amb pujada multi-foto via Cloudinary",
+                "Sistema social complet: seguir, likes, guardar i comentaris",
+                "Notificacions en temps real d'interaccions",
+                "Feed personalitzat i exploració amb cerca per ingredients",
+                "Validació robusta amb Zod i tests amb Jest"
+            ]
         }
     },
 
@@ -239,10 +253,22 @@ export default {
         tryAgain: "Provar de Nou",
         close: "Tancar",
         next: "Següent",
-        previous: "Anterior"
+        previous: "Anterior",
+        notFound: "Aquesta pàgina s'ha perdut al fons de l'oceà.",
+        backHome: "Tornar a la superfície"
     },
 
     blog: {
+        hero: "Reflexions, tutorials i experiències d'ús",
+        latestPosts: "Últims Posts",
+        emptyTitle: "Encara no hi ha posts publicats",
+        emptyText: "Estic preparant contingut interessant. Torna aviat!",
+        readMore: "Llegir més",
+        by: "Per",
+        backToBlog: "Tornar al Blog",
+        morePostsButton: "Veure més posts",
+        postNotFoundTitle: "Post no trobat",
+        postNotFoundText: "Aquest post no existeix o ha estat eliminat.",
         categories: {
             frontend: 'Frontend',
             backend: 'Backend',

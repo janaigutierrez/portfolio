@@ -17,8 +17,9 @@ export default function Footer() {
                     <button
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                         className="bg-gradient-to-r from-sea-green to-sky-blue text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300 text-sm font-medium flex items-center space-x-2 hover:scale-105"
+                        aria-label="Tornar a dalt"
                     >
-                        <ArrowUp className="w-4 h-4" />
+                        <ArrowUp className="w-4 h-4" aria-hidden="true" />
                         <span>{t('footer.surface')}</span>
                     </button>
                 </div>

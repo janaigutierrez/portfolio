@@ -1,50 +1,11 @@
 import {
-    X, Github, ExternalLink, Image, ArrowRight, Mail,
-    CheckCircle, Clock, PlayCircle
+    X, ExternalLink, Image, ArrowRight, Mail
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
+import { getStatusIcon, getProjectData } from '../../utils/projectUtils.jsx'
 
 export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery }) {
     const { t } = useTranslation()
-
-    const projectTranslations = {
-        1: 'nest',
-        2: 'grove',
-        3: 'terracota',
-        4: 'wedding',
-        5: 'canCarerac',
-        6: 'iseo',
-        7: 'geocat'
-    }
-
-    const getStatusIcon = (status) => {
-        switch (status) {
-            case 'complete': return <CheckCircle className="text-green-400" size={20} />
-            case 'development': return <Clock className="text-yellow-400" size={20} />
-            case 'planning': return <PlayCircle className="text-blue-400" size={20} />
-            default: return <Clock className="text-gray-400" size={20} />
-        }
-    }
-
-    const getProjectData = (project) => {
-        const translationKey = projectTranslations[project.id]
-
-        if (!translationKey) {
-            return {
-                name: project.name || 'Project Name',
-                subtitle: project.subtitle || 'Project Subtitle',
-                description: project.description || 'Project Description',
-                features: project.features || []
-            }
-        }
-
-        return {
-            name: t(`projects.${translationKey}.name`),
-            subtitle: t(`projects.${translationKey}.subtitle`),
-            description: t(`projects.${translationKey}.description`),
-            features: t(`projects.${translationKey}.features`) || []
-        }
-    }
 
     // Component CTA per quan no hi ha projecte seleccionat
     const CTASection = () => (
@@ -70,7 +31,7 @@ export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery
     )
 
     const ProjectDetails = ({ project }) => {
-        const projectData = getProjectData(project)
+        const projectData = getProjectData(project, t)
 
         return (
             <div className="bg-gray-900 bg-opacity-90 backdrop-blur-md border-2 border-sea-green rounded-lg p-6 h-full flex flex-col">
@@ -126,27 +87,6 @@ export default function ProjectSidebar({ selectedProject, onClose, onOpenGallery
 
                 {/* Links & Media */}
                 <div className="space-y-2 mt-auto">
-                    {/* GitHub Repository */}
-                    <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-                        <div className="flex items-center">
-                            <Github size={18} className="mr-3 text-gray-400" />
-                            <span className="text-sm text-gray-300">{t('projects.ui.repository')}</span>
-                        </div>
-                        {project.githubUrl ? (
-                            <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
-                            >
-                                <span>View Code</span>
-                                <ExternalLink size={14} className="ml-1" />
-                            </a>
-                        ) : (
-                            <span className="text-xs text-yellow-400">Private</span>
-                        )}
-                    </div>
-
                     {/* Live Demo */}
                     <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                         <div className="flex items-center">

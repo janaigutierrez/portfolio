@@ -155,15 +155,11 @@ body {
     background: linear-gradient(to bottom, #1a9d96, #3eb8d4);
 }
 
-button:focus,
-input:focus,
-textarea:focus {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
     outline: 2px solid #20B2AA;
     outline-offset: 2px;
-}
-
-button:focus {
-    outline: none;
 }
 
 .parallax-layer {

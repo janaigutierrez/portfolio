@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Globe } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from '../../hooks/useTranslation'
@@ -8,6 +8,20 @@ export default function Header() {
     const [showLanguages, setShowLanguages] = useState(false)
     const { currentLanguage, changeLanguage, t, availableLanguages } = useTranslation()
     const location = useLocation()
+
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'Escape') {
+            setShowLanguages(false)
+            setIsOpen(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isOpen || showLanguages) {
+            document.addEventListener('keydown', handleKeyDown)
+            return () => document.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [isOpen, showLanguages, handleKeyDown])
 
     const languageNames = {
         ca: 'CAT',
@@ -73,17 +87,26 @@ export default function Header() {
                             <button
                                 onClick={() => setShowLanguages(!showLanguages)}
                                 className="flex items-center space-x-1 text-white hover:text-sea-green transition-colors duration-300 font-medium drop-shadow"
+                                aria-expanded={showLanguages}
+                                aria-haspopup="listbox"
+                                aria-label={`Idioma: ${languageNames[currentLanguage]}`}
                             >
-                                <Globe size={16} />
+                                <Globe size={16} aria-hidden="true" />
                                 <span className="text-sm">{languageNames[currentLanguage]}</span>
                             </button>
 
                             {showLanguages && (
-                                <div className="absolute top-full right-0 mt-2 bg-gray-900 bg-opacity-95 backdrop-blur-md border border-gray-600 rounded-lg overflow-hidden shadow-xl">
+                                <div
+                                    className="absolute top-full right-0 mt-2 bg-gray-900 bg-opacity-95 backdrop-blur-md border border-gray-600 rounded-lg overflow-hidden shadow-xl"
+                                    role="listbox"
+                                    aria-label="Selecciona idioma"
+                                >
                                     {availableLanguages.map((lang) => (
                                         <button
                                             key={lang}
                                             onClick={() => handleLanguageChange(lang)}
+                                            role="option"
+                                            aria-selected={currentLanguage === lang}
                                             className={`block w-full px-4 py-2 text-left hover:bg-gray-800 transition-colors text-sm ${currentLanguage === lang
                                                 ? 'bg-sea-green bg-opacity-20 text-sea-green'
                                                 : 'text-white'
@@ -101,8 +124,11 @@ export default function Header() {
                     <button
                         className="md:hidden text-white"
                         onClick={() => setIsOpen(!isOpen)}
+                        aria-expanded={isOpen}
+                        aria-controls="mobile-menu"
+                        aria-label={isOpen ? 'Tancar menú' : 'Obrir menú'}
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             {isOpen ? (
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             ) : (
@@ -114,7 +140,7 @@ export default function Header() {
 
                 {/* Mobile Navigation */}
                 {isOpen && (
-                    <div className="md:hidden mt-4 pb-4 border-t border-white border-opacity-20 pt-4">
+                    <div id="mobile-menu" className="md:hidden mt-4 pb-4 border-t border-white border-opacity-20 pt-4">
                         <div className="flex flex-col space-y-4">
                             {isPortfolioPage ? (
                                 <>

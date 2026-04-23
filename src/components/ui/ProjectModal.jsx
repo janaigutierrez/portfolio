@@ -1,54 +1,27 @@
+import { useEffect, useCallback } from 'react'
 import {
-    X, Github, ExternalLink, Image, ArrowRight,
-    CheckCircle, Clock, PlayCircle
+    X, ExternalLink, Image, ArrowRight
 } from 'lucide-react'
 import { useTranslation } from '../../hooks/useTranslation'
+import { getStatusIcon, getProjectData } from '../../utils/projectUtils.jsx'
 
 export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }) {
     const { t } = useTranslation()
 
-    const projectTranslations = {
-        1: 'nest',
-        2: 'grove',
-        3: 'terracota',
-        4: 'wedding',
-        5: 'canCarerac',
-        6: 'iseo',
-        7: 'geocat'
-    }
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'Escape') onClose()
+    }, [onClose])
 
-    const getStatusIcon = (status) => {
-        switch (status) {
-            case 'complete': return <CheckCircle className="text-green-400" size={20} />
-            case 'development': return <Clock className="text-yellow-400" size={20} />
-            case 'planning': return <PlayCircle className="text-blue-400" size={20} />
-            default: return <Clock className="text-gray-400" size={20} />
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener('keydown', handleKeyDown)
+            return () => document.removeEventListener('keydown', handleKeyDown)
         }
-    }
-
-    const getProjectData = (project) => {
-        const translationKey = projectTranslations[project.id]
-
-        if (!translationKey) {
-            return {
-                name: project.name || 'Project Name',
-                subtitle: project.subtitle || 'Project Subtitle',
-                description: project.description || 'Project Description',
-                features: project.features || []
-            }
-        }
-
-        return {
-            name: t(`projects.${translationKey}.name`),
-            subtitle: t(`projects.${translationKey}.subtitle`),
-            description: t(`projects.${translationKey}.description`),
-            features: t(`projects.${translationKey}.features`) || []
-        }
-    }
+    }, [isOpen, handleKeyDown])
 
     if (!isOpen || !project) return null
 
-    const projectData = getProjectData(project)
+    const projectData = getProjectData(project, t)
 
     const handleBackdropClick = (e) => {
         if (e.target === e.currentTarget) {
@@ -62,6 +35,9 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
             <div
                 className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
                 onClick={handleBackdropClick}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`Detalls del projecte: ${projectData.name}`}
             >
                 {/* Modal Content */}
                 <div
@@ -77,8 +53,9 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
                         <button
                             onClick={onClose}
                             className="text-gray-400 hover:text-white transition-colors ml-4"
+                            aria-label="Tancar detalls del projecte"
                         >
-                            <X size={24} />
+                            <X size={24} aria-hidden="true" />
                         </button>
                     </div>
 
@@ -149,27 +126,6 @@ export default function ProjectModal({ project, isOpen, onClose, onOpenGallery }
 
                         {/* Links */}
                         <div className="space-y-2">
-                            {/* GITHUB REPOSITORY */}
-                            <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-                                <div className="flex items-center">
-                                    <Github size={16} className="mr-3 text-gray-400" />
-                                    <span className="text-sm text-gray-300">{t('projects.ui.repository')}</span>
-                                </div>
-                                {project.githubUrl ? (
-                                    <a
-                                        href={project.githubUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-xs text-sea-green hover:text-sky-blue transition-colors font-medium flex items-center"
-                                    >
-                                        <span>View Code</span>
-                                        <Github size={12} className="ml-1" />
-                                    </a>
-                                ) : (
-                                    <span className="text-xs text-yellow-400">{t('projects.ui.comingSoon')}</span>
-                                )}
-                            </div>
-
                             {/* LIVE DEMO */}
                             <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
                                 <div className="flex items-center">

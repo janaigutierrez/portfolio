@@ -1,9 +1,32 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
 
 export default function ImageGalleryModal({ project, isOpen, onClose }) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const [isZoomed, setIsZoomed] = useState(false)
+
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'Escape') onClose()
+        if (e.key === 'ArrowRight') {
+            setCurrentImageIndex((prev) =>
+                prev === project.images.length - 1 ? 0 : prev + 1
+            )
+            setIsZoomed(false)
+        }
+        if (e.key === 'ArrowLeft') {
+            setCurrentImageIndex((prev) =>
+                prev === 0 ? project.images.length - 1 : prev - 1
+            )
+            setIsZoomed(false)
+        }
+    }, [onClose, project?.images?.length])
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener('keydown', handleKeyDown)
+            return () => document.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [isOpen, handleKeyDown])
 
     if (!isOpen || !project?.images || project.images.length === 0) return null
 
@@ -32,6 +55,9 @@ export default function ImageGalleryModal({ project, isOpen, onClose }) {
             <div
                 className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
                 onClick={onClose}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`Galeria d'imatges: ${project.name || 'projecte'}`}
             >
                 {/* Modal Content */}
                 <div
@@ -50,8 +76,9 @@ export default function ImageGalleryModal({ project, isOpen, onClose }) {
                             <button
                                 onClick={onClose}
                                 className="text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+                                aria-label="Tancar galeria"
                             >
-                                <X size={24} />
+                                <X size={24} aria-hidden="true" />
                             </button>
                         </div>
                     </div>
@@ -85,14 +112,16 @@ export default function ImageGalleryModal({ project, isOpen, onClose }) {
                                 <button
                                     onClick={prevImage}
                                     className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all"
+                                    aria-label="Imatge anterior"
                                 >
-                                    <ChevronLeft size={24} />
+                                    <ChevronLeft size={24} aria-hidden="true" />
                                 </button>
                                 <button
                                     onClick={nextImage}
                                     className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all"
+                                    aria-label="Imatge següent"
                                 >
-                                    <ChevronRight size={24} />
+                                    <ChevronRight size={24} aria-hidden="true" />
                                 </button>
                             </>
                         )}

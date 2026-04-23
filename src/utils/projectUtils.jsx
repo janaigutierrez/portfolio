@@ -7,16 +7,8 @@ export const PROJECT_TRANSLATIONS = {
     4: 'wedding',
     5: 'canCarerac',
     6: 'iseo',
-    7: 'geocat'
-}
-
-export const ICON_MAP = {
-    'Award': 'Award',
-    'User': 'User',
-    'Clock': 'Clock',
-    'Code': 'Code',
-    'Server': 'Server',
-    'Globe': 'Globe'
+    7: 'geocat',
+    8: 'mosset'
 }
 
 export const getStatusIcon = (status) => {

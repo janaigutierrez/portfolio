@@ -147,6 +147,20 @@ export default {
                 "Intuitive and responsive interface",
                 "Local game persistence"
             ]
+        },
+
+        mosset: {
+            name: "Mosset",
+            subtitle: "Recipe Social Network",
+            description: "Mosset is a social network centered on cooking recipes. Users can create, share and discover recipes with photos, follow other cooks, save their favorite dishes and interact with the community. Includes advanced search by ingredients and a personalized feed.",
+            features: [
+                "Secure authentication with JWT and email verification",
+                "Recipe CRUD with multi-photo upload via Cloudinary",
+                "Full social system: follow, likes, save and comments",
+                "Real-time interaction notifications",
+                "Personalized feed and explore with ingredient search",
+                "Robust validation with Zod and testing with Jest"
+            ]
         }
     },
 
@@ -240,9 +254,21 @@ export default {
         tryAgain: "Try Again",
         close: "Close",
         next: "Next",
-        previous: "Previous"
+        previous: "Previous",
+        notFound: "This page has been lost in the depths of the ocean.",
+        backHome: "Return to the surface"
     },
     blog: {
+        hero: "Insights, tutorials and hands-on experiences",
+        latestPosts: "Latest Posts",
+        emptyTitle: "No posts published yet",
+        emptyText: "I'm preparing interesting content. Come back soon!",
+        readMore: "Read more",
+        by: "By",
+        backToBlog: "Back to Blog",
+        morePostsButton: "See more posts",
+        postNotFoundTitle: "Post not found",
+        postNotFoundText: "This post doesn't exist or has been removed.",
         categories: {
             frontend: 'Frontend',
             backend: 'Backend',
