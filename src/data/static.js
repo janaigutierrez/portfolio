@@ -85,9 +85,9 @@ export const projectsData = {
             status: 'development',
             tech: ['Next.js', 'React 19', 'TypeScript', 'MongoDB', 'Cloudinary', 'Resend', 'Zod', 'Jest'],
             category: 'Web App',
-            githubUrl: null,
+            githubUrl: 'https://github.com/janaigutierrez/mosset',
             liveUrl: 'https://mosset.vercel.app',
-            images: []
+            images: ['/projects/mosset1.jpg']
         },
         {
             id: 2,
