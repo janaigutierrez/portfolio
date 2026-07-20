@@ -5,7 +5,7 @@ import { ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "@/context/TranslationContext";
 
-const INITIAL_COUNT = 4;
+const INITIAL_COUNT = 3;
 
 export default function ProjectsGrid() {
   const { t } = useTranslation();
@@ -28,9 +28,9 @@ export default function ProjectsGrid() {
       category: t.projects.canCareracCategory,
       challenge: t.projects.canCareracChallenge,
       result: t.projects.canCareracResult,
-      image: null as string | null,
-      liveUrl: null as string | null,
-      status: t.projects.statusDev,
+      image: "/projects/carerac1.jpg",
+      liveUrl: "https://cancarerac.netlify.app",
+      status: t.projects.statusComplete,
     },
     {
       key: "wedding",
@@ -39,7 +39,7 @@ export default function ProjectsGrid() {
       challenge: t.projects.weddingChallenge,
       result: t.projects.weddingResult,
       image: "/projects/boda1.jpg",
-      liveUrl: null as string | null,
+      liveUrl: "https://bodaenmodocata.es",
       status: t.projects.statusComplete,
     },
   ];
@@ -74,7 +74,7 @@ export default function ProjectsGrid() {
       name: t.projects.desastredecajonName,
       tag: t.projects.desastredecajonTag,
       desc: t.projects.desastredecajonDesc,
-      image: null as string | null,
+      image: "/projects/viatge1.jpg",
       liveUrl: t.projects.desastredecajonUrl,
     },
   ];
@@ -90,10 +90,13 @@ export default function ProjectsGrid() {
 
       {/* Grid projectes client */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        {clientProjects.map(({ key, name, category, challenge, result, image, liveUrl, status }) => (
+        {clientProjects.map(({ key, name, category, challenge, result, image, liveUrl, status }, index) => {
+          const isHidden = !showAll && index >= INITIAL_COUNT;
+          return (
           <article
             key={key}
-            className="bg-bg-card border border-line rounded-2xl overflow-hidden flex flex-col group"
+            className={`bg-bg-card border border-line rounded-2xl overflow-hidden flex flex-col group transition-all duration-300 ${isHidden ? "hidden" : index >= INITIAL_COUNT ? "animate-fade-in" : ""
+              }`}
           >
             <div className="relative aspect-4/3 overflow-hidden bg-olive-soft">
               {image ? (
@@ -157,7 +160,8 @@ export default function ProjectsGrid() {
               )}
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
 
       {/* Separador + projectes personals */}
@@ -216,7 +220,8 @@ export default function ProjectsGrid() {
         })}
       </div>
 
-      {personalProjects.length > INITIAL_COUNT && (
+      {(personalProjects.length > INITIAL_COUNT ||
+        clientProjects.length > INITIAL_COUNT) && (
         <div className="flex justify-center mt-6">
           <button
             onClick={() => setShowAll((v) => !v)}

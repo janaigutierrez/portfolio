@@ -27,7 +27,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Janai Garcia — Webs per a negocis locals",
+  title: "Janai Gutierrez — Webs per a negocis locals",
   description:
     "Dissenyo webs per a cafeteries, botigues i allotjaments a Catalunya. Sense tecnicismes. Sense sorpreses. Que et trobin. Que et truquin.",
   keywords: [
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     "web per a negoci local Catalunya",
     "web per a allotjament rural",
   ],
-  authors: [{ name: "Janai Garcia" }],
+  authors: [{ name: "Janai Gutierrez" }],
   openGraph: {
-    title: "Janai Garcia — Webs per a negocis locals",
+    title: "Janai Gutierrez — Webs per a negocis locals",
     description:
       "Que et trobin. Que et truquin. Webs per a cafeteries, botigues i allotjaments, sense tecnicismes.",
     url: "https://janai.dev",
