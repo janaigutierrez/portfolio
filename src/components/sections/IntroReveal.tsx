@@ -56,7 +56,7 @@ export default function IntroReveal() {
   return (
     <section
       id="inici"
-      className="relative min-h-[50vh] flex flex-col justify-center px-6 py-16"
+      className="relative min-h-screen flex flex-col justify-center px-6 py-24"
       style={{
         background:
           "linear-gradient(180deg, var(--olive-soft) 0%, var(--bg) 100%)",

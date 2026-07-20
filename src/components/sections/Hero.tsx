@@ -17,7 +17,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="px-6 pt-8 pb-16 max-w-6xl mx-auto">
+    <section id="hero" className="px-6 pt-8 pb-16 max-w-6xl mx-auto scroll-mt-24">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
 
         {/* Contingut esquerre */}
