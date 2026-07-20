@@ -53,22 +53,17 @@ export default function Hero() {
           style={{ height: 420 }}
           aria-hidden="true"
         >
-          {/* Blob difuminat de fons */}
           <div
             className="absolute"
             style={{
-              width: 500,
-              height: 360,
-              top: -15,
-              left: -25,
-              zIndex: 0,
+              width: 500, height: 360,
+              top: -15, left: -25, zIndex: 0,
               backgroundColor: "var(--olive-soft)",
               borderRadius: "50%",
               filter: "blur(60px)",
               opacity: 0.9,
             }}
           />
-
           {screenshots.map(({ src, rotation, top, left, zIndex }) => (
             <div
               key={src}
@@ -76,10 +71,9 @@ export default function Hero() {
               style={{ top, left, zIndex }}
             >
               <div
-                className="overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
+                className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
                 style={{
-                  width: 330,
-                  height: 220,
+                  width: 330, height: 220,
                   transform: `rotate(${rotation}deg)`,
                   border: "1.5px solid rgba(255,255,255,0.55)",
                 }}

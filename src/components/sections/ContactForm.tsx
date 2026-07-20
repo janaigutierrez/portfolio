@@ -16,8 +16,10 @@ export default function ContactForm() {
     const name = (form.elements.namedItem("user_name") as HTMLInputElement)?.value;
     const email = (form.elements.namedItem("user_email") as HTMLInputElement)?.value;
     const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value;
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isPhone = /^[\d\s\+\-\(\)]{7,}$/.test(email);
     if (!name || name.length < 2) errs.user_name = t.contact.errorName;
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.user_email = t.contact.errorEmail;
+    if (!email || (!isEmail && !isPhone)) errs.user_email = t.contact.errorEmail;
     if (!message || message.length < 10) errs.message = t.contact.errorMessage;
     return errs;
   };
@@ -40,11 +42,12 @@ export default function ContactForm() {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! }
       );
       setStatus("success");
       formRef.current.reset();
-    } catch {
+    } catch (err) {
+      console.error("EmailJS error:", err);
       setStatus("error");
     }
   };

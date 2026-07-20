@@ -58,8 +58,7 @@ export default function IntroReveal() {
       id="inici"
       className="relative min-h-screen flex flex-col justify-center px-6 py-24"
       style={{
-        background:
-          "linear-gradient(180deg, var(--olive-soft) 0%, var(--bg) 100%)",
+        background: "linear-gradient(180deg, var(--olive-soft) 0%, var(--bg) 100%)",
       }}
     >
       <div className="max-w-3xl mx-auto w-full">
