@@ -1,0 +1,222 @@
+---
+title: "Cloudinary: Gestió d'Imatges a Producció sense Maldecaps"
+date: 2026-04-22
+description: "Com pujar, optimitzar i servir imatges de manera professional amb Cloudinary. Tutorial pràctic amb exemples reals de Next.js i React."
+category: Backend
+---
+
+## Per què no pots servir imatges des del teu servidor
+
+Quan comences un projecte, el primer instint és guardar les imatges al `public/` del teu projecte o directament al servidor. Funciona... fins que no funciona:
+
+- **Pes:** Una foto de mòbil pesa 3-8MB. Multiplica per 50 receptes amb 3 fotos cadascuna i tens 1GB+ de dades servides directament des del teu hosting.
+- **Format:** Els navegadors moderns suporten WebP i AVIF, que pesen un 40-60% menys que JPEG. Però no tots els navegadors ho suporten igual.
+- **Mides:** Serves la mateixa imatge de 4000px d'ample per a un mòbil de 375px? Estàs malbaratant ample de banda.
+- **CDN:** Si el teu servidor està a Europa i l'usuari a Amèrica, cada imatge triga més del necessari.
+
+Cloudinary resol tot això amb una sola URL.
+
+## Què és Cloudinary?
+
+Cloudinary és un servei de gestió de media al núvol. En termes pràctics:
+
+1. Puges la imatge original (una sola vegada)
+2. Transformes via URL: mida, qualitat, format, retall...
+3. Serves des d'un CDN global automàticament
+
+El pla gratuït inclou 25GB de storage i 25GB de bandwidth mensual — suficient per a projectes petits i mitjans.
+
+## Configuració Inicial
+
+Necessites 3 valors del teu dashboard de Cloudinary:
+
+```env
+CLOUDINARY_CLOUD_NAME=el-teu-cloud
+CLOUDINARY_API_KEY=123456789
+CLOUDINARY_API_SECRET=abc-secret
+```
+
+**Important:** L'API Secret NOMÉS va al servidor. Mai l'exposis al frontend.
+
+Instal·la el SDK:
+
+```bash
+npm install cloudinary
+```
+
+Configura'l al backend:
+
+```ts
+import { v2 as cloudinary } from 'cloudinary'
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+```
+
+## Pujar Imatges: El Flux Complet
+
+### 1. Frontend: Capturar l'arxiu
+
+El formulari envia l'arxiu com a `FormData`:
+
+```ts
+const handleUpload = async (file) => {
+  const formData = new FormData()
+  formData.append('image', file)
+
+  const res = await fetch('/api/upload', {
+    method: 'POST',
+    body: formData,
+  })
+  const data = await res.json()
+  // data.url conté la URL de Cloudinary
+}
+```
+
+### 2. Backend: Pujar a Cloudinary
+
+A l'API route del teu servidor (Next.js exemple):
+
+```ts
+const result = await cloudinary.uploader.upload(filePath, {
+  folder: 'receptes',
+  quality: 'auto',
+  format: 'auto',
+})
+
+// result.secure_url → la URL pública
+// result.public_id → l'identificador per transformar
+```
+
+Els paràmetres clau:
+
+- `folder`: organitza les imatges per carpetes (`receptes/`, `avatars/`, etc.)
+- `quality: 'auto'`: Cloudinary analitza la imatge i tria la qualitat òptima
+- `format: 'auto'`: serveix WebP als navegadors que ho suporten, JPEG als altres
+
+### 3. Guardar a Base de Dades
+
+Guarda el `public_id` i la `secure_url`:
+
+```json
+{
+  "url": "result.secure_url",
+  "publicId": "result.public_id",
+  "width": "result.width",
+  "height": "result.height"
+}
+```
+
+## Transformacions via URL: El Poder Real
+
+Un cop tens la imatge pujada, pots transformar-la simplement canviant la URL.
+
+```
+https://res.cloudinary.com/CLOUD/image/upload/TRANSFORMACIONS/PUBLIC_ID.FORMAT
+```
+
+**Exemples pràctics:**
+
+```
+# Redimensionar a 800px d'ample
+/w_800,c_limit/receptes/pasta-carbonara.jpg
+
+# Thumbnail quadrat 200x200
+/w_200,h_200,c_fill,g_auto/receptes/pasta-carbonara.jpg
+
+# Qualitat + format automàtic
+/q_auto,f_auto/receptes/pasta-carbonara.jpg
+```
+
+**Transformacions més útils:**
+
+- `w_X` — Ample màxim
+- `c_fill` — Retalla per omplir les dimensions exactes
+- `g_auto` — Detecció automàtica del punt d'interès
+- `q_auto` — Qualitat optimitzada automàticament
+- `f_auto` — Format modern automàtic (WebP/AVIF)
+
+## Patró Pràctic: Helper de URLs
+
+```ts
+const cloudinaryUrl = (publicId, options = {}) => {
+  const {
+    width = 800,
+    height,
+    crop = 'limit',
+    quality = 'auto',
+    format = 'auto',
+  } = options
+
+  const transforms = [
+    `w_${width}`,
+    height ? `h_${height}` : '',
+    `c_${crop}`,
+    `q_${quality}`,
+    `f_${format}`,
+  ].filter(Boolean).join(',')
+
+  const cloud = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+  return `https://res.cloudinary.com/${cloud}/image/upload/${transforms}/${publicId}`
+}
+```
+
+Ús:
+
+```ts
+// Card de recepta
+cloudinaryUrl('receptes/pasta', { width: 400, height: 300, crop: 'fill' })
+
+// Detall de recepta
+cloudinaryUrl('receptes/pasta', { width: 1200 })
+
+// Avatar petit
+cloudinaryUrl('avatars/user123', { width: 80, height: 80, crop: 'fill' })
+```
+
+## Esborrar Imatges
+
+```ts
+await cloudinary.uploader.destroy(publicId)
+```
+
+Guarda sempre el `publicId` a la base de dades. Sense ell no pots esborrar la imatge.
+
+## Optimització Real: Quant Estalvies?
+
+Dades reals d'un projecte amb ~200 imatges:
+
+- Sense optimització: **1.2GB** transferits/mes
+- Amb `q_auto + f_auto`: **480MB** transferits/mes (60% menys)
+- Amb redimensionat adaptatiu: **280MB** transferits/mes (77% menys)
+
+## Errors Comuns
+
+**1. Exposar l'API Secret al frontend.** L'API Secret permet esborrar qualsevol imatge del teu compte. Sempre puja des del servidor.
+
+**2. No esborrar imatges antigues.** Si l'usuari canvia l'avatar 10 vegades, tens 10 imatges ocupant espai. Esborra l'antiga abans de pujar la nova.
+
+**3. No posar límits de mida.** Valida la mida del fitxer ABANS de pujar-lo:
+
+```ts
+if (file.size > 10 * 1024 * 1024) {
+  return res.status(400).json({ error: 'Imatge massa gran (màx 10MB)' })
+}
+```
+
+**4. Servir sempre la mateixa mida.** No serveixis una imatge de 2000px per a un thumbnail de 100px.
+
+**5. No usar `f_auto`.** Si servixes JPEG a un navegador que suporta WebP, estàs enviant un 40% més de dades del necessari.
+
+## Resum
+
+1. Puja una sola vegada la imatge original a Cloudinary
+2. Transforma via URL per a cada cas d'ús
+3. Usa `q_auto,f_auto` sempre per optimització automàtica
+4. Guarda el `publicId` a la base de dades, no només la URL
+5. Esborra imatges quan ja no es necessiten
+6. Valida al servidor la mida i tipus d'arxiu abans de pujar
+7. Mai exposis l'API Secret al frontend

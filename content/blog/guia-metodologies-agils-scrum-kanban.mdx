@@ -1,0 +1,209 @@
+---
+title: "Guia Completa de Metodologies Àgils: Scrum i Kanban"
+date: 2025-10-22
+description: "Descobreix com aplicar metodologies àgils als teus projectes. Aprèn Scrum, Kanban, sprints, backlogs i totes les eines per treballar de forma eficient."
+category: Metodologies
+---
+
+## Que és l'agilitat?
+
+Abans de parlar de Scrum i Kanban, entenguem per què existeixen.
+
+El desenvolupament de software tradicional seguia el model en cascada: defines tot el que vols, ho estimes, ho construeixes, ho lliures. El problema és que els requisits canvien, les estimacions fallen i quan el producte arriba al client ja no és el que necessitava.
+
+Les metodologies àgils neixen dels anys 90 com a resposta pràctica: en lloc de planificar-ho tot al principi, treballes en cicles curts, lliures valor contínuament i adaptes el pla a mesura que aprens.
+
+## El Manifest Àgil (simplificat)
+
+El 2001, 17 developers van publicar el Manifest Àgil. Quatre valors fonamentals:
+
+1. **Persones i interaccions** per sobre de processos i eines
+2. **Software que funciona** per sobre de documentació exhaustiva
+3. **Col·laboració amb el client** per sobre de negociació de contractes
+4. **Respondre al canvi** per sobre de seguir el pla
+
+Àgil no és caos — és adaptar-se intel·ligentment en lloc de seguir un pla rígid quan el context canvia.
+
+## Scrum: Treballar en Sprints
+
+Scrum és el framework àgil més popular. Organitza el treball en cicles fixes anomenats sprints.
+
+### Els Rols de Scrum
+
+**Product Owner (PO)**
+
+La persona que representa els interessos del negoci o del client. Defineix les prioritats: "Quina funcionalitat aporta més valor ara?". És responsable del producte, no de com s'implementa.
+
+**Scrum Master**
+
+El facilitador. No és el cap de l'equip — és qui elimina obstacles, protegeix l'equip d'interrupcions i vetlla perquè el procés Scrum es segueixi correctament.
+
+**Development Team**
+
+L'equip que construeix. Autoorganitzat: decideix ells mateixos com implementar el que el PO ha prioritzat.
+
+### Els Artefactes
+
+**Product Backlog**
+
+La llista ordenada de tot el que cal construir. El PO és el responsable i manté les prioritats actualitzades. Cada ítem es pot escriure com a User Story: *"Com a [rol], vull [funcionalitat] per a [benefici]."*
+
+Exemple: *"Com a usuari registrat, vull poder canviar la meva foto de perfil per a personalitzar el meu compte."*
+
+**Sprint Backlog**
+
+La llista de tasques seleccionades per al sprint actual. L'equip escull del Product Backlog quantes User Stories pot completar en el sprint.
+
+**Increment**
+
+El resultat del sprint: software potencialment llançable. Cada sprint ha d'acabar amb una versió funcional i millorada del producte.
+
+### Les Cerimònies
+
+**Sprint Planning (inici del sprint)**
+
+L'equip i el PO acorden quines User Stories entren al sprint. L'equip estima el cost de cada story (generalment en punts d'story). Durada: 2-4 hores per a un sprint de 2 setmanes.
+
+**Daily Standup (cada dia, 15 minuts)**
+
+Tres preguntes per a cada membre:
+- Què vaig fer ahir?
+- Què faré avui?
+- Hi ha algun bloqueig?
+
+L'objectiu no és informar al Scrum Master — és sincronitzar l'equip i identificar impediments ràpid.
+
+**Sprint Review (final del sprint)**
+
+L'equip presenta el que han construït. El PO i stakeholders poden provar el software i donar feedback. S'actualitza el Product Backlog amb el que s'ha après.
+
+**Sprint Retrospective (final del sprint)**
+
+L'equip reflexiona sobre el procés, no sobre el producte. Tres preguntes:
+- Que ha anat bé?
+- Que ha anat malament?
+- Que volem millorar al proper sprint?
+
+### La Velocitat
+
+La velocitat és el nombre de punts d'story completats per sprint. Útil per predir: si l'equip fa 40 punts/sprint, i queden 200 punts al backlog, trigaran ~5 sprints.
+
+**Trampa:** no comparar velocitats entre equips. Els punts són relatius a cada equip.
+
+## Kanban: Visualitzar el Flux
+
+Kanban ve del sistema de producció de Toyota dels anys 40. No té sprints ni rols fixos — l'essència és visualitzar el treball i limitar el treball en curs.
+
+### El Tauler Kanban
+
+El tauler té columnes que representen els estats del treball:
+
+```
+To Do → In Progress → Review → Done
+```
+
+Cada tasca és una targeta que avança d'esquerra a dreta.
+
+**Exemple real:**
+
+```
+| To Do          | In Progress    | Review         | Done           |
+|----------------|----------------|----------------|----------------|
+| Pàgina 404     | Login amb Google| Formulari      | Navbar         |
+| API de pagament| Fix bug #123   |                | Autenticació   |
+| Dark mode      |                |                | Base de dades  |
+```
+
+### WIP Limits: La Clau de Kanban
+
+WIP (Work In Progress) Limit és la regla més important de Kanban: cada columna té un nombre màxim de targetes simultànies.
+
+Per exemple: "In Progress: màx 3". Si ja tens 3 tasques en curs i vols afegir-ne una, primer has d'acabar una de les actuals.
+
+**Per què funciona?** Multi-tasking no existeix. Cada canvi de context té un cost. Limitar el WIP força a acabar coses en lloc de començar-ne de noves.
+
+### Métriques de Kanban
+
+**Throughput:** quantes tasques s'acaben per unitat de temps.
+
+**Cycle Time:** quan triga una tasca des que es comença fins que s'acaba. Objectiu: reduir-lo.
+
+**CFD (Cumulative Flow Diagram):** visualitza el flux de treball al llarg del temps. Si les columnes s'omplen i no es buiden, tens un coll d'ampolla.
+
+## Scrum vs Kanban: quan usar cadascun?
+
+**Scrum:**
+- Equips que necessiten estructura i predictibilitat
+- Projectes amb lliuraments planificats (cada sprint = entrega)
+- Equips nous que necessiten cerimònies per sincronitzar-se
+- Quan el feedback del client es pot agrupar cada 1-2 setmanes
+
+**Kanban:**
+- Equips de manteniment o suport (els problemes arriben contínuament)
+- Quan el flux és impredictible i els sprints no s'ajusten
+- Equips madurs que ja funcionen bé i volen optimitzar el flux
+- Per a un sol developer o equips petits sense necessitat de sprints
+
+**Scrumban:** molts equips combinen Scrum (reunions, sprints) amb Kanban (tauler visual, WIP limits). No hi ha regles fixes.
+
+## Estimació: Points vs Hores
+
+Una de les discussions més freqüents en àgil.
+
+**Story Points** representen complexitat relativa, no temps absolut. Una tasca de 3 punts és el triple de complexa que una d'1 punt, però pot trigar 1 hora o 3 dies depenent de l'estat de l'equip.
+
+**T-Shirt Sizing (XS/S/M/L/XL):** alternativa als punts, útil quan els equips discuteixen massa sobre números exactes.
+
+**Planning Poker:** cada membre de l'equip mostra una carta amb la seva estimació simultàniament per evitar ancoratge (que la primera estimació que es diu influeixi a les altres).
+
+**L'honestedat de les estimacions:** les estimacions no són promeses. Són la millor predicció amb la informació disponible ara.
+
+## Implementació Pràctica
+
+### Per un developer sol o en parella
+
+No necessites totes les cerimònies. Un tauler Kanban simple és suficient:
+
+1. Escriu totes les tasques pendents
+2. Mou-les a "In Progress" quan comences (màx 2 alhora)
+3. Revisa el tauler cada matí: 5 minuts
+4. Retrospectiva personal setmanal: que ha blocat? que repetiries?
+
+### Per un equip de 3-7 persones
+
+Scrum amb adaptacions:
+
+- Sprints d'1 setmana si el ritme ho permet, 2 setmanes si els tasks són grans
+- Standup diari però de peu, sense cadira, i de veritat 15 minuts
+- Retro honest: els problemes del procés no es resolen sols
+
+### Per projectes freelance amb client
+
+Kanban és més flexible. Adapta les columnes a la teva realitat:
+
+```
+Pendent client → En curs → Pendent revisió client → Aprovat → Publicat
+```
+
+Usa una eina simple: Trello, Notion, o fins i tot un full de paper.
+
+## Errors Comuns
+
+**1. Scrum teatre.** Seguir les reunions i rols però sense l'essència àgil: el PO no parla amb l'equip, les retrospectives no canvien res, el backlog no s'actualitza. El procés sense cultura no funciona.
+
+**2. Sprints com a "mini-waterfall".** Planificar tot el sprint fins a l'últim detall el dia 1 i no adaptar-se a mesura que aprens.
+
+**3. Ignorar els WIP limits.** "Comencem igualment, ja acabarem". Desfà tot el benefici de Kanban.
+
+**4. Velocitat com a mètrica de productivitat.** "L'equip A fa 80 punts/sprint i l'equip B fa 40, l'equip A és el doble de bo". Fals. Els punts no son comparables.
+
+**5. Retrospectives sense acció.** Identificar problemes és inútil si no hi ha cap compromís concret de canvi.
+
+## Resum
+
+- **Àgil** és adaptar-se al canvi en lloc de seguir un pla rígid
+- **Scrum** organitza el treball en sprints amb rols i cerimònies clars
+- **Kanban** visualitza el flux i limita el treball en curs per millorar la velocitat
+- Les dues metodologies es poden combinar (Scrumban)
+- La implementació perfecta no existeix: experimenta, mesura, millora
+- Les reunions (standup, retro, review) han de tenir valor real, no ser un tràmit
