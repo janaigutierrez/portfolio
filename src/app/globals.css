@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* Quadern d'ofici: paper fred, grafit i un sol accent de tinta blava */
+/* Quadern d'ofici: paper beige, grafit i un sol accent de tinta blava */
 :root {
-  --paper: #F1F2EE;
-  --paper-deep: #E6E8E3;
-  --sheet: #FAFAF7;
+  --paper: #E9E3D6;
+  --paper-deep: #DED6C6;
+  --sheet: #F3EEE4;
   --ink: #1F2328;
-  --ink-soft: #474D55;
-  --pencil: #5F656E;
-  --rule: #D3D6D9;
+  --ink-soft: #44474B;
+  --pencil: #5A5850;
+  --rule: #CFC6B4;
   --pen: #2B44B0;
   --pen-deep: #1E3290;
-  --error: #B42318;
+  --error: #A3221A;
 }
 
 @theme inline {
@@ -69,6 +69,14 @@ body {
   }
   .rounded-card { border-radius: 34px; }
   .rounded-control { border-radius: 18px; }
+}
+
+/* Footer amb textura de full de quadern: ratlles horitzontals i marge vertical */
+.footer-ruled {
+  background-color: var(--paper-deep);
+  background-image:
+    linear-gradient(to right, transparent 1rem, rgb(43 68 176 / 0.18) 1rem, rgb(43 68 176 / 0.18) calc(1rem + 1px), transparent calc(1rem + 1px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--rule) 31px, var(--rule) 32px);
 }
 
 :focus-visible {

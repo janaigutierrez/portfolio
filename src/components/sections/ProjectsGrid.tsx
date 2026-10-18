@@ -32,19 +32,28 @@ function VisitLink({ href, label, name }: { href: string; label: string; name: s
   );
 }
 
-function ProjectText({ project, visitLabel }: { project: ClientProject; visitLabel: string }) {
+type Labels = { visit: string; before: string; now: string };
+
+function ProjectText({ project, labels }: { project: ClientProject; labels: Labels }) {
   const { name, category, challenge, result, liveUrl, review } = project;
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-6 flex-1">
       <div>
         <p className="text-sm text-pencil mb-1">{category}</p>
         <h3 className="font-display text-2xl text-ink leading-snug">{name}</h3>
       </div>
-      <p className="text-ink-soft leading-relaxed max-w-[52ch]">{challenge}</p>
-      <p className="text-ink font-medium leading-relaxed max-w-[52ch]">{result}</p>
+
+      {/* Abans / ara: el problema en to apagat, la solució destacada amb tinta blava */}
+      <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-4 items-baseline">
+        <dt className="font-hand text-2xl leading-none text-pencil">{labels.before}</dt>
+        <dd className="text-pencil leading-relaxed">{challenge}</dd>
+        <dt className="font-hand text-2xl leading-none text-pen">{labels.now}</dt>
+        <dd className="text-ink font-medium leading-relaxed border-l-2 border-pen pl-3 -ml-3.5">{result}</dd>
+      </dl>
+
       {/* L'opinió del client, com una nota escrita a mà en tinta blava */}
-      <figure>
-        <blockquote className="font-hand text-pen text-[1.7rem] leading-[1.15] -rotate-1 max-w-[34ch]">
+      <figure className="mt-auto pt-2">
+        <blockquote className="font-hand text-pen text-[1.55rem] leading-[1.15] -rotate-1">
           &ldquo;{review.text}&rdquo;
         </blockquote>
         <figcaption className="text-sm text-pencil mt-3">
@@ -52,7 +61,7 @@ function ProjectText({ project, visitLabel }: { project: ClientProject; visitLab
         </figcaption>
       </figure>
       <div>
-        <VisitLink href={liveUrl} label={visitLabel} name={name} />
+        <VisitLink href={liveUrl} label={labels.visit} name={name} />
       </div>
     </div>
   );
@@ -109,30 +118,28 @@ export default function ProjectsGrid() {
     { key: "desastredecajon", name: t.projects.desastredecajonName, tag: t.projects.desastredecajonTag, desc: t.projects.desastredecajonDesc, image: "/projects/viatge1.jpg", liveUrl: t.projects.desastredecajonUrl },
   ];
 
-  const [featured, ...rest] = clientProjects;
+  const labels: Labels = {
+    visit: t.projects.visitProject,
+    before: t.projects.beforeLabel,
+    now: t.projects.nowLabel,
+  };
 
   return (
     <section id="projectes" className="px-6 py-24 max-w-6xl mx-auto scroll-mt-20">
-      <h2 className="font-display text-3xl sm:text-4xl text-ink mb-14 max-w-[20ch]">
+      <h2 className="font-display text-3xl sm:text-4xl text-ink mb-14">
         {t.projects.clientTitle}
       </h2>
 
-      {/* Projecte destacat: imatge gran + text al costat */}
-      <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20">
-        <div className="lg:col-span-7">
-          <ProjectImage src={featured.image} alt={featured.name} sizes="(max-width: 1024px) 100vw, 640px" />
-        </div>
-        <div className="lg:col-span-5 lg:pt-4">
-          <ProjectText project={featured} visitLabel={t.projects.visitProject} />
-        </div>
-      </article>
-
-      {/* La resta de clients, en dues columnes */}
-      <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 mb-24">
-        {rest.map((project) => (
+      {/* Els tres clients seguits, cadascun amb la seva opinió */}
+      <div className="grid lg:grid-cols-3 gap-x-10 gap-y-16 mb-24">
+        {clientProjects.map((project) => (
           <article key={project.key} className="flex flex-col gap-6">
-            <ProjectImage src={project.image} alt={project.name} sizes="(max-width: 768px) 100vw, 540px" />
-            <ProjectText project={project} visitLabel={t.projects.visitProject} />
+            <ProjectImage
+              src={project.image}
+              alt={project.name}
+              sizes="(max-width: 1024px) 100vw, 360px"
+            />
+            <ProjectText project={project} labels={labels} />
           </article>
         ))}
       </div>

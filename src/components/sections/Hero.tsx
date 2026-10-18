@@ -122,25 +122,34 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Pila de captures: la mateixa composició a totes les mides, escalada */}
-        <div
-          className="relative mx-auto lg:mx-0 h-[230px] sm:h-[315px] lg:h-[400px] w-[292px] sm:w-[400px] lg:w-[470px]"
-          aria-hidden="true"
-        >
+        <div className="mx-auto lg:mx-0 w-[292px] sm:w-[400px] lg:w-[470px]">
+          {/* Pila de captures: la mateixa composició a totes les mides, escalada */}
           <div
-            className="absolute top-0 left-0 origin-top-left scale-[0.62] sm:scale-[0.85] lg:scale-100"
-            style={{ width: STACK_W, height: STACK_H }}
+            className="relative h-[230px] sm:h-[315px] lg:h-[400px]"
+            aria-hidden="true"
           >
-            {screenshots.map((shot, i) => (
-              <ParallaxPhoto
-                key={shot.src}
-                shot={shot}
-                index={i}
-                progress={scrollYProgress}
-                reduce={reduce}
-              />
-            ))}
+            <div
+              className="absolute top-0 left-0 origin-top-left scale-[0.62] sm:scale-[0.85] lg:scale-100"
+              style={{ width: STACK_W, height: STACK_H }}
+            >
+              {screenshots.map((shot, i) => (
+                <ParallaxPhoto
+                  key={shot.src}
+                  shot={shot}
+                  index={i}
+                  progress={scrollYProgress}
+                  reduce={reduce}
+                />
+              ))}
+            </div>
           </div>
+          {/* Anotació a mà sota la pila */}
+          <p
+            className="animate-rise font-hand text-pen text-[1.3rem] sm:text-[1.6rem] leading-none -rotate-2 text-right whitespace-nowrap pr-2 sm:pr-4 mt-1"
+            style={{ ["--delay" as string]: "500ms" }}
+          >
+            {t.hero.note} <span aria-hidden="true">↑</span>
+          </p>
         </div>
       </div>
     </section>

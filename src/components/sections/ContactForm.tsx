@@ -2,12 +2,16 @@
 
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { CheckCircle, MessageCircle } from "lucide-react";
+import { CheckCircle, Mail } from "lucide-react";
+import { siWhatsapp } from "simple-icons";
 import { motion, AnimatePresence } from "motion/react";
 import { useTranslation } from "@/context/TranslationContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const WHATSAPP_NUMBER = "34623065244";
+
+const channelClass =
+  "size-12 rounded-full border border-rule bg-paper grid place-items-center text-ink hover:text-pen hover:border-pen transition active:scale-[0.95] duration-200";
 
 const inputClass = (hasError: boolean) =>
   `w-full bg-paper border rounded-control px-4 py-3 text-ink placeholder-pencil text-sm outline-none focus:border-pen focus:shadow-[0_0_0_3px_rgba(43,68,176,0.15)] transition-[border-color,box-shadow] duration-200 ${
@@ -81,24 +85,34 @@ export default function ContactForm() {
             <p className="text-lg text-ink-soft leading-relaxed mb-3 max-w-[44ch]">{t.contact.subtitle}</p>
             <p className="text-ink-soft leading-relaxed mb-10 max-w-[44ch]">{t.contact.process}</p>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-pen text-sheet font-medium hover:bg-pen-deep transition active:scale-[0.97] duration-200"
-            >
-              <MessageCircle size={18} strokeWidth={2} aria-hidden="true" />
-              {t.contact.whatsappCta}
-            </a>
-            <p className="text-ink-soft mt-4">
-              {t.contact.emailLabel}{" "}
+            {/* Canals directes: dues icones germanes, WhatsApp i correu */}
+            <p className="text-sm text-pencil mb-3">{t.contact.directLabel}</p>
+            <div className="flex items-center gap-3">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t.contact.whatsappCta}
+                title={t.contact.whatsappCta}
+                className={channelClass}
+              >
+                <svg viewBox="0 0 24 24" width={20} height={20} fill="currentColor" aria-hidden="true">
+                  <path d={siWhatsapp.path} />
+                </svg>
+              </a>
               <a
                 href={`mailto:${t.contact.infoEmail}`}
-                className="text-ink font-medium underline decoration-rule decoration-2 underline-offset-4 hover:decoration-pen transition-colors"
+                aria-label={`${t.contact.emailCta}: ${t.contact.infoEmail}`}
+                title={t.contact.infoEmail}
+                className={channelClass}
               >
-                {t.contact.infoEmail}
+                <Mail size={20} strokeWidth={1.75} aria-hidden="true" />
               </a>
-            </p>
+              <span className="font-hand text-pen text-2xl leading-none -rotate-2 ml-2">
+                <span aria-hidden="true">← </span>
+                {t.contact.fastNote}
+              </span>
+            </div>
 
             <p className="text-sm text-pencil mt-10 max-w-[44ch]">{t.contact.location}</p>
           </div>
