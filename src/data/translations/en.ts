@@ -1,7 +1,7 @@
 import { Translations } from "./ca";
 
 const en: Translations = {
-  header: { logo: "janai.dev", cta: "Let's talk" },
+  header: { logo: "janai.dev", cta: "Write to me" },
 
   nav: {
     inici: "Home",
@@ -22,48 +22,28 @@ const en: Translations = {
     publishedOn: "Published on",
   },
 
-  intro: {
-    line1: "You serve coffee, cook, host, sell.",
-    line2before: "I make sure your website ",
-    line2highlight: "doesn't let you down.",
-    line2after: "",
-    line3: "No tech jargon. No surprises.",
-  },
-
   hero: {
-    eyebrow: "Web design · Caldes de Montbui · Catalonia",
-    title1: "You have a great business.",
-    title2: "Let the world know.",
-    subtitle:
-      "I build websites for cafés, shops, accommodations and individuals who want to be found and make a good impression. No jargon, no surprises.",
-    ctaPrimary: "See real projects",
-    ctaSecondary: "Tell me your idea",
-    card1name: "Cafè La Plaça",
-    card1category: "Café",
-    card2name: "Botiga del Mercat",
-    card2category: "Shop",
-    card3name: "Can Ermita",
-    card3category: "Rural tourism",
+    title: "Websites and digital tools that work for your business.",
+    subtitle: "For businesses and companies that want to be found and save time.",
+    ctaPrimary: "See projects",
+    ctaSecondary: "Write to me",
   },
 
   audience: {
-    title: "Who I build websites for",
-    item1title: "Bars & cafés",
-    item1text: "A digital menu, your story and photos that make people want to walk in.",
-    item2title: "Shops & events",
-    item2text: "A website that shows your product and lets customers book or buy without complications.",
-    item3title: "Tourism & accommodation",
-    item3text: "Let guests find you on Google and book directly, without third-party fees.",
-    item4title: "Individuals & freelancers",
-    item4text: "Have an idea, a personal project or need a digital presence? You're welcome here too.",
+    title: "Who I work with",
+    item1title: "Local businesses",
+    item1text: "Get found on Google, show what you do and let people call or book.",
+    item2title: "Companies & SMEs",
+    item2text: "A website that builds trust, and tools that save your team time.",
+    item3title: "Freelancers & professionals",
+    item3text: "A clear online presence that explains what you do and how to reach you.",
+    item4title: "Custom projects",
+    item4text: "Bookings, catalogues, apps or automations. If it can be built, let's talk.",
   },
 
   projects: {
-    eyebrow: "Projects",
     clientTitle: "What clients have achieved",
     personalTitle: "Personal & experimental projects",
-    challenge: "The challenge",
-    result: "The result",
     iseoName: "Café · Ice cream parlour Iseo",
     iseoCategory: "Digital menu",
     iseoChallenge: "No digital presence: no accessible menu, no photos, no way for people to find them on Google.",
@@ -76,7 +56,7 @@ const en: Translations = {
     weddingName: "Wedding Website",
     weddingCategory: "Custom website",
     weddingChallenge: "Organising a wedding is chaotic: guest lists, menus, RSVPs… all separate and manual.",
-    weddingResult: "Website with gallery, timeline and booking system connected to a spreadsheet. Zero chaos.",
+    weddingResult: "Website with gallery, timeline and booking system connected to a spreadsheet.",
     nestName: "NEST App",
     nestTag: "Productivity · AI",
     nestDesc: "Gamified productivity app with AI-generated missions.",
@@ -85,21 +65,15 @@ const en: Translations = {
     mossetDesc: "Recipe social network with personalised feed and community system.",
     geocatName: "GeoCat",
     geocatTag: "Educational game",
-    geocatDesc: "Catalan geography game in Wordle style — learn while playing.",
+    geocatDesc: "Catalan geography game in Wordle style. Learn while playing.",
     desastredecajonName: "Travel Diary",
     desastredecajonTag: "Personal blog",
     desastredecajonDesc: "Travel blog built for Janai's father to share his routes and adventures with friends and family across Spain.",
     desastredecajonUrl: "https://desastredecajon.netlify.app",
-    statusComplete: "Live",
-    statusDev: "In progress",
     visitProject: "Visit",
-    noImage: "Screenshot coming soon",
-    showAll: "Show all",
-    showLess: "Show less",
   },
 
   testimonials: {
-    title: "What clients say",
     boda: {
       name: "Raquel & Daniel",
       role: "Bride & Groom",
@@ -145,7 +119,7 @@ const en: Translations = {
     labelEmail: "Email or WhatsApp",
     placeholderEmail: "hello@mybusiness.com / +34 666 000 000",
     labelMessage: "What's your project?",
-    placeholderMessage: "I have a café and would like a digital menu with updatable photos...",
+    placeholderMessage: "I run a renovation company and want people to find me on Google...",
     send: "Send message",
     sending: "Sending...",
     successTitle: "Message sent!",

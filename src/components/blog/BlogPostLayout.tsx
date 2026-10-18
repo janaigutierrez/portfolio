@@ -24,21 +24,21 @@ export default function BlogPostLayout({
     <main className="px-6 py-16 max-w-6xl mx-auto">
       <Link
         href="/blog"
-        className="font-mono text-xs uppercase tracking-widest text-stone hover:text-amber transition-colors inline-block mb-14"
+        className="text-xs text-pencil hover:text-pen transition-colors inline-block mb-14"
       >
         {t.blog.backToBlog}
       </Link>
 
       <article className="max-w-2xl mx-auto">
         <header className="mb-10">
-          <p className="font-mono text-[9px] uppercase tracking-widest text-stone mb-3">
+          <p className="text-xs text-pencil mb-3">
             {meta.category}
           </p>
           <h1 className="font-display text-3xl sm:text-4xl text-ink leading-snug mb-4">
             {meta.title}
           </h1>
           <p className="text-ink-soft leading-relaxed mb-4">{meta.description}</p>
-          <p className="font-mono text-[9px] uppercase tracking-widest text-stone">
+          <p className="text-xs text-pencil">
             {t.blog.publishedOn} {formatDate(meta.date, lang)}
           </p>
         </header>

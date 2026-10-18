@@ -16,7 +16,7 @@ export default function BlogListContent({ posts }: { posts: PostMeta[] }) {
 
   return (
     <main className="px-6 py-20 max-w-6xl mx-auto">
-      <p className="font-mono text-xs uppercase tracking-widest text-stone mb-3">
+      <p className="text-xs text-pencil mb-3">
         {t.blog.eyebrow}
       </p>
       <h1 className="font-display text-3xl sm:text-4xl text-ink mb-4">
@@ -27,21 +27,21 @@ export default function BlogListContent({ posts }: { posts: PostMeta[] }) {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-            <article className="bg-bg-card border border-line rounded-2xl p-6 flex flex-col gap-3 h-full hover:border-amber transition-colors duration-200">
-              <p className="font-mono text-[9px] uppercase tracking-widest text-stone">
+            <article className="bg-sheet border border-rule rounded-card p-6 flex flex-col gap-3 h-full hover:border-pen transition-colors duration-200">
+              <p className="text-xs text-pencil">
                 {post.category}
               </p>
-              <h2 className="font-display text-xl text-ink leading-snug group-hover:text-amber transition-colors duration-200">
+              <h2 className="font-display text-xl text-ink leading-snug group-hover:text-pen transition-colors duration-200">
                 {post.title}
               </h2>
               <p className="text-ink-soft text-sm leading-relaxed flex-1">
                 {post.description}
               </p>
-              <div className="flex items-center justify-between pt-2 border-t border-line mt-auto">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-stone">
+              <div className="flex items-center justify-between pt-2 border-t border-rule mt-auto">
+                <p className="text-xs text-pencil">
                   {formatDate(post.date, lang)}
                 </p>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-amber">
+                <span className="text-xs text-pen">
                   {t.blog.readMore} →
                 </span>
               </div>

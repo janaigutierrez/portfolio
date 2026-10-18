@@ -1,47 +1,41 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Schibsted_Grotesk, Nanum_Pen_Script } from "next/font/google";
 import "./globals.css";
 import StickyHeader from "@/components/layout/StickyHeader";
-import StreetNav from "@/components/layout/StreetNav";
 import { TranslationProvider } from "@/context/TranslationContext";
 
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted",
   subsets: ["latin"],
   weight: "variable",
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+// Lletra manuscrita de les opinions dels clients (es pot substituir per la font pròpia del Janai)
+const handTemp = Nanum_Pen_Script({
+  variable: "--font-hand-temp",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-ibm-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "400",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Janai Gutierrez — Webs per a negocis locals",
+  title: "Janai Gutierrez - Webs i solucions digitals per a negocis",
   description:
-    "Dissenyo webs per a cafeteries, botigues i allotjaments a Catalunya. Sense tecnicismes. Sense sorpreses. Que et trobin. Que et truquin.",
+    "Webs i eines digitals per a negocis i empreses que volen ser trobats a internet i estalviar-se feina. Des de Caldes de Montbui, per a tot Catalunya.",
   keywords: [
-    "crear pàgina web negoci local",
-    "web per a cafeteria",
+    "disseny web per a empreses",
+    "pàgina web per a negocis",
+    "solucions digitals per a negocis",
     "disseny web Caldes de Montbui",
     "disseny web Barcelona",
-    "web per a negoci local Catalunya",
-    "web per a allotjament rural",
+    "eines digitals a mida",
   ],
   authors: [{ name: "Janai Gutierrez" }],
   openGraph: {
-    title: "Janai Gutierrez — Webs per a negocis locals",
+    title: "Janai Gutierrez - Webs i solucions digitals per a negocis",
     description:
-      "Que et trobin. Que et truquin. Webs per a cafeteries, botigues i allotjaments, sense tecnicismes.",
+      "Webs i eines digitals per a negocis i empreses que volen ser trobats i estalviar-se feina.",
     url: "https://janai.dev",
     siteName: "janai.dev",
     locale: "ca_ES",
@@ -56,7 +50,7 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Janai Gutierrez — Disseny web",
+  name: "Janai Gutierrez - Webs i solucions digitals",
   url: "https://janai.dev",
   email: "janaigs97@gmail.com",
   areaServed: {
@@ -71,7 +65,7 @@ const structuredData = {
   },
   priceRange: "€€",
   description:
-    "Dissenyo webs per a cafeteries, botigues i allotjaments a Catalunya. Sense tecnicismes. Sense sorpreses.",
+    "Webs i eines digitals per a negocis i empreses que volen ser trobats a internet i estalviar-se feina. Des de Caldes de Montbui, per a tot Catalunya.",
 };
 
 export default function RootLayout({
@@ -82,9 +76,9 @@ export default function RootLayout({
   return (
     <html
       lang="ca"
-      className={`${bricolageGrotesque.variable} ${inter.variable} ${ibmPlexMono.variable}`}
+      className={`${schibsted.variable} ${handTemp.variable}`}
     >
-      <body className="min-h-screen flex flex-col pb-16">
+      <body className="min-h-screen flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -92,7 +86,6 @@ export default function RootLayout({
         <TranslationProvider>
           <StickyHeader />
           <main className="flex-1">{children}</main>
-          <StreetNav />
         </TranslationProvider>
       </body>
     </html>

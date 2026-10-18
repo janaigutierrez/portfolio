@@ -1,19 +1,75 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
-import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "@/context/TranslationContext";
 
-const INITIAL_COUNT = 3;
-const EASE = [0.16, 1, 0.3, 1] as const;
+type Review = { name: string; role: string; text: string };
+
+type ClientProject = {
+  key: string;
+  name: string;
+  category: string;
+  challenge: string;
+  result: string;
+  image: string;
+  liveUrl: string;
+  review: Review;
+};
+
+function VisitLink({ href, label, name }: { href: string; label: string; name: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${label}: ${name}`}
+      className="inline-flex items-center gap-1 text-sm font-semibold text-pen underline decoration-2 underline-offset-[6px] hover:text-pen-deep transition-colors duration-150"
+    >
+      {label}
+      <ArrowUpRight size={15} strokeWidth={2} aria-hidden="true" />
+    </a>
+  );
+}
+
+function ProjectText({ project, visitLabel }: { project: ClientProject; visitLabel: string }) {
+  const { name, category, challenge, result, liveUrl, review } = project;
+  return (
+    <div className="flex flex-col gap-5">
+      <div>
+        <p className="text-sm text-pencil mb-1">{category}</p>
+        <h3 className="font-display text-2xl text-ink leading-snug">{name}</h3>
+      </div>
+      <p className="text-ink-soft leading-relaxed max-w-[52ch]">{challenge}</p>
+      <p className="text-ink font-medium leading-relaxed max-w-[52ch]">{result}</p>
+      {/* L'opinió del client, com una nota escrita a mà en tinta blava */}
+      <figure>
+        <blockquote className="font-hand text-pen text-[1.7rem] leading-[1.15] -rotate-1 max-w-[34ch]">
+          &ldquo;{review.text}&rdquo;
+        </blockquote>
+        <figcaption className="text-sm text-pencil mt-3">
+          {review.name}, {review.role.toLowerCase()}
+        </figcaption>
+      </figure>
+      <div>
+        <VisitLink href={liveUrl} label={visitLabel} name={name} />
+      </div>
+    </div>
+  );
+}
+
+function ProjectImage({ src, alt, sizes, priority }: { src: string; alt: string; sizes: string; priority?: boolean }) {
+  return (
+    <div className="relative aspect-4/3 overflow-hidden rounded-card border border-rule bg-paper-deep">
+      <Image src={src} alt={alt} fill className="object-cover object-top" sizes={sizes} priority={priority} />
+    </div>
+  );
+}
 
 export default function ProjectsGrid() {
   const { t } = useTranslation();
-  const [showAll, setShowAll] = useState(false);
 
-  const clientProjects = [
+  const clientProjects: ClientProject[] = [
     {
       key: "iseo",
       name: t.projects.iseoName,
@@ -22,7 +78,7 @@ export default function ProjectsGrid() {
       result: t.projects.iseoResult,
       image: "/projects/iseo1.jpg",
       liveUrl: t.projects.iseoUrl,
-      status: t.projects.statusComplete,
+      review: t.testimonials.iseo,
     },
     {
       key: "canCarerac",
@@ -32,7 +88,7 @@ export default function ProjectsGrid() {
       result: t.projects.canCareracResult,
       image: "/projects/carerac1.jpg",
       liveUrl: "https://cancarerac.netlify.app",
-      status: t.projects.statusComplete,
+      review: t.testimonials.canCarerac,
     },
     {
       key: "wedding",
@@ -42,208 +98,82 @@ export default function ProjectsGrid() {
       result: t.projects.weddingResult,
       image: "/projects/boda1.jpg",
       liveUrl: "https://bodaenmodocata.es",
-      status: t.projects.statusComplete,
+      review: t.testimonials.boda,
     },
   ];
 
   const personalProjects = [
-    {
-      key: "nest",
-      name: t.projects.nestName,
-      tag: t.projects.nestTag,
-      desc: t.projects.nestDesc,
-      image: "/projects/nestapp1.jpg",
-      liveUrl: "https://nest-app.surge.sh",
-    },
-    {
-      key: "mosset",
-      name: t.projects.mossetName,
-      tag: t.projects.mossetTag,
-      desc: t.projects.mossetDesc,
-      image: "/projects/mosset1.jpg",
-      liveUrl: "https://mosset.vercel.app",
-    },
-    {
-      key: "geocat",
-      name: t.projects.geocatName,
-      tag: t.projects.geocatTag,
-      desc: t.projects.geocatDesc,
-      image: "/projects/geocat1.jpg",
-      liveUrl: "https://geocat.netlify.app",
-    },
-    {
-      key: "desastredecajon",
-      name: t.projects.desastredecajonName,
-      tag: t.projects.desastredecajonTag,
-      desc: t.projects.desastredecajonDesc,
-      image: "/projects/viatge1.jpg",
-      liveUrl: t.projects.desastredecajonUrl,
-    },
+    { key: "nest", name: t.projects.nestName, tag: t.projects.nestTag, desc: t.projects.nestDesc, image: "/projects/nestapp1.jpg", liveUrl: "https://nest-app.surge.sh" },
+    { key: "mosset", name: t.projects.mossetName, tag: t.projects.mossetTag, desc: t.projects.mossetDesc, image: "/projects/mosset1.jpg", liveUrl: "https://mosset.vercel.app" },
+    { key: "geocat", name: t.projects.geocatName, tag: t.projects.geocatTag, desc: t.projects.geocatDesc, image: "/projects/geocat1.jpg", liveUrl: "https://geocat.netlify.app" },
+    { key: "desastredecajon", name: t.projects.desastredecajonName, tag: t.projects.desastredecajonTag, desc: t.projects.desastredecajonDesc, image: "/projects/viatge1.jpg", liveUrl: t.projects.desastredecajonUrl },
   ];
 
+  const [featured, ...rest] = clientProjects;
+
   return (
-    <section id="projectes" className="px-6 py-20 max-w-6xl mx-auto">
-      <p className="font-mono text-xs uppercase tracking-widest text-stone mb-3">
-        {t.projects.eyebrow}
-      </p>
-      <h2 className="font-display text-3xl sm:text-4xl text-ink mb-10">
+    <section id="projectes" className="px-6 py-24 max-w-6xl mx-auto scroll-mt-20">
+      <h2 className="font-display text-3xl sm:text-4xl text-ink mb-14 max-w-[20ch]">
         {t.projects.clientTitle}
       </h2>
 
-      {/* Grid projectes client */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        {clientProjects.map(({ key, name, category, challenge, result, image, liveUrl, status }, index) => {
-          const isHidden = !showAll && index >= INITIAL_COUNT;
-          return (
-          <motion.article
-            key={key}
-            initial={index < INITIAL_COUNT ? { opacity: 0, y: 24 } : false}
-            whileInView={index < INITIAL_COUNT ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
-            whileHover={{ y: -6 }}
-            className={`bg-bg-card border border-line rounded-2xl overflow-hidden flex flex-col group shadow-warm-sm hover:shadow-warm-lg transition-shadow duration-300 ${isHidden ? "hidden" : index >= INITIAL_COUNT ? "animate-fade-in" : ""
-              }`}
-          >
-            <div className="relative aspect-4/3 overflow-hidden bg-olive-soft">
-              {image ? (
+      {/* Projecte destacat: imatge gran + text al costat */}
+      <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20">
+        <div className="lg:col-span-7">
+          <ProjectImage src={featured.image} alt={featured.name} sizes="(max-width: 1024px) 100vw, 640px" />
+        </div>
+        <div className="lg:col-span-5 lg:pt-4">
+          <ProjectText project={featured} visitLabel={t.projects.visitProject} />
+        </div>
+      </article>
+
+      {/* La resta de clients, en dues columnes */}
+      <div className="grid md:grid-cols-2 gap-x-12 gap-y-16 mb-24">
+        {rest.map((project) => (
+          <article key={project.key} className="flex flex-col gap-6">
+            <ProjectImage src={project.image} alt={project.name} sizes="(max-width: 768px) 100vw, 540px" />
+            <ProjectText project={project} visitLabel={t.projects.visitProject} />
+          </article>
+        ))}
+      </div>
+
+      {/* Projectes personals: llista compacta */}
+      <h3 className="font-display text-xl text-ink mb-6">{t.projects.personalTitle}</h3>
+      <ul className="grid md:grid-cols-2 gap-x-12 border-t border-rule">
+        {personalProjects.map(({ key, name, tag, desc, image, liveUrl }) => (
+          <li key={key} className="border-b border-rule">
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-5 py-5"
+            >
+              <div className="relative w-28 sm:w-32 aspect-video shrink-0 overflow-hidden rounded-control border border-rule bg-paper-deep">
                 <Image
                   src={image}
-                  alt={name}
+                  alt=""
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  sizes="128px"
                 />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-stone">
-                    {t.projects.noImage}
-                  </span>
-                </div>
-              )}
-              <span
-                className={`absolute top-3 right-3 font-mono text-[9px] uppercase tracking-widest px-2 py-1 rounded-full backdrop-blur-sm ${status === t.projects.statusComplete
-                    ? "bg-paper/80 text-olive border border-olive/30"
-                    : "bg-paper/80 text-stone border border-line"
-                  }`}
-              >
-                {status}
-              </span>
-            </div>
-
-            <div className="p-5 flex flex-col gap-3 flex-1">
-              <div>
-                <p className="font-mono text-[9px] uppercase tracking-widest text-stone mb-1">
-                  {category}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-display text-lg text-ink leading-snug group-hover:text-pen transition-colors duration-150">
+                  {name}
                 </p>
-                <h3 className="font-display text-xl text-ink leading-snug">{name}</h3>
+                <p className="text-sm text-pencil mb-1">{tag}</p>
+                <p className="text-sm text-ink-soft leading-relaxed">{desc}</p>
               </div>
-
-              <div className="flex flex-col gap-2.5 flex-1">
-                <div>
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-stone mb-1">
-                    {t.projects.challenge}
-                  </p>
-                  <p className="text-ink-soft text-sm leading-relaxed">{challenge}</p>
-                </div>
-                <div>
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-amber mb-1">
-                    {t.projects.result}
-                  </p>
-                  <p className="text-ink text-sm leading-relaxed font-medium">{result}</p>
-                </div>
-              </div>
-
-              {liveUrl && (
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-amber hover:text-amber-deep transition-colors mt-1"
-                >
-                  {t.projects.visitProject}
-                  <ExternalLink size={11} aria-hidden="true" />
-                </a>
-              )}
-            </div>
-          </motion.article>
-          );
-        })}
-      </div>
-
-      {/* Separador + projectes personals */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="flex-1 h-px bg-line" />
-        <p className="font-mono text-[10px] uppercase tracking-widest text-stone whitespace-nowrap px-2">
-          {t.projects.personalTitle}
-        </p>
-        <div className="flex-1 h-px bg-line" />
-      </div>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {personalProjects.map(({ key, name, tag, desc, image, liveUrl }, index) => {
-          const isHidden = !showAll && index >= INITIAL_COUNT;
-          return (
-            <motion.article
-              key={key}
-              initial={index < INITIAL_COUNT ? { opacity: 0, y: 24 } : false}
-              whileInView={index < INITIAL_COUNT ? { opacity: 1, y: 0 } : undefined}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
-              whileHover={{ y: -4 }}
-              className={`bg-bg-card border border-line rounded-2xl overflow-hidden flex flex-col group shadow-warm-sm hover:shadow-warm-md transition-shadow duration-300 ${isHidden ? "hidden" : index >= INITIAL_COUNT ? "animate-fade-in" : ""
-                }`}
-            >
-              <div className="relative aspect-video overflow-hidden bg-olive-soft">
-                {image ? (
-                  <Image
-                    src={image}
-                    alt={name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-stone">
-                      {t.projects.noImage}
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="p-4 flex flex-col gap-2 flex-1">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-stone">{tag}</p>
-                <h3 className="font-display text-base text-ink leading-snug">{name}</h3>
-                <p className="text-stone text-xs leading-relaxed flex-1">{desc}</p>
-                {liveUrl && (
-                  <a
-                    href={liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest text-stone hover:text-amber transition-colors mt-1"
-                  >
-                    {t.projects.visitProject}
-                    <ExternalLink size={10} aria-hidden="true" />
-                  </a>
-                )}
-              </div>
-            </motion.article>
-          );
-        })}
-      </div>
-
-      {(personalProjects.length > INITIAL_COUNT ||
-        clientProjects.length > INITIAL_COUNT) && (
-        <div className="flex justify-center mt-6">
-          <button
-            onClick={() => setShowAll((v) => !v)}
-            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-stone hover:text-ink border border-line hover:border-ink-soft rounded-full px-5 py-2.5 transition active:scale-[0.97] duration-200"
-          >
-            {showAll ? t.projects.showLess : t.projects.showAll}
-            {showAll ? <ChevronUp size={13} aria-hidden="true" /> : <ChevronDown size={13} aria-hidden="true" />}
-          </button>
-        </div>
-      )}
+              <ArrowUpRight
+                size={18}
+                strokeWidth={1.75}
+                className="shrink-0 text-pencil group-hover:text-pen transition-colors duration-150"
+                aria-hidden="true"
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

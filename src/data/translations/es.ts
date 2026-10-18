@@ -1,7 +1,7 @@
 import { Translations } from "./ca";
 
 const es: Translations = {
-  header: { logo: "janai.dev", cta: "Hablemos" },
+  header: { logo: "janai.dev", cta: "Escríbeme" },
 
   nav: {
     inici: "Inicio",
@@ -22,48 +22,28 @@ const es: Translations = {
     publishedOn: "Publicado el",
   },
 
-  intro: {
-    line1: "Haces cafés, cocinas, alojas, vendes.",
-    line2before: "Yo hago que tu web ",
-    line2highlight: "no te deje en evidencia.",
-    line2after: "",
-    line3: "Sin tecnicismos. Sin sorpresas.",
-  },
-
   hero: {
-    eyebrow: "Diseño web · Caldes de Montbui · Cataluña",
-    title1: "Tienes un buen negocio.",
-    title2: "Que se sepa.",
-    subtitle:
-      "Diseño webs para cafeterías, tiendas, alojamientos y particulares que quieren ser encontrados y dejar buena impresión. Sin tecnicismos, sin sorpresas.",
-    ctaPrimary: "Ver proyectos reales",
-    ctaSecondary: "Cuéntame tu idea",
-    card1name: "Cafè La Plaça",
-    card1category: "Cafetería",
-    card2name: "Botiga del Mercat",
-    card2category: "Comercio",
-    card3name: "Can Ermita",
-    card3category: "Turismo rural",
+    title: "Webs y herramientas digitales que trabajan para tu negocio.",
+    subtitle: "Para negocios y empresas que quieren que les encuentren y ahorrarse trabajo.",
+    ctaPrimary: "Ver proyectos",
+    ctaSecondary: "Escríbeme",
   },
 
   audience: {
-    title: "Para quién hago webs",
-    item1title: "Bares y cafeterías",
-    item1text: "Una carta digital, tu historia y las fotos que dan ganas de entrar.",
-    item2title: "Tiendas y eventos",
-    item2text: "Una web que muestra tu producto y permite reservar o comprar sin complicaciones.",
-    item3title: "Turismo y alojamientos",
-    item3text: "Que los huéspedes te encuentren en Google y puedan reservar directamente.",
-    item4title: "Particulares y autónomos",
-    item4text: "¿Tienes una idea, un proyecto personal o necesitas presencia digital? Aquí también.",
+    title: "Para quién trabajo",
+    item1title: "Negocios locales",
+    item1text: "Que te encuentren en Google, vean lo que haces y puedan llamarte o reservar.",
+    item2title: "Empresas y pymes",
+    item2text: "Una web que transmita confianza y herramientas que ahorren trabajo al equipo.",
+    item3title: "Autónomos y profesionales",
+    item3text: "Una presencia en internet clara, que explique qué haces y cómo contactarte.",
+    item4title: "Proyectos a medida",
+    item4text: "Reservas, catálogos, apps o automatizaciones. Si se puede hacer, lo hablamos.",
   },
 
   projects: {
-    eyebrow: "Proyectos",
     clientTitle: "Lo que han conseguido los clientes",
     personalTitle: "Proyectos personales y experimentales",
-    challenge: "El reto",
-    result: "El resultado",
     iseoName: "Cafetería · Heladería Iseo",
     iseoCategory: "Carta digital",
     iseoChallenge: "Sin presencia digital: ni carta accesible, ni fotos, ni forma de que la gente los encontrara en Google.",
@@ -76,7 +56,7 @@ const es: Translations = {
     weddingName: "Web de Boda",
     weddingCategory: "Web personalizada",
     weddingChallenge: "Organizar una boda es caótico: lista de invitados, menús, RSVPs… todo separado y manual.",
-    weddingResult: "Web con galería, timeline y sistema de reservas conectado a una hoja de cálculo. Cero caos.",
+    weddingResult: "Web con galería, timeline y sistema de reservas conectado a una hoja de cálculo.",
     nestName: "NEST App",
     nestTag: "Productividad · IA",
     nestDesc: "App de productividad gamificada con misiones creadas por IA.",
@@ -90,16 +70,10 @@ const es: Translations = {
     desastredecajonTag: "Blog personal",
     desastredecajonDesc: "Blog de viajes del padre de Janai para compartir sus rutas y aventuras con amigos y familia de toda España.",
     desastredecajonUrl: "https://desastredecajon.netlify.app",
-    statusComplete: "Publicado",
-    statusDev: "En proceso",
     visitProject: "Visitar",
-    noImage: "Captura próximamente",
-    showAll: "Mostrar todos",
-    showLess: "Mostrar menos",
   },
 
   testimonials: {
-    title: "Qué dicen los clientes",
     boda: {
       name: "Raquel & Daniel",
       role: "Novia y Novio",
@@ -145,7 +119,7 @@ const es: Translations = {
     labelEmail: "Email o WhatsApp",
     placeholderEmail: "hola@negocio.es / 666 000 000",
     labelMessage: "¿Cuál es tu proyecto?",
-    placeholderMessage: "Tengo una cafetería y me gustaría una carta digital con fotos de los platos...",
+    placeholderMessage: "Tengo una empresa de reformas y me gustaría que me encontraran en Google...",
     send: "Enviar mensaje",
     sending: "Enviando...",
     successTitle: "¡Mensaje enviado!",

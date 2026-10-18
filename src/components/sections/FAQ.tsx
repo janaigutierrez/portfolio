@@ -24,20 +24,16 @@ export default function FAQ() {
     <section
       id="faq"
       className="px-6 py-20"
-      style={{ backgroundColor: "var(--olive-soft)" }}
+      style={{ backgroundColor: "var(--paper-deep)" }}
     >
       <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: EASE }}
+        <h2
           className="font-display text-3xl sm:text-4xl text-ink mb-10"
         >
           {t.faq.title}
-        </motion.h2>
+        </h2>
 
-        <div className="max-w-2xl mx-auto flex flex-col divide-y divide-line">
+        <div className="max-w-2xl mx-auto flex flex-col divide-y divide-rule">
           {items.map(({ q, a }, i) => {
             const isOpen = openIdx === i;
             return (
@@ -54,9 +50,9 @@ export default function FAQ() {
                     className="shrink-0"
                   >
                     {isOpen ? (
-                      <Minus size={16} strokeWidth={1.5} className="text-amber" aria-hidden="true" />
+                      <Minus size={16} strokeWidth={1.5} className="text-pen" aria-hidden="true" />
                     ) : (
-                      <Plus size={16} strokeWidth={1.5} className="text-stone" aria-hidden="true" />
+                      <Plus size={16} strokeWidth={1.5} className="text-pencil" aria-hidden="true" />
                     )}
                   </motion.span>
                 </button>

@@ -1,7 +1,7 @@
 const ca = {
   header: {
     logo: "janai.dev",
-    cta: "Parlem",
+    cta: "Escriu-me",
   },
 
   nav: {
@@ -23,52 +23,28 @@ const ca = {
     publishedOn: "Publicat el",
   },
 
-  intro: {
-    line1: "Fas cafès, cuines, allotges, vens.",
-    line2before: "Jo faig que la teva web ",
-    line2highlight: "no et deixi en evidència.",
-    line2after: "",
-    line3: "Sense termes tècnics. Sense sorpreses.",
-  },
-
   hero: {
-    eyebrow: "Disseny web · Caldes de Montbui · Catalunya",
-    title1: "Tens un bon negoci.",
-    title2: "Que se sàpiga.",
-    subtitle:
-      "Dissenyo webs per a cafeteries, botigues, allotjaments i particulars que volen ser trobats i deixar bona impressió. Sense tecnicismes, sense sorpreses.",
-    ctaPrimary: "Veure projectes reals",
-    ctaSecondary: "Explica'm la teva idea",
-    card1name: "Cafè La Plaça",
-    card1category: "Cafeteria",
-    card2name: "Botiga del Mercat",
-    card2category: "Comerç",
-    card3name: "Can Ermita",
-    card3category: "Turisme rural",
+    title: "Webs i eines digitals que treballen per al teu negoci.",
+    subtitle: "Per a negocis i empreses que volen ser trobats i estalviar-se feina.",
+    ctaPrimary: "Veure projectes",
+    ctaSecondary: "Escriu-me",
   },
 
   audience: {
-    title: "Per a qui faig webs",
-    item1title: "Bars i cafeteries",
-    item1text:
-      "Una carta digital, la teva història i les fotos que fan ganes d'entrar-hi.",
-    item2title: "Botigues i esdeveniments",
-    item2text:
-      "Una web que mostra el teu producte i permet reservar o comprar sense complicacions.",
-    item3title: "Turisme i allotjaments",
-    item3text:
-      "Que els hostes et trobin a Google i puguin reservar directament, sense intermediaris.",
-    item4title: "Particulars i autònoms",
-    item4text:
-      "Tens una idea, un projecte personal o necessites una presència digital? Aquí també.",
+    title: "Per a qui treballo",
+    item1title: "Negocis locals",
+    item1text: "Que et trobin a Google, vegin el que fas i et puguin trucar o reservar.",
+    item2title: "Empreses i pimes",
+    item2text: "Una web que transmeti confiança i eines que estalviïn feina a l'equip.",
+    item3title: "Autònoms i professionals",
+    item3text: "Una presència a internet clara, que expliqui què fas i com contactar-te.",
+    item4title: "Projectes a mida",
+    item4text: "Reserves, catàlegs, apps o automatitzacions. Si es pot fer, en parlem.",
   },
 
   projects: {
-    eyebrow: "Projectes",
     clientTitle: "El que han aconseguit els clients",
     personalTitle: "Projectes personals i experimentals",
-    challenge: "El repte",
-    result: "El resultat",
 
     iseoName: "Cafeteria · Gelateria Iseo",
     iseoCategory: "Carta digital",
@@ -90,7 +66,7 @@ const ca = {
     weddingChallenge:
       "Organitzar un casament és caòtic: llista de convidats, menús, RSVPs… tot separat i manual.",
     weddingResult:
-      "Web amb galeria, timeline i sistema de reserves connectat a un full de càlcul. Zero caos.",
+      "Web amb galeria, timeline i sistema de reserves connectat a un full de càlcul.",
 
     nestName: "NEST App",
     nestTag: "Productivitat · IA",
@@ -106,16 +82,10 @@ const ca = {
     desastredecajonDesc: "Blog de viatges del pare del Janai per compartir les seves rutes i aventures amb amics i família d'arreu d'Espanya.",
     desastredecajonUrl: "https://desastredecajon.netlify.app",
 
-    statusComplete: "Publicat",
-    statusDev: "En procés",
     visitProject: "Visitar",
-    noImage: "Captura pròximament",
-    showAll: "Mostrar tots",
-    showLess: "Mostrar menys",
   },
 
   testimonials: {
-    title: "Què diuen els clients",
     boda: {
       name: "Raquel & Daniel",
       role: "Núvia i Nuvi",
@@ -163,7 +133,7 @@ const ca = {
     placeholderEmail: "hola@negoci.cat / 666 000 000",
     labelMessage: "Quin és el teu projecte?",
     placeholderMessage:
-      "Tinc una cafeteria i voldria una carta digital amb fotos dels plats...",
+      "Tinc una empresa de reformes i voldria que em trobessin a Google...",
     send: "Enviar missatge",
     sending: "Enviant...",
     successTitle: "Missatge enviat!",
