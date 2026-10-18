@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 import { useTranslation } from "@/context/TranslationContext";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function IntroReveal() {
   const { t } = useTranslation();
-  const lineRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
   const lines = [
     { text: t.intro.line1 },
@@ -17,56 +18,23 @@ export default function IntroReveal() {
     { text: t.intro.line3 },
   ];
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
-      lineRefs.current.forEach((el) => {
-        if (el) { el.style.opacity = "1"; el.style.transform = "none"; }
-      });
-      return;
-    }
-
-    const observers: IntersectionObserver[] = [];
-    lineRefs.current.forEach((el, i) => {
-      if (!el) return;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      el.style.transition = `opacity 0.7s ease ${i * 0.22}s, transform 0.7s ease ${i * 0.22}s`;
-
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-            obs.disconnect();
-          }
-        },
-        { threshold: 0.3 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
-
   return (
     <section
       id="inici"
-      className="relative min-h-screen flex flex-col justify-center px-6 py-24"
+      className="relative flex flex-col justify-center px-6 py-10 sm:py-14"
       style={{
         background: "linear-gradient(180deg, var(--olive-soft) 0%, var(--bg) 100%)",
       }}
     >
       <div className="max-w-3xl mx-auto w-full">
         {lines.map((line, i) => (
-          <p
+          <motion.p
             key={i}
-            ref={(el) => { lineRefs.current[i] = el; }}
-            className="font-display italic text-3xl sm:text-4xl md:text-5xl text-ink leading-snug mb-5"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: i * 0.16, ease: EASE }}
+            className="font-display text-3xl sm:text-4xl md:text-5xl text-ink leading-snug mb-5"
           >
             {"highlight" in line ? (
               <>
@@ -77,7 +45,7 @@ export default function IntroReveal() {
             ) : (
               line.text
             )}
-          </p>
+          </motion.p>
         ))}
       </div>
     </section>

@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import StickyHeader from "@/components/layout/StickyHeader";
 import StreetNav from "@/components/layout/StreetNav";
 import { TranslationProvider } from "@/context/TranslationContext";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
   weight: "variable",
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -54,6 +53,27 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Janai Gutierrez — Disseny web",
+  url: "https://janai.dev",
+  email: "janaigs97@gmail.com",
+  areaServed: {
+    "@type": "State",
+    name: "Catalunya",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Caldes de Montbui",
+    addressRegion: "Barcelona",
+    addressCountry: "ES",
+  },
+  priceRange: "€€",
+  description:
+    "Dissenyo webs per a cafeteries, botigues i allotjaments a Catalunya. Sense tecnicismes. Sense sorpreses.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,9 +82,13 @@ export default function RootLayout({
   return (
     <html
       lang="ca"
-      className={`${fraunces.variable} ${inter.variable} ${ibmPlexMono.variable}`}
+      className={`${bricolageGrotesque.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <body className="min-h-screen flex flex-col pb-16">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <TranslationProvider>
           <StickyHeader />
           <main className="flex-1">{children}</main>

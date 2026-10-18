@@ -47,7 +47,6 @@ const en: Translations = {
   },
 
   audience: {
-    eyebrow: "Who I work with",
     title: "Who I build websites for",
     item1title: "Bars & cafés",
     item1text: "A digital menu, your story and photos that make people want to walk in.",
@@ -100,7 +99,6 @@ const en: Translations = {
   },
 
   testimonials: {
-    eyebrow: "Reviews",
     title: "What clients say",
     boda: {
       name: "Raquel & Daniel",
@@ -123,7 +121,6 @@ const en: Translations = {
   },
 
   faq: {
-    eyebrow: "FAQ",
     title: "Everything you need to know",
     q1: "How much does a website cost?",
     a1: "It depends on the project, but roughly: a landing page or simple website ranges from €400 to €800. A full website with bookings or a catalogue, from €800 to €1,500. I always provide a personalised quote with no commitment.",

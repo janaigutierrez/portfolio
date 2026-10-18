@@ -48,7 +48,6 @@ const ca = {
   },
 
   audience: {
-    eyebrow: "Amb qui treballo",
     title: "Per a qui faig webs",
     item1title: "Bars i cafeteries",
     item1text:
@@ -116,7 +115,6 @@ const ca = {
   },
 
   testimonials: {
-    eyebrow: "Opinions",
     title: "Què diuen els clients",
     boda: {
       name: "Raquel & Daniel",
@@ -139,7 +137,6 @@ const ca = {
   },
 
   faq: {
-    eyebrow: "Preguntes freqüents",
     title: "Tot el que necessites saber",
     q1: "Quant costa una web?",
     a1: "Depèn del projecte, però orientativament: una landing o web senzilla va dels 400€ als 800€. Una web completa amb reserves o catàleg, dels 800€ als 1.500€. Sempre faig un pressupost personalitzat sense compromís.",

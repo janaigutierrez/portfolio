@@ -47,7 +47,6 @@ const es: Translations = {
   },
 
   audience: {
-    eyebrow: "Con quién trabajo",
     title: "Para quién hago webs",
     item1title: "Bares y cafeterías",
     item1text: "Una carta digital, tu historia y las fotos que dan ganas de entrar.",
@@ -100,7 +99,6 @@ const es: Translations = {
   },
 
   testimonials: {
-    eyebrow: "Opiniones",
     title: "Qué dicen los clientes",
     boda: {
       name: "Raquel & Daniel",
@@ -123,7 +121,6 @@ const es: Translations = {
   },
 
   faq: {
-    eyebrow: "Preguntas frecuentes",
     title: "Todo lo que necesitas saber",
     q1: "¿Cuánto cuesta una web?",
     a1: "Depende del proyecto, pero orientativamente: una landing o web sencilla va de 400€ a 800€. Una web completa con reservas o catálogo, de 800€ a 1.500€. Siempre hago un presupuesto personalizado sin compromiso.",

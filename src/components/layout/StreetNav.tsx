@@ -8,6 +8,7 @@ import {
   HelpCircle,
   Mail,
 } from "lucide-react";
+import { motion } from "motion/react";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { useTranslation } from "@/context/TranslationContext";
 import { LucideIcon } from "lucide-react";
@@ -57,10 +58,17 @@ export default function StreetNav() {
               onClick={() => scrollTo(id)}
               aria-label={label}
               aria-current={isActive ? "true" : undefined}
-              className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors duration-200 ${
+              className={`relative flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors duration-200 ${
                 isActive ? "text-amber" : "text-stone hover:text-ink-soft"
               }`}
             >
+              {isActive && (
+                <motion.span
+                  layoutId="streetnav-active-pill"
+                  className="absolute inset-0 -z-10 rounded-lg bg-amber/10"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
               <Icon size={18} strokeWidth={isActive ? 2.5 : 1.5} aria-hidden="true" />
               <span className="hidden sm:block font-mono text-[9px] uppercase tracking-widest leading-none">
                 {label}

@@ -3,7 +3,10 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Mail, MapPin, Clock, CheckCircle, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { useTranslation } from "@/context/TranslationContext";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ContactForm() {
   const { t } = useTranslation();
@@ -67,7 +70,12 @@ export default function ContactForm() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
           {/* Columna esquerra: info + procés */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: EASE }}
+          >
             <p className="font-mono text-xs uppercase tracking-widest text-stone mb-3">
               {t.contact.eyebrow}
             </p>
@@ -119,10 +127,15 @@ export default function ContactForm() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Columna dreta: targeta del formulari */}
-          <div className="bg-bg-card border border-line rounded-2xl p-6 sm:p-8 shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
+            className="bg-bg-card border border-line rounded-2xl p-6 sm:p-8 shadow-warm-sm">
             <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
               <input type="text" name="website" className="hidden" tabIndex={-1} aria-hidden="true" />
 
@@ -135,7 +148,7 @@ export default function ContactForm() {
                   name="user_name"
                   type="text"
                   placeholder={t.contact.placeholderName}
-                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber transition-colors ${errors.user_name ? "border-red-400" : "border-line"}`}
+                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber focus:shadow-[0_0_0_3px_rgba(212,146,42,0.15)] transition-[border-color,box-shadow] duration-200 ${errors.user_name ? "border-red-400" : "border-line"}`}
                 />
                 {errors.user_name && <p className="text-red-400 text-xs mt-1">{errors.user_name}</p>}
               </div>
@@ -149,7 +162,7 @@ export default function ContactForm() {
                   name="user_email"
                   type="email"
                   placeholder={t.contact.placeholderEmail}
-                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber transition-colors ${errors.user_email ? "border-red-400" : "border-line"}`}
+                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber focus:shadow-[0_0_0_3px_rgba(212,146,42,0.15)] transition-[border-color,box-shadow] duration-200 ${errors.user_email ? "border-red-400" : "border-line"}`}
                 />
                 {errors.user_email && <p className="text-red-400 text-xs mt-1">{errors.user_email}</p>}
               </div>
@@ -163,34 +176,48 @@ export default function ContactForm() {
                   name="message"
                   rows={5}
                   placeholder={t.contact.placeholderMessage}
-                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber transition-colors resize-none ${errors.message ? "border-red-400" : "border-line"}`}
+                  className={`w-full bg-bg border rounded-xl px-4 py-3 text-ink placeholder-stone text-sm outline-none focus:border-amber focus:shadow-[0_0_0_3px_rgba(212,146,42,0.15)] transition-[border-color,box-shadow] duration-200 resize-none ${errors.message ? "border-red-400" : "border-line"}`}
                 />
                 {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
               </div>
 
-              {status === "success" ? (
-                <div className="flex items-center gap-3 text-olive bg-olive-soft rounded-xl px-4 py-3">
-                  <CheckCircle size={18} strokeWidth={1.5} aria-hidden="true" />
-                  <div>
-                    <p className="font-medium text-sm">{t.contact.successTitle}</p>
-                    <p className="text-xs text-ink-soft">{t.contact.successText}</p>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="px-6 py-3 rounded-full bg-amber text-paper text-sm font-medium hover:bg-amber-deep transition-colors duration-200 disabled:opacity-60 self-start"
-                >
-                  {status === "sending" ? t.contact.sending : t.contact.send}
-                </button>
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                {status === "success" ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, ease: EASE }}
+                    className="flex items-center gap-3 text-olive bg-olive-soft rounded-xl px-4 py-3"
+                  >
+                    <CheckCircle size={18} strokeWidth={1.5} aria-hidden="true" />
+                    <div>
+                      <p className="font-medium text-sm">{t.contact.successTitle}</p>
+                      <p className="text-xs text-ink-soft">{t.contact.successText}</p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    key="submit"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, ease: EASE }}
+                    type="submit"
+                    disabled={status === "sending"}
+                    whileTap={{ scale: 0.97 }}
+                    className="px-6 py-3 rounded-full bg-amber text-paper text-sm font-medium hover:bg-amber-deep transition-colors duration-200 disabled:opacity-60 self-start"
+                  >
+                    {status === "sending" ? t.contact.sending : t.contact.send}
+                  </motion.button>
+                )}
+              </AnimatePresence>
 
               {status === "error" && (
                 <p className="text-red-400 text-sm">{t.contact.errorText}</p>
               )}
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

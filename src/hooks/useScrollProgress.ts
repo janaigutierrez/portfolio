@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export function useScrollProgress(sectionIds: string[]) {
   const [progress, setProgress] = useState(0);
   const [activeIdx, setActiveIdx] = useState(0);
+  const ticking = useRef(false);
 
-  const update = useCallback(() => {
+  const measure = useCallback(() => {
     const maxScroll =
       document.documentElement.scrollHeight - window.innerHeight;
     const current = maxScroll > 0 ? window.scrollY / maxScroll : 0;
@@ -24,15 +25,25 @@ export function useScrollProgress(sectionIds: string[]) {
     setActiveIdx(found);
   }, [sectionIds]);
 
+  const update = useCallback(() => {
+    if (ticking.current) return;
+    ticking.current = true;
+    requestAnimationFrame(() => {
+      measure();
+      ticking.current = false;
+    });
+  }, [measure]);
+
   useEffect(() => {
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update, { passive: true });
-    update();
+    const raf = requestAnimationFrame(measure);
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
+      cancelAnimationFrame(raf);
     };
-  }, [update]);
+  }, [update, measure]);
 
   return { progress, activeIdx };
 }

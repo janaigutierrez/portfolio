@@ -46,7 +46,7 @@ export default function StickyHeader() {
 
           <button
             onClick={scrollToContact}
-            className="px-4 py-1.5 rounded-full text-sm font-medium bg-amber text-paper hover:bg-amber-deep transition-colors duration-200"
+            className="px-4 py-1.5 rounded-full text-sm font-medium bg-amber text-paper hover:bg-amber-deep transition active:scale-[0.97] duration-200"
           >
             {t.header.cta}
           </button>

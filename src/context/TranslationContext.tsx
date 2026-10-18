@@ -7,6 +7,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { MotionConfig } from "motion/react";
 import ca, { Translations } from "@/data/translations/ca";
 import es from "@/data/translations/es";
 import en from "@/data/translations/en";
@@ -44,7 +45,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     <TranslationContext.Provider
       value={{ lang, setLang, t: translations[lang] }}
     >
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </TranslationContext.Provider>
   );
 }
