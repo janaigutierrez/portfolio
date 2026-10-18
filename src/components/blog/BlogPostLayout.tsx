@@ -24,7 +24,7 @@ export default function BlogPostLayout({
     <main className="px-6 py-16 max-w-6xl mx-auto">
       <Link
         href="/blog"
-        className="text-xs text-pencil hover:text-pen transition-colors inline-block mb-14"
+        className="text-sm text-pencil hover:text-pen transition-colors inline-block mb-14"
       >
         {t.blog.backToBlog}
       </Link>

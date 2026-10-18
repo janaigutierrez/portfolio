@@ -10,9 +10,16 @@ export interface PostMeta {
   date: string;
   description: string;
   category: string;
+  hidden?: boolean;
 }
 
+// Articles visibles al llistat. Els marcats amb `hidden: true` (temes tècnics, fora de
+// l'audiència) no surten a la llista però la seva URL es continua generant.
 export function getAllPosts(): PostMeta[] {
+  return getAllPostsIncludingHidden().filter((post) => !post.hidden);
+}
+
+export function getAllPostsIncludingHidden(): PostMeta[] {
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
   return files
     .map((filename) => {

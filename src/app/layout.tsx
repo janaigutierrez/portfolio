@@ -20,6 +20,7 @@ const handTemp = Nanum_Pen_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://janai.dev"),
   title: "Janai Gutierrez - Webs i solucions digitals per a negocis",
   description:
     "Webs i eines digitals per a negocis i empreses que volen ser trobats a internet i estalviar-se feina. Des de Caldes de Montbui, per a tot Catalunya.",

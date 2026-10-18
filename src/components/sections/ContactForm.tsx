@@ -2,11 +2,17 @@
 
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { Mail, MapPin, Clock, CheckCircle } from "lucide-react";
+import { CheckCircle, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTranslation } from "@/context/TranslationContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+const WHATSAPP_NUMBER = "34623065244";
+
+const inputClass = (hasError: boolean) =>
+  `w-full bg-paper border rounded-control px-4 py-3 text-ink placeholder-pencil text-sm outline-none focus:border-pen focus:shadow-[0_0_0_3px_rgba(43,68,176,0.15)] transition-[border-color,box-shadow] duration-200 ${
+    hasError ? "border-error" : "border-rule"
+  }`;
 
 export default function ContactForm() {
   const { t } = useTranslation();
@@ -55,93 +61,73 @@ export default function ContactForm() {
     }
   };
 
-  const steps = [t.contact.step1, t.contact.step2, t.contact.step3];
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.contact.whatsappMessage)}`;
+
+  const fieldError = (name: string) =>
+    errors[name] ? (
+      <p id={`${name}-error`} className="text-error text-xs mt-1.5">
+        {errors[name]}
+      </p>
+    ) : null;
 
   return (
-    <section
-      id="contacte"
-      style={{
-        backgroundColor: "var(--sheet)",
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+    <section id="contacte" className="bg-sheet border-t border-rule scroll-mt-16">
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-16 items-start">
 
-          {/* Columna esquerra: info + procés */}
-          <div
-          >
-            <p className="text-xs text-pencil mb-3">
-              {t.contact.eyebrow}
+          {/* Columna esquerra: missatge + canals directes */}
+          <div>
+            <h2 className="font-display text-3xl sm:text-4xl text-ink mb-4">{t.contact.title}</h2>
+            <p className="text-lg text-ink-soft leading-relaxed mb-3 max-w-[44ch]">{t.contact.subtitle}</p>
+            <p className="text-ink-soft leading-relaxed mb-10 max-w-[44ch]">{t.contact.process}</p>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-pen text-sheet font-medium hover:bg-pen-deep transition active:scale-[0.97] duration-200"
+            >
+              <MessageCircle size={18} strokeWidth={2} aria-hidden="true" />
+              {t.contact.whatsappCta}
+            </a>
+            <p className="text-ink-soft mt-4">
+              {t.contact.emailLabel}{" "}
+              <a
+                href={`mailto:${t.contact.infoEmail}`}
+                className="text-ink font-medium underline decoration-rule decoration-2 underline-offset-4 hover:decoration-pen transition-colors"
+              >
+                {t.contact.infoEmail}
+              </a>
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl text-ink mb-4">
-              {t.contact.title}
-            </h2>
-            <p className="text-ink-soft leading-relaxed mb-10">
-              {t.contact.subtitle}
-            </p>
 
-            {/* Passos */}
-            <div className="flex flex-col gap-4 mb-10">
-              {steps.map((step, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-pen text-sheet text-xs font-semibold flex items-center justify-center shrink-0">
-                    {i + 1}
-                  </div>
-                  <p className="text-ink text-sm font-medium">{step}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Info de contacte */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-start gap-3">
-                <Mail size={16} strokeWidth={1.5} className="text-pen mt-0.5 shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="text-xs text-pencil mb-0.5">Email</p>
-                  <a href={`mailto:${t.contact.infoEmail}`} className="text-ink text-sm hover:text-pen transition-colors">
-                    {t.contact.infoEmail}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin size={16} strokeWidth={1.5} className="text-pen mt-0.5 shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="text-xs text-pencil mb-0.5">{t.contact.infoLocationLabel}</p>
-                  <p className="text-ink text-sm">{t.contact.infoLocation}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock size={16} strokeWidth={1.5} className="text-pen mt-0.5 shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="text-xs text-pencil mb-0.5">{t.contact.infoStatus}</p>
-                  <p className="text-ink text-sm">{t.contact.infoResponse}</p>
-                </div>
-              </div>
-            </div>
+            <p className="text-sm text-pencil mt-10 max-w-[44ch]">{t.contact.location}</p>
           </div>
 
-          {/* Columna dreta: targeta del formulari */}
-          <div
-            className="bg-sheet border border-rule rounded-card p-6 sm:p-8">
+          {/* Columna dreta: formulari */}
+          <div className="bg-paper border border-rule rounded-card p-6 sm:p-8">
+            <h3 className="font-display text-xl text-ink mb-6">{t.contact.formTitle}</h3>
             <form ref={formRef} onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
               <input type="text" name="website" className="hidden" tabIndex={-1} aria-hidden="true" />
 
               <div>
-                <label htmlFor="user_name" className="text-xs text-pencil block mb-1.5">
+                <label htmlFor="user_name" className="text-sm text-ink-soft block mb-2">
                   {t.contact.labelName}
                 </label>
                 <input
                   id="user_name"
                   name="user_name"
                   type="text"
+                  autoComplete="name"
                   placeholder={t.contact.placeholderName}
-                  className={`w-full bg-paper border rounded-control px-4 py-3 text-ink placeholder-pencil text-sm outline-none focus:border-pen focus:shadow-[0_0_0_3px_rgba(43,68,176,0.15)] transition-[border-color,box-shadow] duration-200 ${errors.user_name ? "border-error" : "border-rule"}`}
+                  aria-invalid={!!errors.user_name}
+                  aria-describedby={errors.user_name ? "user_name-error" : undefined}
+                  className={inputClass(!!errors.user_name)}
                 />
-                {errors.user_name && <p className="text-error text-xs mt-1">{errors.user_name}</p>}
+                {fieldError("user_name")}
               </div>
 
               <div>
-                <label htmlFor="user_email" className="text-xs text-pencil block mb-1.5">
+                <label htmlFor="user_email" className="text-sm text-ink-soft block mb-2">
                   {t.contact.labelEmail}
                 </label>
                 <input
@@ -150,13 +136,15 @@ export default function ContactForm() {
                   type="text"
                   autoComplete="email"
                   placeholder={t.contact.placeholderEmail}
-                  className={`w-full bg-paper border rounded-control px-4 py-3 text-ink placeholder-pencil text-sm outline-none focus:border-pen focus:shadow-[0_0_0_3px_rgba(43,68,176,0.15)] transition-[border-color,box-shadow] duration-200 ${errors.user_email ? "border-error" : "border-rule"}`}
+                  aria-invalid={!!errors.user_email}
+                  aria-describedby={errors.user_email ? "user_email-error" : undefined}
+                  className={inputClass(!!errors.user_email)}
                 />
-                {errors.user_email && <p className="text-error text-xs mt-1">{errors.user_email}</p>}
+                {fieldError("user_email")}
               </div>
 
               <div>
-                <label htmlFor="message" className="text-xs text-pencil block mb-1.5">
+                <label htmlFor="message" className="text-sm text-ink-soft block mb-2">
                   {t.contact.labelMessage}
                 </label>
                 <textarea
@@ -164,9 +152,11 @@ export default function ContactForm() {
                   name="message"
                   rows={5}
                   placeholder={t.contact.placeholderMessage}
-                  className={`w-full bg-paper border rounded-control px-4 py-3 text-ink placeholder-pencil text-sm outline-none focus:border-pen focus:shadow-[0_0_0_3px_rgba(43,68,176,0.15)] transition-[border-color,box-shadow] duration-200 resize-none ${errors.message ? "border-error" : "border-rule"}`}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                  className={`${inputClass(!!errors.message)} resize-none`}
                 />
-                {errors.message && <p className="text-error text-xs mt-1">{errors.message}</p>}
+                {fieldError("message")}
               </div>
 
               <AnimatePresence mode="wait" initial={false}>
@@ -176,9 +166,10 @@ export default function ContactForm() {
                     initial={{ opacity: 0, y: 8, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.4, ease: EASE }}
+                    role="status"
                     className="flex items-center gap-3 text-ink bg-paper-deep rounded-control px-4 py-3"
                   >
-                    <CheckCircle size={18} strokeWidth={1.5} aria-hidden="true" />
+                    <CheckCircle size={18} strokeWidth={1.75} className="text-pen shrink-0" aria-hidden="true" />
                     <div>
                       <p className="font-medium text-sm">{t.contact.successTitle}</p>
                       <p className="text-xs text-ink-soft">{t.contact.successText}</p>
@@ -194,7 +185,7 @@ export default function ContactForm() {
                     type="submit"
                     disabled={status === "sending"}
                     whileTap={{ scale: 0.97 }}
-                    className="px-6 py-3 rounded-full bg-pen text-sheet text-sm font-medium hover:bg-pen-deep transition-colors duration-200 disabled:opacity-60 self-start"
+                    className="px-6 py-3 rounded-full bg-ink text-sheet text-sm font-medium hover:bg-ink-soft transition-colors duration-200 disabled:opacity-60 self-start"
                   >
                     {status === "sending" ? t.contact.sending : t.contact.send}
                   </motion.button>
@@ -202,7 +193,7 @@ export default function ContactForm() {
               </AnimatePresence>
 
               {status === "error" && (
-                <p className="text-error text-sm">{t.contact.errorText}</p>
+                <p role="alert" className="text-error text-sm">{t.contact.errorText}</p>
               )}
             </form>
           </div>
